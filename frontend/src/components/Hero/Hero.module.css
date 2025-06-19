@@ -13,9 +13,48 @@
   padding-top: 30px;
 }
 
-.container {
+.heroContainer {
   display: flex;
   flex-direction: row;
+}
+
+.leftHeroContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.myProjectsBtn {
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  text-align: center;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: transparent;
+  margin: 2em 10px;
+  cursor: pointer;
+}
+
+.contactMeBtn {
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  text-align: center;
+  font-weight: bold;
+  background-color: transparent;
+  color: #007bff;
+  border: #007bff 6px solid;
+  margin: 2em 10px;
+  cursor: pointer;
 }
 
 .text {
@@ -25,7 +64,7 @@
 
 .bannerPlaceholder {
   width: 3000px;
-  height: 200px;
+  height: 304px;
   background: linear-gradient(#007bff, #0661c2);
   border-radius: 0 50px 50px 0;
 }
