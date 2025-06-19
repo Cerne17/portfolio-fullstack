@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
-}
+/* frontend/src/App.css */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Changed to column for vertical stacking */
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #f3f4f6; /* Light gray background */
+}
+
+.app-title {
+  font-size: 3rem; /* Roughly 48px, equivalent to text-5xl */
+  font-weight: bold;
+  color: #2563eb; /* A shade of blue, equivalent to text-blue-600 */
+  margin-bottom: 20px; /* Space below title */
+}
+
+.my-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff; /* Example button color */
   color: white;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.my-button:hover {
+  background-color: #0056b3;
 }
