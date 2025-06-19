@@ -1,19 +1,30 @@
-/* frontend/src/App.css */
-
-.app-container {
-  min-height: 100vh;
+.App {
+  width: 100%;
+  min-height: 100vh; /* Ensure it takes full viewport height */
+  margin: 0; /* Remove any potential default margin */
+  padding: 0; /* Remove any potential default padding */
+  /* Add display: flex; flex-direction: column; if you want content to stack vertically */
+  /* For example: */
   display: flex;
-  flex-direction: column; /* Changed to column for vertical stacking */
-  align-items: center;
-  justify-content: center;
-  background-color: #f3f4f6; /* Light gray background */
+  flex-direction: column;
+}
+
+/* Keep or adjust other styles for your App.tsx test elements if still present */
+.app-container {
+  /* This container should still have its max-width for content */
+  max-width: 100%; /* Or whatever value you want for central content */
+  margin: 0 auto; /* Center it */
+  width: 100%; /* Ensure it respects max-width while taking full available space */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .app-title {
-  font-size: 3rem; /* Roughly 48px, equivalent to text-5xl */
+  font-size: 3rem;
   font-weight: bold;
-  color: #2563eb; /* A shade of blue, equivalent to text-blue-600 */
-  margin-bottom: 20px; /* Space below title */
+  color: #2563eb;
+  margin-bottom: 20px;
+  text-align: center; /* Center the title */
 }
 
 .my-button {
@@ -22,7 +33,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff; /* Example button color */
+  background-color: #007bff;
   color: white;
   transition: background-color 0.3s ease;
 }

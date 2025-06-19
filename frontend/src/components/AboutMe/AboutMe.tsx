@@ -21,19 +21,17 @@ const AboutMe: React.FC = () => {
           </p>
         </div>
 
-        {/* Skills Showcase */}
+        {/* My Tech Stack */}
         <div className={styles.subsection}>
-          <h3 className={styles.subsectionTitle}>Skills Showcase</h3>
+          <h3 className={styles.subsectionTitle}>My Tech Stack</h3>
           <div className={styles.skillsGrid}>
-            <span className={styles.skillTag}>JavaScript</span>
-            <span className={styles.skillTag}>TypeScript</span>
             <span className={styles.skillTag}>React</span>
+            <span className={styles.skillTag}>TailwindCSS</span>
             <span className={styles.skillTag}>Node.js</span>
             <span className={styles.skillTag}>Express.js</span>
+            <span className={styles.skillTag}>NestJS</span>
+            <span className={styles.skillTag}>Relational Databases</span>
             <span className={styles.skillTag}>MongoDB</span>
-            <span className={styles.skillTag}>Git</span>
-            <span className={styles.skillTag}>HTML5</span>
-            <span className={styles.skillTag}>CSS3</span>
             {/* Add more skills as needed */}
           </div>
         </div>
@@ -112,9 +110,15 @@ const AboutMe: React.FC = () => {
           </p>
           <button
             className={styles.actionButton}
-            onClick={() => console.log("Navigate to Projects/Contact")}
+            onClick={() => console.log("Navigate to Projects")}
           >
-            View My Projects or Contact Me!
+            View My Projects
+          </button>
+          <button
+            className={styles.actionButton}
+            onClick={() => console.log("Contact")}
+          >
+            Contact Me!
           </button>
         </div>
       </div>

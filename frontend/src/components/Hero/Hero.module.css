@@ -1,0 +1,14 @@
+.heroSection {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.subsectionTitle {
+  font-size: 2.5em;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 30px;
+}

@@ -1,0 +1,73 @@
+/* frontend/src/components/Navbar.module.css */
+
+.navbar {
+  background-color: #f9f9f9; /* Changed to match AboutMeSection background */
+  padding: 15px 0;
+  color: #333; /* Changed text color to darker for contrast on light background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for lighter background */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* No max-width here, so it spans full width */
+}
+
+.container {
+  /* max-width: 1200px; */ /* REMOVE or COMMENT OUT this line */
+  margin: 0 auto; /* Keeps content centered */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.brand {
+  color: #007bff; /* Changed brand color for visibility */
+  text-decoration: none;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navItem {
+  margin-left: 25px;
+}
+
+.navLink {
+  color: #555; /* Adjusted link color for contrast */
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 5px 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.navLink:hover,
+.navLink:focus {
+  color: #007bff; /* Keep highlight color consistent */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navList {
+    margin-top: 15px;
+    flex-direction: column;
+  }
+
+  .navItem {
+    margin: 10px 0;
+  }
+
+  .brand {
+    margin-bottom: 10px;
+  }
+}
