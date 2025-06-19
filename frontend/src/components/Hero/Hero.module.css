@@ -12,3 +12,20 @@
   margin-bottom: 40px;
   padding-top: 30px;
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.text {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.bannerPlaceholder {
+  width: 3000px;
+  height: 200px;
+  background: linear-gradient(#007bff, #0661c2);
+  border-radius: 0 50px 50px 0;
+}
