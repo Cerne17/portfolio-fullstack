@@ -1,0 +1,13 @@
+.CtaTransparentButton {
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  text-align: center;
+  font-weight: bold;
+  background-color: transparent;
+  color: #007bff;
+  border: #007bff 6px solid;
+  margin: 2em 10px;
+  cursor: pointer;
+}
