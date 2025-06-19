@@ -41,15 +41,12 @@ const AboutMe: React.FC = () => {
           <h3 className={styles.subsectionTitle}>Experience</h3>
           <div className={styles.experienceItem}>
             <h4 className={styles.experienceRole}>
-              Software Engineer at [Company Name]
+              Software Engineer Intern at Fluxo Consultoria
             </h4>
-            <p className={styles.experienceDuration}>Jan 2022 – Present</p>
+            <p className={styles.experienceDuration}>Jun 2023 – Jan 2024</p>
             <ul className={styles.experienceResponsibilities}>
-              <li>Developed and maintained full-stack applications.</li>
-              <li>
-                Collaborated with cross-functional teams to define, design, and
-                ship new features.
-              </li>
+              <li>Developed and maintained back-end applications.</li>
+              <li>Designed scalable systems, databases and APIs.</li>
               <li>
                 Implemented RESTful APIs and integrated with various third-party
                 services.
@@ -58,14 +55,13 @@ const AboutMe: React.FC = () => {
           </div>
           <div className={styles.experienceItem}>
             <h4 className={styles.experienceRole}>
-              Junior Developer at [Previous Company]
+              Machine Learning Researcher at GTA-UFRJ
             </h4>
-            <p className={styles.experienceDuration}>Jun 2020 – Dec 2021</p>
+            <p className={styles.experienceDuration}>Jun 2024 – Jan 2025</p>
             <ul className={styles.experienceResponsibilities}>
-              <li>
-                Assisted in the development of client-side logic using React.
-              </li>
-              <li>Participated in code reviews and learned best practices.</li>
+              <li>Developed a computer vision model.</li>
+              <li>Designed a customized dataset for training the model.</li>
+              <li>Implemented the model to a django back-end.</li>
             </ul>
           </div>
         </div>
@@ -75,12 +71,13 @@ const AboutMe: React.FC = () => {
           <h3 className={styles.subsectionTitle}>Education</h3>
           <div className={styles.educationItem}>
             <h4 className={styles.educationDegree}>
-              Bachelor of Science in Computer Science
+              Bachelor of Electrical & Computer Engineering (GPA 3.2)
             </h4>
             <p className={styles.educationInstitution}>
-              [University Name], [City, State]
+              Federal University of Rio de Janeiro (UFRJ), Rio de Janeiro, RJ,
+              Brazil
             </p>
-            <p className={styles.educationYear}>Graduated: [Year]</p>
+            <p className={styles.educationYear}>Graduation: 2027</p>
           </div>
         </div>
 
@@ -88,8 +85,7 @@ const AboutMe: React.FC = () => {
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>Certifications & Awards</h3>
           <ul className={styles.certificationsList}>
-            <li>[Certification Name] - [Issuing Body] ([Year])</li>
-            <li>[Award Name] ([Year])</li>
+            <li>ChatGPT Mastery - Adapta org. (2024)</li>
           </ul>
         </div>
 
@@ -97,9 +93,8 @@ const AboutMe: React.FC = () => {
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>Interests</h3>
           <p className={styles.text}>
-            Outside of coding, I enjoy [Your hobbies, e.g., hiking, photography,
-            playing guitar]. I believe in continuous learning and actively
-            contribute to the developer community.
+            Alongside coding, I'm also a complete nerd when it comes to
+            mathematics and video game.
           </p>
         </div>
 
