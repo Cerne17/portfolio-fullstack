@@ -1,4 +1,3 @@
-// frontend/src/components/Navbar.tsx
 import React from "react";
 import styles from "./Navbar.module.css"; // Import CSS Module
 
@@ -7,7 +6,7 @@ const Navbar: React.FC = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <a href="/" className={styles.brand}>
-          Miguel Cerne {/* Placeholder for your name or logo */}
+          Miguel Cerne
         </a>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
