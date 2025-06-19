@@ -1,11 +1,11 @@
 import React from "react";
+import AboutMe from "./components/AboutMe";
 import "./App.css";
 
 function App() {
   return (
     <div className="app-container">
-      <h1 className="app-title">Hello Plain CSS!</h1>
-      <button className="my-button">Click Me</button>
+      <AboutMe />
     </div>
   );
 }

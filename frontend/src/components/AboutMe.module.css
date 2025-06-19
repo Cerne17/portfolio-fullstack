@@ -1,0 +1,167 @@
+/* frontend/src/components/AboutMe.module.css */
+
+.aboutMeSection {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.sectionTitle {
+  font-size: 2.5em;
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 30px;
+}
+
+.subsection {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.subsection:last-child {
+  border-bottom: none;
+}
+
+.subsectionTitle {
+  font-size: 1.8em;
+  color: #555;
+  margin-bottom: 15px;
+  border-left: 5px solid #007bff;
+  padding-left: 10px;
+}
+
+.text {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skillTag {
+  background-color: #e0f7fa;
+  color: #007bff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9em;
+  border: 1px solid #007bff;
+}
+
+.experienceItem,
+.educationItem {
+  margin-bottom: 20px;
+  border-left: 3px solid #007bff;
+  padding-left: 15px;
+}
+
+.experienceItem:last-child,
+.educationItem:last-child {
+  margin-bottom: 0;
+}
+
+.experienceRole,
+.educationDegree {
+  font-size: 1.3em;
+  color: #0056b3;
+  margin-bottom: 5px;
+}
+
+.experienceDuration,
+.educationInstitution,
+.educationYear {
+  font-size: 0.95em;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.experienceResponsibilities {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.experienceResponsibilities li {
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+.certificationsList {
+  list-style-type: square;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+.certificationsList li {
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+.callToAction {
+  text-align: center;
+  padding: 30px 0;
+}
+
+.actionButton {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+}
+
+.actionButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design Considerations  */
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2em;
+  }
+  .subsectionTitle {
+    font-size: 1.5em;
+  }
+  .experienceRole,
+  .educationDegree {
+    font-size: 1.2em;
+  }
+  .container {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.8em;
+  }
+  .subsectionTitle {
+    font-size: 1.3em;
+  }
+  .experienceRole,
+  .educationDegree {
+    font-size: 1.1em;
+  }
+  .aboutMeSection {
+    padding: 20px 10px;
+  }
+}
