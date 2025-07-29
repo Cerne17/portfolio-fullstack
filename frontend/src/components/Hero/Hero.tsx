@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Hero.module.css";
+import CtaTransparentButton from "../CtaTransparentButton/CtaTransparentButton";
+import CtaBlueButton from "../CtaBlueButton/CtaBlueButton";
 
 const Hero: React.FC = () => {
   return (
@@ -19,13 +21,17 @@ const Hero: React.FC = () => {
             hic dicta! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Iusto, eos.
           </p>
-          <div className={styles.btnContainer}>
-            <button className={styles.myProjectsBtn}>My Projects</button>
-            <button className={styles.contactMeBtn}>Contact Me!</button>
-          </div>
         </div>
         {/* Banner Placeholder */}
         <div className={styles.bannerPlaceholder}></div>
+      </div>
+      <div className={styles.btnContainer}>
+        <a href="https://github.com/Cerne17" target="_blank" rel="noopener noreferrer">
+          <CtaBlueButton title="My Projects"/>
+        </a>
+        <a href="https://calendly.com/miguelcerne-dev/30min" target="_blank" rel="noopener noreferrer">
+          <CtaTransparentButton title="Book a Call"/>
+        </a>
       </div>
     </section>
   );
