@@ -59,12 +59,12 @@
 
 .text {
   font-size: 1.1em;
-  margin-bottom: 10px;
+  padding-right: 2em;
 }
 
 .bannerPlaceholder {
   width: 3000px;
-  height: 304px;
+  height: auto;
   background: linear-gradient(#007bff, #0661c2);
   border-radius: 0 50px 50px 0;
 }
