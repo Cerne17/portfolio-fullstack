@@ -120,7 +120,7 @@ const AboutMe: React.FC = () => {
           <h3 className={styles.subsectionTitle}>Education</h3>
           <div className={styles.educationItem}>
             <h4 className={styles.educationDegree}>
-              Bachelor of Electrical & Computer Engineering (GPA 3.2)
+              Bachelor of Electrical & Computer Engineering (GPA 3.3 - 8.2/10)
             </h4>
             <p className={styles.educationInstitution}>
               Federal University of Rio de Janeiro (UFRJ), Rio de Janeiro, RJ,
