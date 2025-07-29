@@ -14,21 +14,23 @@ const Navbar: React.FC = () => {
               About Me
             </a>
           </li>
-          <li className={styles.navItem}>
-            <a href="#projects" className={styles.navLink}>
-              Projects
-            </a>
-          </li>
+          {/* TODO: implement the projects section and enable it on Navbar */}
+          {/* <li className={styles.navItem}> */}
+          {/*   <a href="#projects" className={styles.navLink}> */}
+          {/*     Projects */}
+          {/*   </a> */}
+          {/* </li> */}
           <li className={styles.navItem}>
             <a href="#contact-me" className={styles.navLink}>
               Contact Me
             </a>
           </li>
-          <li className={styles.navItem}>
-            <a href="#blog" className={styles.navLink}>
-              Blog
-            </a>
-          </li>
+          {/* TODO: implement the Blog Page and enable it on Navbar */}
+          {/* <li className={styles.navItem}> */}
+          {/*   <a href="#blog" className={styles.navLink}> */}
+          {/*     Blog */}
+          {/*   </a> */}
+          {/* </li> */}
         </ul>
       </div>
     </nav>
