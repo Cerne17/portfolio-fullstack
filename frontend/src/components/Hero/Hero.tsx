@@ -10,16 +10,14 @@ const Hero: React.FC = () => {
       <div className={styles.heroContainer}>
         <div className={styles.leftHeroContainer}>
           <p className={styles.text}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            minus nihil nesciunt animi veritatis officia commodi illo! Numquam
-            voluptate consequuntur expedita, quisquam esse recusandae molestiae
-            facilis corporis aut sit repellat exercitationem magni ipsam
-            aspernatur nemo animi culpa ducimus fugit eligendi quae aperiam in.
-            Exercitationem corrupti minus, nesciunt error nostrum laudantium!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-            dolorum explicabo optio aspernatur ad quisquam maiores! Excepturi a
-            hic dicta! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Iusto, eos.
+            I am a Brazilian Full-Stack Engineer and a third-year Computer Engineering student at the Federal University of Rio de Janeiro (UFRJ). 
+            While my engineering studies provided a rigorous foundation, my journey into software was truly sparked by discovering Conway's Game of Life.
+            The realization that I could build entire systems from the ground up, blending my lifelong love for math and logic with pure creativity, ignited a passion that drives me to this day.
+          </p>
+          <p className={styles.text}>
+            This passion has led me to explore and deliver projects across multiple domains, from Web Development to Data Science and Machine Learning.
+            What I love most is the multi-disciplinarity of it all—seeing how a few simple concepts can emerge and combine to build complex solutions that solve real problems for real people.
+            Ultimately, that is my goal: to use technology to make a tangible, positive impact.
           </p>
         </div>
         {/* Banner Placeholder */}
