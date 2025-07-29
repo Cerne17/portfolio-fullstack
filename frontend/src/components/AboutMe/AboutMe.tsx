@@ -81,7 +81,7 @@ const AboutMe: React.FC = () => {
           >
             <div className={styles.skillsGrid}>
               {techSkills.map((skill) => {
-                const IconComponent = skill.icon as IconType;
+                const IconComponent = skill.icon as unknown as React.FC;
 
                 return (
                   <div
