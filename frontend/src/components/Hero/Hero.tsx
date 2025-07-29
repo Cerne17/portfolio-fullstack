@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
       <div className={styles.heroContainer}>
         <div className={styles.leftHeroContainer}>
           <p className={styles.text}>
-            I am a Brazilian Full-Stack Engineer and a third-year Computer Engineering student at the Federal University of Rio de Janeiro (UFRJ). 
+            I am a Brazilian Full-Stack Engineer and a third-year Electrical and Computer Engineering undergraduate at the Federal University of Rio de Janeiro (UFRJ). 
             While my engineering studies provided a rigorous foundation, my journey into software was truly sparked by discovering Conway's Game of Life.
             The realization that I could build entire systems from the ground up, blending my lifelong love for math and logic with pure creativity, ignited a passion that drives me to this day.
           </p>
