@@ -11,13 +11,13 @@ const AboutMe: React.FC = () => {
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>Professional Summary</h3>
           <p className={styles.text}>
-            I am a passionate Full Stack Developer with X years of experience in
-            building robust and scalable web applications. My expertise lies in
-            modern JavaScript frameworks like React, coupled with strong backend
-            skills in Node.js and Express.js, and database management using
-            MongoDB. I am constantly seeking to learn new technologies and solve
-            complex problems, striving to create efficient and user-friendly
-            solutions.
+            I am a third-year <strong>Electrical and Computer Engineering</strong> undergraduate at UFRJ, passionate about bridging the gap between software and hardware through innovative solutions. My academic path and professional experiences have strengthened my skills in <strong>backend development</strong>,{" "} <strong>machine learning</strong>, and <strong>data analysis</strong>.
+          </p>
+          <p className={styles.text}>
+            I have worked as a <strong>Backend Developer</strong> at <strong>Fluxo Consultoria</strong> (Fluxo Consultancy) - an engineering undergratuate business -, where I built and maintained APIs using <strong>NestJS</strong> and <strong>PostgreSQL</strong>, applying clean architecture principles and best practices in software engineering. Additionally, as a <strong>Machine Learning Researcher</strong> at GTA-UFRJ (Grupo de Teleinformática e Automação - Teleinformatics and Automation Group), I explored data-driven solutions using <strong>Scikit-Learn</strong>,{" "} <strong>Pandas</strong>, and <strong>Matplotlib</strong>, while leveraging high-performance computing with TPUs.
+          </p>
+          <p className={styles.text}>
+            I thrive on hands-on learning, tackling complex problems, and applying emerging technologies. My goal is to contribute to impactful projects that push the boundaries of software engineering and data science, while continuing to grow as a technology professional.
           </p>
         </div>
 
