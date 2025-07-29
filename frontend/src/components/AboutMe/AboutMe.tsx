@@ -1,5 +1,47 @@
 import React from "react";
 import styles from "./AboutMe.module.css";
+import CtaBlueButton from "../CtaBlueButton/CtaBlueButton";
+import CtaTransparentButton from "../CtaTransparentButton/CtaTransparentButton";
+import { IconContext } from "react-icons";
+import {
+  SiNextdotjs,
+  SiReact,
+  SiShadcnui,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiNestjs,
+  SiJest,
+  SiPostgresql,
+  SiMongodb,
+  SiSupabase,
+  SiVercel,
+  SiPython,
+  SiScikitlearn,
+  SiPandas,
+  SiTensorflow
+} from "react-icons/si";
+
+const techSkills = [
+  // Frontend
+  { name: "Next.js", icon: SiNextdotjs, category: "frontend" },
+  { name: "React", icon: SiReact, category: "frontend" },
+  { name: "TailwindCSS", icon: SiTailwindcss, category: "frontend" },
+  { name: "Shadcn", icon: SiShadcnui, category: "frontend" },
+  // Backend
+  { name: "Node.js", icon: SiNodedotjs, category: "backend" },
+  { name: "Express.js", icon: SiExpress, category: "backend" },
+  { name: "NestJS", icon: SiNestjs, category: "backend" },
+  { name: "PostgreSQL", icon: SiPostgresql, category: "backend" },
+  { name: "MongoDB", icon: SiMongodb, category: "backend" },
+  { name: "Supabase", icon: SiSupabase, category: "backend" },
+  { name: "Vercel", icon: SiVercel, category: "backend" },
+  // Data Science
+  { name: "Python", icon: SiPython, category: "dataScience" },
+  { name: "Pandas", icon: SiPandas, category: "dataScience" },
+  { name: "Scikit-learn", icon: SiScikitlearn, category: "dataScience" },
+  { name: "Tensorflow", icon: SiTensorflow, category: "dataScience" },
+];
 
 const AboutMe: React.FC = () => {
   return (
@@ -24,16 +66,23 @@ const AboutMe: React.FC = () => {
         {/* My Tech Stack */}
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>My Tech Stack</h3>
-          <div className={styles.skillsGrid}>
-            <span className={styles.skillTag}>React</span>
-            <span className={styles.skillTag}>TailwindCSS</span>
-            <span className={styles.skillTag}>Node.js</span>
-            <span className={styles.skillTag}>Express.js</span>
-            <span className={styles.skillTag}>NestJS</span>
-            <span className={styles.skillTag}>Relational Databases</span>
-            <span className={styles.skillTag}>MongoDB</span>
-            {/* Add more skills as needed */}
-          </div>
+
+          <IconContext.Provider
+            value={{className: styles.skillIcon}}
+          >
+            <div className={styles.skillsGrid}>
+              {techSkills.map((skill) => (
+                <div
+                  key={skill.name}
+                  // Dynamically apply a class based on the category
+                  className={`${styles.skillItem} ${styles[skill.category]}`}
+                >
+                  <skill.icon />
+                  <span>{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </IconContext.Provider>
         </div>
 
         {/* Experience/Work History */}
@@ -103,18 +152,24 @@ const AboutMe: React.FC = () => {
           <p className={styles.text}>
             Interested in my work or want to collaborate?
           </p>
-          <button
-            className={styles.actionButton}
-            onClick={() => console.log("Navigate to Projects")}
-          >
-            View My Projects
-          </button>
-          <button
-            className={styles.actionButton}
-            onClick={() => console.log("Contact")}
-          >
-            Contact Me!
-          </button>
+          <a href="https://github.com/Cerne17" target="_blank" rel="noopener noreferrer">
+            <CtaBlueButton title="My Projects"/>
+          </a>
+          <a href="https://calendly.com/miguelcerne-dev/30min" target="_blank" rel="noopener noreferrer">
+            <CtaTransparentButton title="Book a Call"/>
+          </a>
+          {/* <button */}
+          {/*   className={styles.actionButton} */}
+          {/*   onClick={() => console.log("Navigate to Projects")} */}
+          {/* > */}
+          {/*   View My Projects */}
+          {/* </button> */}
+          {/* <button */}
+          {/*   className={styles.actionButton} */}
+          {/*   onClick={() => console.log("Contact")} */}
+          {/* > */}
+          {/*   Contact Me! */}
+          {/* </button> */}
         </div>
       </div>
     </section>
