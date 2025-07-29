@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "./CtaTransparentButton.module.css";
 
-const CtaTransparentButton: React.FC = () => {
-  return <button className={styles.CtaBlueButton}>{}</button>;
+interface CtaTransparentButtonProps {
+  title?: string;
+}
+
+const CtaTransparentButton: React.FC<CtaTransparentButtonProps> = ({ title = "Click Me!"}) => {
+  return <button className={styles.CtaTransparentButton}>{title}</button>;
 };
 
 export default CtaTransparentButton;
