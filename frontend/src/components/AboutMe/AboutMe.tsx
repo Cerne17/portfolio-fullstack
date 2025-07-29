@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./AboutMe.module.css";
 import CtaBlueButton from "../CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../CtaTransparentButton/CtaTransparentButton";
-import { IconContext } from "react-icons";
+import { IconContext, IconType } from "react-icons";
 import {
   SiNextdotjs,
   SiReact,
@@ -22,28 +22,37 @@ import {
   SiTensorflow
 } from "react-icons/si";
 
-const techSkills = [
-  // Frontend
-  { name: "Next.js", icon: SiNextdotjs, category: "frontend" },
-  { name: "React", icon: SiReact, category: "frontend" },
-  { name: "TailwindCSS", icon: SiTailwindcss, category: "frontend" },
-  { name: "Shadcn", icon: SiShadcnui, category: "frontend" },
-  // Backend
-  { name: "Node.js", icon: SiNodedotjs, category: "backend" },
-  { name: "Express.js", icon: SiExpress, category: "backend" },
-  { name: "NestJS", icon: SiNestjs, category: "backend" },
-  { name: "PostgreSQL", icon: SiPostgresql, category: "backend" },
-  { name: "MongoDB", icon: SiMongodb, category: "backend" },
-  { name: "Supabase", icon: SiSupabase, category: "backend" },
-  { name: "Vercel", icon: SiVercel, category: "backend" },
-  // Data Science
-  { name: "Python", icon: SiPython, category: "dataScience" },
-  { name: "Pandas", icon: SiPandas, category: "dataScience" },
-  { name: "Scikit-learn", icon: SiScikitlearn, category: "dataScience" },
-  { name: "Tensorflow", icon: SiTensorflow, category: "dataScience" },
-];
+interface Skill {
+  name: string;
+  icon: IconType;
+  category: "frontend" | "backend" | "dataScience";
+}
+
 
 const AboutMe: React.FC = () => {
+
+  const techSkills = useMemo<Skill[]>(() => [
+    // Frontend
+    { name: "Next.js", icon: SiNextdotjs, category: "frontend" },
+    { name: "React", icon: SiReact, category: "frontend" },
+    { name: "TailwindCSS", icon: SiTailwindcss, category: "frontend" },
+    { name: "Shadcn", icon: SiShadcnui, category: "frontend" },
+    // Backend
+    { name: "Node.js", icon: SiNodedotjs, category: "backend" },
+    { name: "Express.js", icon: SiExpress, category: "backend" },
+    { name: "NestJS", icon: SiNestjs, category: "backend" },
+    { name: "PostgreSQL", icon: SiPostgresql, category: "backend" },
+    { name: "MongoDB", icon: SiMongodb, category: "backend" },
+    { name: "Supabase", icon: SiSupabase, category: "backend" },
+    { name: "Vercel", icon: SiVercel, category: "backend" },
+    { name: "Jest", icon: SiJest, category: "backend"},
+    // Data Science
+    { name: "Python", icon: SiPython, category: "dataScience" },
+    { name: "Pandas", icon: SiPandas, category: "dataScience" },
+    { name: "Scikit-learn", icon: SiScikitlearn, category: "dataScience" },
+    { name: "Tensorflow", icon: SiTensorflow, category: "dataScience" },
+  ], []);
+
   return (
     <section id="about-me" className={styles.aboutMeSection}>
       <div className={styles.container}>
@@ -71,16 +80,19 @@ const AboutMe: React.FC = () => {
             value={{className: styles.skillIcon}}
           >
             <div className={styles.skillsGrid}>
-              {techSkills.map((skill) => (
-                <div
-                  key={skill.name}
-                  // Dynamically apply a class based on the category
-                  className={`${styles.skillItem} ${styles[skill.category]}`}
-                >
-                  <skill.icon />
-                  <span>{skill.name}</span>
-                </div>
-              ))}
+              {techSkills.map((skill) => {
+                const IconComponent = skill.icon as IconType;
+
+                return (
+                  <div
+                    key={skill.name}
+                    className={`${styles.skillItem} ${styles[skill.category]}`}
+                  >
+                    <IconComponent />
+                    <span>{skill.name}</span>
+                  </div>
+                );
+              })}
             </div>
           </IconContext.Provider>
         </div>
@@ -142,8 +154,16 @@ const AboutMe: React.FC = () => {
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>Interests</h3>
           <p className={styles.text}>
-            Alongside coding, I'm also a complete nerd when it comes to
-            mathematics and video game.
+I am deeply interested in technologies that connect theory with real-world impact. My curiosity drives me to explore areas such as <strong>backend development</strong>,{" "} <strong>distributed systems</strong>, and <strong>scalable API design</strong>, where I can apply engineering principles to build robust and efficient solutions.
+          </p>
+          <p className={styles.text}>
+On the research side, I am fascinated by machine learning algorithms and their applications in <strong>data-driven decision-making</strong>. I enjoy experimenting with models, optimizing their performance, and understanding how emerging technologies can transform industries.
+          </p>
+          <p className={styles.text}>
+Beyond software, I value the synergy between hardware and software, a perspective rooted in my Electronic and Computer Engineering background. This motivates me to stay up-to-date with advancements in <strong>computing architectures</strong> and <strong>embedded systems</strong>.
+          </p>
+          <p className={styles.text}>
+Above all, I am passionate about <strong>continuous learning</strong>—whether it's mastering a new framework, contributing to open-source projects, or diving deep into the latest tech trends. My goal is to keep expanding my knowledge while building solutions that make a difference.
           </p>
         </div>
 
@@ -158,18 +178,6 @@ const AboutMe: React.FC = () => {
           <a href="https://calendly.com/miguelcerne-dev/30min" target="_blank" rel="noopener noreferrer">
             <CtaTransparentButton title="Book a Call"/>
           </a>
-          {/* <button */}
-          {/*   className={styles.actionButton} */}
-          {/*   onClick={() => console.log("Navigate to Projects")} */}
-          {/* > */}
-          {/*   View My Projects */}
-          {/* </button> */}
-          {/* <button */}
-          {/*   className={styles.actionButton} */}
-          {/*   onClick={() => console.log("Contact")} */}
-          {/* > */}
-          {/*   Contact Me! */}
-          {/* </button> */}
         </div>
       </div>
     </section>
