@@ -1,10 +1,12 @@
+body {
+  background-color: FloralWhite;
+}
+
 .App {
   width: 100%;
   min-height: 100vh; /* Ensure it takes full viewport height */
   margin: 0; /* Remove any potential default margin */
   padding: 0; /* Remove any potential default padding */
-  /* Add display: flex; flex-direction: column; if you want content to stack vertically */
-  /* For example: */
   display: flex;
   flex-direction: column;
 }
