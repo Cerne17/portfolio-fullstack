@@ -14,10 +14,10 @@ body {
 /* Keep or adjust other styles for your App.tsx test elements if still present */
 .app-container {
   /* This container should still have its max-width for content */
-  max-width: 80%; /* Or whatever value you want for central content */
+  max-width: 100%; /* Or whatever value you want for central content */
   margin: 0 auto; /* Center it */
-  width: 80%; /* Ensure it respects max-width while taking full available space */
-  padding: 20px;
+  width: 100%; /* Ensure it respects max-width while taking full available space */
+  /* padding: 20px; */
   box-sizing: border-box; /* Include padding in width calculation */
 }
 
