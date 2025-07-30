@@ -5,7 +5,7 @@ import CtaBlueButton from "../CtaBlueButton/CtaBlueButton";
 
 const Hero: React.FC = () => {
   return (
-    <section className={styles.heroSection}>
+    <section id="hero" className={styles.heroSection}>
       <h3 className={styles.subsectionTitle}>Who's Miguel Cerne?</h3>
       <div className={styles.heroContainer}>
         <div className={styles.leftHeroContainer}>
