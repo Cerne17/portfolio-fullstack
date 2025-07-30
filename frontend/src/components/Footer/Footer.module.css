@@ -1,0 +1,26 @@
+.footer {
+  background-color: #2c3e50; /* A dark, professional blue-gray */
+  color: #ecf0f1; /* A soft white for text */
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.socialLinks {
+  margin-bottom: 1rem;
+}
+
+.socialLinks a {
+  color: #ecf0f1;
+  font-size: 2rem; /* Makes icons larger */
+  margin: 0 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.socialLinks a:hover {
+  color: #007bff; /* Uses your site's primary blue on hover */
+}
+
+.copyrightText {
+  font-size: 0.9rem;
+  color: #bdc3c7; /* A slightly dimmer white for the copyright */
+}
