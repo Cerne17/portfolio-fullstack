@@ -6,6 +6,7 @@ body,
   padding: 0;
   width: 100%;
   min-height: 100%; /* Ensure they take full height */
+  scroll-behavior: smooth;
 }
 
 body {
