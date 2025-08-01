@@ -50,6 +50,20 @@
   color: #007bff;
 }
 
+.techStackContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.categoryTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
 .skillsGrid {
   display: flex;
   flex-wrap: wrap;

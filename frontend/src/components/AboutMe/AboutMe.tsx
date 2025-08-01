@@ -25,32 +25,33 @@ import {
 interface Skill {
   name: string;
   icon: IconType;
-  category: "frontend" | "backend" | "dataScience";
 }
 
 
 const AboutMe: React.FC = () => {
+  const frontendSkills = useMemo<Skill[]>(() => [
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "React", icon: SiReact },
+    { name: "TailwindCSS", icon: SiTailwindcss },
+    { name: "Shadcn", icon: SiShadcnui },
+  ], []);
 
-  const techSkills = useMemo<Skill[]>(() => [
-    // Frontend
-    { name: "Next.js", icon: SiNextdotjs, category: "frontend" },
-    { name: "React", icon: SiReact, category: "frontend" },
-    { name: "TailwindCSS", icon: SiTailwindcss, category: "frontend" },
-    { name: "Shadcn", icon: SiShadcnui, category: "frontend" },
-    // Backend
-    { name: "Node.js", icon: SiNodedotjs, category: "backend" },
-    { name: "Express.js", icon: SiExpress, category: "backend" },
-    { name: "NestJS", icon: SiNestjs, category: "backend" },
-    { name: "PostgreSQL", icon: SiPostgresql, category: "backend" },
-    { name: "MongoDB", icon: SiMongodb, category: "backend" },
-    { name: "Supabase", icon: SiSupabase, category: "backend" },
-    { name: "Vercel", icon: SiVercel, category: "backend" },
-    { name: "Jest", icon: SiJest, category: "backend"},
-    // Data Science
-    { name: "Python", icon: SiPython, category: "dataScience" },
-    { name: "Pandas", icon: SiPandas, category: "dataScience" },
-    { name: "Scikit-learn", icon: SiScikitlearn, category: "dataScience" },
-    { name: "Tensorflow", icon: SiTensorflow, category: "dataScience" },
+  const backendSkills = useMemo<Skill[]>(() => [
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: "Express.js", icon: SiExpress },
+    { name: "NestJS", icon: SiNestjs },
+    { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "Supabase", icon: SiSupabase },
+    { name: "Vercel", icon: SiVercel },
+    { name: "Jest", icon: SiJest},
+  ], []);
+
+  const dataScienceSkills = useMemo<Skill[]>(() => [
+    { name: "Python", icon: SiPython },
+    { name: "Pandas", icon: SiPandas },
+    { name: "Scikit-learn", icon: SiScikitlearn },
+    { name: "Tensorflow", icon: SiTensorflow },
   ], []);
 
   return (
@@ -79,20 +80,54 @@ const AboutMe: React.FC = () => {
           <IconContext.Provider
             value={{className: styles.skillIcon}}
           >
-            <div className={styles.skillsGrid}>
-              {techSkills.map((skill) => {
-                const IconComponent = skill.icon as unknown as React.FC;
+            <div className={styles.techStackContainer}>
+            {/* Frontend Section */}
+              <div>
+                <h4 className={styles.categoryTitle}>Frontend</h4>
+                <div className={styles.skillsGrid}>
+                  {frontendSkills.map((skill) => {
+                    const IconComponent = skill.icon as React.FC;
+                    return (
+                      <div key={skill.name} className={`${styles.skillItem} ${styles.frontend}`}>
+                        <IconComponent />
+                        <span>{skill.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
-                return (
-                  <div
-                    key={skill.name}
-                    className={`${styles.skillItem} ${styles[skill.category]}`}
-                  >
-                    <IconComponent />
-                    <span>{skill.name}</span>
-                  </div>
-                );
-              })}
+              {/* Backend Section */}
+              <div>
+                <h4 className={styles.categoryTitle}>Backend</h4>
+                <div className={styles.skillsGrid}>
+                  {backendSkills.map((skill) => {
+                    const IconComponent = skill.icon as React.FC;
+                    return (
+                      <div key={skill.name} className={`${styles.skillItem} ${styles.backend}`}>
+                        <IconComponent />
+                        <span>{skill.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Data Science Section */}
+              <div>
+                <h4 className={styles.categoryTitle}>Data Science</h4>
+                <div className={styles.skillsGrid}>
+                  {dataScienceSkills.map((skill) => {
+                    const IconComponent = skill.icon as React.FC;
+                    return (
+                      <div key={skill.name} className={`${styles.skillItem} ${styles.dataScience}`}>
+                        <IconComponent />
+                        <span>{skill.name}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </IconContext.Provider>
         </div>
