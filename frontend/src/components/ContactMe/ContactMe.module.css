@@ -70,3 +70,9 @@
   padding: 2rem;
 }
 
+@media (max-width: 768px) {
+  .form {
+    padding: 0 1rem;
+  }
+}
+
