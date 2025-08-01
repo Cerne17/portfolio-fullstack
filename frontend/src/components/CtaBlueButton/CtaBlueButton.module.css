@@ -16,3 +16,10 @@
 .CtaBlueButton:hover {
   background-color: #0056b3;
 }
+
+@media (max-width: 768px) {
+  .CtaBlueButton {
+    margin: 0.75rem 10px;
+  }
+}
+
