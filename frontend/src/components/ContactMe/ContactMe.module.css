@@ -1,5 +1,5 @@
 .contactSection {
-  padding: 2rem 0;
+  padding: 4rem 1rem;
   text-align: center;
 }
 
@@ -71,8 +71,13 @@
 }
 
 @media (max-width: 768px) {
-  .form {
-    padding: 0 1rem;
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .form input,
+  .form textarea {
+    font-size: 0.9em; /* Make text fields slightly smaller */
   }
 }
 
