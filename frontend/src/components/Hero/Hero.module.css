@@ -1,5 +1,5 @@
 .heroSection {
-  padding: 40px 20px;
+  padding: 4rem 2rem;
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
@@ -9,62 +9,65 @@
   font-size: 2.5em;
   color: #007bff;
   text-align: center;
-  margin-bottom: 40px;
-  padding-top: 30px;
+  margin-bottom: 2.5rem;
 }
 
 .heroContainer {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .leftHeroContainer {
-  display: flex;
-  flex-direction: column;
+  flex: 1;
+  text-align: left;
+}
+
+.text {
+  font-size: 1.1em;
+  margin-bottom: 1rem;
+}
+
+.bannerPlaceholder {
+  flex: 1;
+  min-height: 400px;
+  background: linear-gradient(#007bff, #0661c2);
+  border-radius: 20px;
 }
 
 .btnContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 1.5rem;
 }
 
-.myProjectsBtn {
-  width: 200px;
-  height: 60px;
-  border-radius: 30px;
-  font-size: 1.1em;
-  text-align: center;
-  font-weight: bold;
-  background-color: #007bff;
-  color: white;
-  border: transparent;
-  margin: 2em 10px;
-  cursor: pointer;
-}
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 3rem 1rem;
+  }
 
-.contactMeBtn {
-  width: 200px;
-  height: 60px;
-  border-radius: 30px;
-  font-size: 1.1em;
-  text-align: center;
-  font-weight: bold;
-  background-color: transparent;
-  color: #007bff;
-  border: #007bff 6px solid;
-  margin: 2em 10px;
-  cursor: pointer;
-}
+  .subsectionTitle {
+    font-size: 1.8em;
+  }
 
-.text {
-  font-size: 1.1em;
-  padding-right: 2em;
-}
+  .heroContainer {
+    flex-direction: column;
+  }
 
-.bannerPlaceholder {
-  width: 3000px;
-  height: auto;
-  background: linear-gradient(#007bff, #0661c2);
-  border-radius: 0 50px 50px 0;
+  .leftHeroContainer {
+    text-align: justify;
+  }
+
+  .bannerPlaceholder {
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: 2rem;
+  }
+
+  .btnContainer {
+    flex-direction: column;
+    align-items: center;
+  }
 }
