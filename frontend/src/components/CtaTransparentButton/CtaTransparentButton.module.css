@@ -10,11 +10,18 @@
   border: #007bff 6px solid;
   margin: 2em 10px;
   cursor: pointer;
-  transition: background-color 1s ease;
+  transition: background-color 1s ease, color 1s ease, border 1s ease;
 }
 
 .CtaTransparentButton:hover {
   background-color: #0056b3;
-  border: none;
+  border-color: #0056b3;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .CtaTransparentButton {
+    margin: 0.75rem 10px;
+  }
+}
+
