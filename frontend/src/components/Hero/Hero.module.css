@@ -43,6 +43,11 @@
   gap: 1.5rem;
 }
 
+.btnContainer a {
+  display: inline-block;
+  width: auto;
+}
+
 @media (max-width: 768px) {
   .heroSection {
     padding: 3rem 1rem;
@@ -69,5 +74,6 @@
   .btnContainer {
     flex-direction: column;
     align-items: center;
+    gap: 0;
   }
 }
