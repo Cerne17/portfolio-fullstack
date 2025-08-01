@@ -196,18 +196,27 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .sectionTitle {
     font-size: 1.8em;
   }
+
   .subsectionTitle {
     font-size: 1.3em;
   }
+
+
   .experienceRole,
   .educationDegree {
     font-size: 1.1em;
   }
+  
+  .skillsGrid {
+    justify-content: center; /* Center the skill pills */
+  }
+
   .aboutMeSection {
     padding: 20px 10px;
   }
 }
+
