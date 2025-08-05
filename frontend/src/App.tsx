@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import AboutMe from "./components/AboutMe/AboutMe";
-import ContactForm from "./components/ContactMe/ContactMe";
-import Footer from "./components/Footer/Footer";
+import Navbar from "./sections/Navbar/Navbar";
+import Hero from "./sections/Hero/Hero";
+import AboutMe from "./sections/AboutMe/AboutMe";
+import ContactForm from "./sections/ContactMe/ContactMe";
+import Footer from "./sections/Footer/Footer";
 import "./App.css";
 
 function App() {
