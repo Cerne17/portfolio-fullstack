@@ -1,8 +1,10 @@
+@import "../../styles/variables.css";
+
 .navbar {
-  background-color: #f9f9f9; /* Changed to match AboutMeSection background */
-  padding: 15px 0;
-  color: #333; /* Changed text color to darker for contrast on light background */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow for lighter background */
+  background-color: var(--color-background-component);
+  padding: var(--space-md) 0;
+  color: var(--color-text-primary);
+  box-shadow: var(--box-shadow-md);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -10,18 +12,17 @@
 }
 
 .container {
-  /* max-width: 1200px; */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 var(--space-md);
 }
 
 .brand {
-  color: #007bff; /* Changed brand color for visibility */
+  color: var(--color-primary); /* Changed brand color for visibility */
   text-decoration: none;
-  font-size: 1.8em;
+  font-size: var(--fs-700);
   font-weight: bold;
 }
 
@@ -33,20 +34,20 @@
 }
 
 .navItem {
-  margin-left: 25px;
+  margin-left: var(--space-md);
 }
 
 .navLink {
-  color: #555; /* Adjusted link color for contrast */
+  color: var(--color-text-base); /* Adjusted link color for contrast */
   text-decoration: none;
-  font-size: 1.1em;
-  padding: 5px 0;
-  transition: color 0.3s ease-in-out;
+  font-size: var(--fs-400);
+  padding: var(--space-xs) 0;
+  transition: var(--transition-base);
 }
 
 .navLink:hover,
 .navLink:focus {
-  color: #007bff; /* Keep highlight color consistent */
+  color: var(--color-primary); /* Keep highlight color consistent */
 }
 
 .hamburger {
@@ -54,11 +55,12 @@
   background: none;
   border: none;
   color: inherit;
-  font-size: 1.5rem;
+  font-size: var(--fs-600);
   cursor: pointer;
   z-index: 1001; /* Ensure it's above other content */
 }
 
+/* breakpoint-md */
 @media (max-width: 768px) {
   .navList {
     display: none;
@@ -68,10 +70,10 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: #2c3e50;
+    background-color: var(--color-secondary);
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: var(--space-xl);
   }
 
   .navList.open {
@@ -79,9 +81,9 @@
   }
 
   .navLink {
-    font-size: 1.5rem;
+    font-size: var(--fs-600);
   }
-  
+
   .hamburger {
     display: block;
   }
