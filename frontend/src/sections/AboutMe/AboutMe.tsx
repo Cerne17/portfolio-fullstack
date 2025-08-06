@@ -3,7 +3,6 @@ import styles from "./AboutMe.module.css";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
 import SkillPill from "../../components/SkillPill/SkillPill";
-import { IconContext, IconType } from "react-icons";
 import {
   frontendSkills,
   backendSkills,
