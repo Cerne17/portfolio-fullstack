@@ -2,11 +2,13 @@ import React from "react";
 import styles from "./Hero.module.css";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
+// import "@/styles/globals.css";
+import "../../styles/globals.css";
 
 const Hero: React.FC = () => {
   return (
     <section id="hero" className={styles.heroSection}>
-      <h3 className={styles.sectionTitle}>Who's Miguel Cerne?</h3>
+      <h3 className={`sectionTitle`}>Who's Miguel Cerne?</h3>
       <div className={styles.heroContainer}>
         <div className={styles.leftHeroContainer}>
           <p className={styles.text}>
