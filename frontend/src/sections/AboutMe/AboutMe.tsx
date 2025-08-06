@@ -201,20 +201,13 @@ const AboutMe: React.FC = () => {
           <p className={styles.text}>
             Interested in my work or want to collaborate?
           </p>
-          <a
-            href="https://github.com/Cerne17"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <CtaBlueButton title="My Projects" />
-          </a>
-          <a
-            href="https://calendly.com/miguelcerne-dev/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <CtaTransparentButton title="Book a Call" />
-          </a>
+          <CtaBlueButton
+            title="My Projects"
+            link="https://calendly.com/miguelcerne-dev/30min"
+          />
+          <CtaTransparentButton
+            title="Book a Call"
+            link="https://calendly.com/miguelcerne-dev/30min"
         </div>
       </div>
     </section>

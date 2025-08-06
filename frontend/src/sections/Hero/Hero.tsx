@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
       <h3 className={`sectionTitle`}>Who's Miguel Cerne?</h3>
       <div className={styles.heroContainer}>
         <div className={styles.leftHeroContainer}>
-          <p className={styles.text}>
+          <p className={`text`}>
             I am a Brazilian Full-Stack Engineer and a third-year Electrical and
             Computer Engineering undergraduate at the Federal University of Rio
             de Janeiro (UFRJ). While my engineering studies provided a rigorous
@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
             for math and logic with pure creativity, ignited a passion that
             drives me to this day.
           </p>
-          <p className={styles.text}>
+          <p className={`text`}>
             This passion has led me to explore and deliver projects across
             multiple domains, from Web Development to Data Science and Machine
             Learning. What I love most is the multi-disciplinarity of it
@@ -34,20 +34,11 @@ const Hero: React.FC = () => {
         <div className={styles.bannerPlaceholder}></div>
       </div>
       <div className={styles.btnContainer}>
-        <a
-          href="https://github.com/Cerne17"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <CtaBlueButton title="My Projects" />
-        </a>
-        <a
-          href="https://calendly.com/miguelcerne-dev/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <CtaTransparentButton title="Book a Call" />
-        </a>
+        <CtaBlueButton title="My Projects" link="https://github.com/Cerne17" />
+        <CtaTransparentButton
+          title="Book a Call"
+          link="https://calendly.com/miguelcerne-dev/30min"
+        />
       </div>
     </section>
   );
