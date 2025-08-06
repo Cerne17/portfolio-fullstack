@@ -70,57 +70,6 @@
   gap: 10px;
 }
 
-/* This styles the pill container for each skill */
-.skillItem {
-  /* Pill styling */
-  background-color: #e0f7fa;
-  border: 1px solid #007bff;
-  padding: 8px 15px;
-  border-radius: 20px;
-
-  /* Aligns icon and text horizontally */
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Space between icon and text */
-}
-
-.skillItem.frontend {
-  background-color: #e0f7fa; /* Light Blue */
-  color: #007bff; /* Blue */
-  border-color: #007bff;
-}
-
-.skillItem.backend {
-  background-color: #e8f5e9; /* Light Green */
-  color: #2e7d32; /* Green */
-  border-color: #2e7d32;
-}
-
-.skillItem.dataScience {
-  background-color: #fff3e0; /* Light Orange */
-  color: #ef6c00; /* Orange */
-  border-color: #ef6c00;
-}
-
-/* This styles the icon inside the pill */
-.skillIcon {
-  width: 20px;
-  height: 20px;
-  /* color: #007bff; /* Ensures icon color matches the text */
-}
-
-.skillItem.frontend .skillIcon {
-  color: #007bff; /* Blue */
-}
-
-.skillItem.backend .skillIcon {
-  color: #2e7d32; /* Green */
-}
-
-.skillItem.dataScience .skillIcon {
-  color: #ef6c00; /* Orange */
-}
-
 .experienceItem,
 .educationItem {
   margin-bottom: 20px;
@@ -219,12 +168,11 @@
     font-size: 1.3em;
   }
 
-
   .experienceRole,
   .educationDegree {
     font-size: 1.1em;
   }
-  
+
   .skillsGrid {
     justify-content: center; /* Center the skill pills */
   }
@@ -233,4 +181,3 @@
     padding: 20px 10px;
   }
 }
-
