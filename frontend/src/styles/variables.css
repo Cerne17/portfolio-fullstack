@@ -14,6 +14,7 @@
   --color-background-component: #ffffff;
 
   --color-text-base: #333;
+  --color-text-secondary: #555;
   --color-text-muted: #6c757d;
   --color-text-on-primary: #ffffff;
 
@@ -36,7 +37,7 @@
   /* Using a modular scale for font sizes (e.g., 1.25) */
   --fs-300: 0.8rem; /* small */
   --fs-400: 1rem; /* base */
-  --fs-500: 1.25rem;
+  --fs-500: 1.1rem;
   --fs-600: 1.563rem;
   --fs-700: 1.953rem;
   --fs-800: 2.441rem;
