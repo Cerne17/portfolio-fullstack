@@ -63,6 +63,7 @@ const AboutMe: React.FC = () => {
                 return (
                   <SkillPill
                     key={skill.id}
+                    id={skill.id}
                     icon={skill.icon}
                     title={skill.title}
                     stack="frontend"
@@ -80,6 +81,7 @@ const AboutMe: React.FC = () => {
                 return (
                   <SkillPill
                     key={skill.id}
+                    id={skill.id}
                     icon={skill.icon}
                     title={skill.title}
                     stack="backend"
@@ -97,6 +99,7 @@ const AboutMe: React.FC = () => {
                 return (
                   <SkillPill
                     key={skill.id}
+                    id={skill.id}
                     icon={skill.icon}
                     title={skill.title}
                     stack="datascience"
