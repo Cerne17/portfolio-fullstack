@@ -1,8 +1,20 @@
+@import "./variables.css";
+
 /*
- * - sectionTitle
- * - text
- * - text strong
- * - sectionContainer
- * - subsection
- * - subsectionTitle
+ * [x] sectionTitle
+ * [ ] text
+ * [ ] text strong
+ * [ ] sectionContainer
+ * [ ] subsection
+ * [ ] subsectionTitle
  */
+
+.sectionTitle {
+  font-size: clamp(var(--fs-600), calc(7vw + 1rem), var(--fs-900));
+  color: var(--color-primary);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  padding-bottom: var(--space-xl);
+  padding-top: var(--space-xl);
+  line-height: var(--line-height-heading);
+}
