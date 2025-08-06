@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-  }
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -15,10 +15,8 @@ const Navbar: React.FC = () => {
         <a href="#hero" className={styles.brand}>
           Miguel Cerne
         </a>
-        <ul className={`${styles.navList} ${isOpen ? styles.open : ''}`}>
-
+        <ul className={`${styles.navList} ${isOpen ? styles.open : ""}`}>
           <li className={styles.navItem}>
-
             <a href="#about-me" className={styles.navLink}>
               About Me
             </a>
@@ -43,7 +41,6 @@ const Navbar: React.FC = () => {
           {/*     Blog */}
           {/*   </a> */}
           {/* </li> */}
-
         </ul>
       </div>
     </nav>
