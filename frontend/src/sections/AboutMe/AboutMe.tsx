@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import styles from "./AboutMe.module.css";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
+import SkillPill from "../../components/SkillPill/SkillPill";
 import { IconContext, IconType } from "react-icons";
 import {
   SiNextdotjs,
@@ -106,66 +107,53 @@ const AboutMe: React.FC = () => {
         <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>My Tech Stack</h3>
 
-          <IconContext.Provider value={{ className: styles.skillIcon }}>
-            <div className={styles.techStackContainer}>
-              {/* Frontend Section */}
-              <div>
-                <h4 className={styles.categoryTitle}>Frontend</h4>
-                <div className={styles.skillsGrid}>
-                  {frontendSkills.map((skill) => {
-                    const IconComponent = skill.icon as React.FC;
-                    return (
-                      <div
-                        key={skill.name}
-                        className={`${styles.skillItem} ${styles.frontend}`}
-                      >
-                        <IconComponent />
-                        <span>{skill.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Backend Section */}
-              <div>
-                <h4 className={styles.categoryTitle}>Backend</h4>
-                <div className={styles.skillsGrid}>
-                  {backendSkills.map((skill) => {
-                    const IconComponent = skill.icon as React.FC;
-                    return (
-                      <div
-                        key={skill.name}
-                        className={`${styles.skillItem} ${styles.backend}`}
-                      >
-                        <IconComponent />
-                        <span>{skill.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Data Science Section */}
-              <div>
-                <h4 className={styles.categoryTitle}>Data Science</h4>
-                <div className={styles.skillsGrid}>
-                  {dataScienceSkills.map((skill) => {
-                    const IconComponent = skill.icon as React.FC;
-                    return (
-                      <div
-                        key={skill.name}
-                        className={`${styles.skillItem} ${styles.dataScience}`}
-                      >
-                        <IconComponent />
-                        <span>{skill.name}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+          {/* Frontend */}
+          <div className={styles.techStackContainer}>
+            <h4 className={styles.categoryTitle}>Frontend</h4>
+            <div className={styles.skillsGrid}>
+              {frontendSkills.map((skill) => {
+                return (
+                  <SkillPill
+                    icon={skill.icon}
+                    title={skill.name}
+                    stack="frontend"
+                  />
+                );
+              })}
             </div>
-          </IconContext.Provider>
+          </div>
+
+          {/* Backend */}
+          <div className={styles.techStackContainer}>
+            <h4 className={styles.categoryTitle}>Backend</h4>
+            <div className={styles.skillsGrid}>
+              {backendSkills.map((skill) => {
+                return (
+                  <SkillPill
+                    icon={skill.icon}
+                    title={skill.name}
+                    stack="backend"
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Backend */}
+          <div className={styles.techStackContainer}>
+            <h4 className={styles.categoryTitle}>Data Science</h4>
+            <div className={styles.skillsGrid}>
+              {dataScienceSkills.map((skill) => {
+                return (
+                  <SkillPill
+                    icon={skill.icon}
+                    title={skill.name}
+                    stack="datascience"
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Experience/Work History */}
