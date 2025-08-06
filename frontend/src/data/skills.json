@@ -1,0 +1,87 @@
+[
+  {
+    "title": "Next.js",
+    "icon": "SiNextdotjs",
+    "stack": "frontend"
+  },
+  {
+    "title": "Next.js",
+    "icon": "SiNextdotjs",
+    "stack": "frontend"
+  },
+  {
+    "title": "React",
+    "icon": "SiReact",
+    "stack": "frontend"
+  },
+  {
+    "title": "TailwindCSS",
+    "icon": "SiTailwindcss",
+    "stack": "frontend"
+  },
+  {
+    "title": "Shadcn",
+    "icon": "SiShadcnui",
+    "stack": "frontend"
+  },
+  {
+    "title": "Node.js",
+    "icon": "SiNodedotjs",
+    "stack": "backend"
+  },
+  {
+    "title": "Express.js",
+    "icon": "SiExpress",
+    "stack": "backend"
+  },
+  {
+    "title": "NestJS",
+    "icon": "SiNestjs",
+    "stack": "backend"
+  },
+  {
+    "title": "PostgreSQL",
+    "icon": "SiPostgresql",
+    "stack": "backend"
+  },
+  {
+    "title": "MongoDB",
+    "icon": "SiMongodb",
+    "stack": "backend"
+  },
+  {
+    "title": "Supabase",
+    "icon": "SiSupabase",
+    "stack": "backend"
+  },
+  {
+    "title": "Vercel",
+    "icon": "SiVercel",
+    "stack": "backend"
+  },
+  {
+    "title": "Jest",
+    "icon": "SiJest",
+    "stack": "backend"
+  },
+  {
+    "title": "Python",
+    "icon": "SiPython",
+    "stack": "datascience"
+  },
+  {
+    "title": "Pandas",
+    "icon": "SiPandas",
+    "stack": "datascience"
+  },
+  {
+    "title": "Scikit-learn",
+    "icon": "SiScikitlearn",
+    "stack": "datascience"
+  },
+  {
+    "title": "Tensorflow",
+    "icon": "SiTensorflow",
+    "stack": "datascience"
+  }
+]
