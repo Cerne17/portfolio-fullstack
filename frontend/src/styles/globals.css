@@ -10,7 +10,7 @@
  */
 
 .sectionTitle {
-  font-size: clamp(var(--fs-600), calc(7vw + 1rem), var(--fs-900));
+  font-size: clamp(var(--fs-600), calc(5vw + 1rem), var(--fs-800));
   color: var(--color-primary);
   font-weight: var(--fw-bold);
   text-align: center;
