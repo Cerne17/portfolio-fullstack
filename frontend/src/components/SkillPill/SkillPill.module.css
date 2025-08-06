@@ -1,0 +1,47 @@
+@import "../../styles/variables.css";
+
+:root {
+  --color-frontend: #007bff;
+  --color-background-frontend: #e0f7fa;
+  --color-backend: #3ad685;
+  --color-background-backend: #3ad6853b;
+  --color-datascience: #f79b31;
+  --color-background-datascience: #f79b314a;
+}
+
+.skillPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-xxl);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-regular);
+  transition: var(--transition-base);
+  box-shadow: var(--box-shadow-sm);
+  white-space: nowrap;
+}
+
+.skillPill:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-md);
+}
+
+/* Stack-specific styling for visual distinction */
+.frontend {
+  border-color: var(--color-frontend);
+  background-color: var(--color-background-frontend);
+  border: 1px solid var(--color-frontend);
+}
+
+.backend {
+  border-color: var(--color-backend);
+  background-color: var(--color-background-backend);
+  border: 1px solid var(--color-backend);
+}
+
+.datascience {
+  border-color: var(--color-datascience);
+  background-color: var(--color-background-datascience);
+  border: 1px solid var(--color-datascience);
+}
