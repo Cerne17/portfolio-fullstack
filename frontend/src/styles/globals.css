@@ -10,11 +10,41 @@
  */
 
 .sectionTitle {
-  font-size: clamp(var(--fs-600), calc(5vw + 1rem), var(--fs-800));
+  font-size: clamp(var(--fs-600), calc(5vw + 1em), var(--fs-800));
   color: var(--color-primary);
   font-weight: var(--fw-bold);
   text-align: center;
   padding-bottom: var(--space-xl);
   padding-top: var(--space-xl);
   line-height: var(--line-height-heading);
+}
+
+.subsectionTitle {
+  font-size: clamp(var(--fs-500), calc(4.5vw + 1em), var(--fs-600));
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+  border-left: 5px solid var(--color-primary);
+  padding-left: var(--space-sm);
+}
+
+.subsubsectionTitle {
+  font-size: clamp(var(--fs-400), calc(4.2vw + 1em), var(--fs-500));
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.text {
+  font-size: var(--fs-500);
+  padding-bottom: var(--space-sm);
+  text-align: justify;
+  color: var(--color-text-base);
+  line-height: var(--line-height-body);
+}
+
+.text strong {
+  color: #007bff;
+}
+
+.center {
+  text-align: center;
 }
