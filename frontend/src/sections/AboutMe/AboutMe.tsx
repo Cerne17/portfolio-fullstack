@@ -5,64 +5,12 @@ import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTrans
 import SkillPill from "../../components/SkillPill/SkillPill";
 import { IconContext, IconType } from "react-icons";
 import {
-  SiNextdotjs,
-  SiReact,
-  SiShadcnui,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiNestjs,
-  SiJest,
-  SiPostgresql,
-  SiMongodb,
-  SiSupabase,
-  SiVercel,
-  SiPython,
-  SiScikitlearn,
-  SiPandas,
-  SiTensorflow,
-} from "react-icons/si";
-
-interface Skill {
-  name: string;
-  icon: IconType;
-}
+  frontendSkills,
+  backendSkills,
+  datascienceSkills,
+} from "../../data/skills";
 
 const AboutMe: React.FC = () => {
-  const frontendSkills = useMemo<Skill[]>(
-    () => [
-      { name: "Next.js", icon: SiNextdotjs },
-      { name: "React", icon: SiReact },
-      { name: "TailwindCSS", icon: SiTailwindcss },
-      { name: "Shadcn", icon: SiShadcnui },
-    ],
-    []
-  );
-
-  const backendSkills = useMemo<Skill[]>(
-    () => [
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Express.js", icon: SiExpress },
-      { name: "NestJS", icon: SiNestjs },
-      { name: "PostgreSQL", icon: SiPostgresql },
-      { name: "MongoDB", icon: SiMongodb },
-      { name: "Supabase", icon: SiSupabase },
-      { name: "Vercel", icon: SiVercel },
-      { name: "Jest", icon: SiJest },
-    ],
-    []
-  );
-
-  const dataScienceSkills = useMemo<Skill[]>(
-    () => [
-      { name: "Python", icon: SiPython },
-      { name: "Pandas", icon: SiPandas },
-      { name: "Scikit-learn", icon: SiScikitlearn },
-      { name: "Tensorflow", icon: SiTensorflow },
-    ],
-    []
-  );
-
   return (
     <section id="about-me" className={styles.aboutMeSection}>
       <div className={styles.container}>
@@ -114,8 +62,9 @@ const AboutMe: React.FC = () => {
               {frontendSkills.map((skill) => {
                 return (
                   <SkillPill
+                    key={skill.id}
                     icon={skill.icon}
-                    title={skill.name}
+                    title={skill.title}
                     stack="frontend"
                   />
                 );
@@ -130,8 +79,9 @@ const AboutMe: React.FC = () => {
               {backendSkills.map((skill) => {
                 return (
                   <SkillPill
+                    key={skill.id}
                     icon={skill.icon}
-                    title={skill.name}
+                    title={skill.title}
                     stack="backend"
                   />
                 );
@@ -143,11 +93,12 @@ const AboutMe: React.FC = () => {
           <div className={styles.techStackContainer}>
             <h4 className={styles.categoryTitle}>Data Science</h4>
             <div className={styles.skillsGrid}>
-              {dataScienceSkills.map((skill) => {
+              {datascienceSkills.map((skill) => {
                 return (
                   <SkillPill
+                    key={skill.id}
                     icon={skill.icon}
-                    title={skill.name}
+                    title={skill.title}
                     stack="datascience"
                   />
                 );
