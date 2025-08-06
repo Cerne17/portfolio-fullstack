@@ -1,86 +1,105 @@
+import {
+  SiNextdotjs,
+  SiReact,
+  SiShadcnui,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiNestjs,
+  SiJest,
+  SiPostgresql,
+  SiMongodb,
+  SiSupabase,
+  SiVercel,
+  SiPython,
+  SiScikitlearn,
+  SiPandas,
+  SiTensorflow,
+} from "react-icons/si";
+
 export const frontendSkills = [
   {
     "id": 1,
     "title": "Next.js",
-    "icon": "SiNextdotjs"
+    "icon": SiNextdotjs
   },
   {
     "id": 2,
     "title": "React",
-    "icon": "SiReact"
+    "icon": SiReact
   },
   {
     "id": 3,
     "title": "TailwindCSS",
-    "icon": "SiTailwindcss"
+    "icon": SiTailwindcss
   },
   {
     "id": 4,
     "title": "Shadcn",
-    "icon": "SiShadcnui"
+    "icon": SiShadcnui
   }
 ];
 export const backendSkills = [
   {
     "id": 5,
     "title": "Node.js",
-    "icon": "SiNodedotjs"
+    "icon": SiNodedotjs
   },
   {
     "id": 6,
     "title": "Express.js",
-    "icon": "SiExpress"
+    "icon": SiExpress
   },
   {
     "id": 7,
     "title": "NestJS",
-    "icon": "SiNestjs"
+    "icon": SiNestjs
   },
   {
     "id": 8,
     "title": "PostgreSQL",
-    "icon": "SiPostgresql"
+    "icon": SiPostgresql
   },
   {
     "id": 9,
     "title": "MongoDB",
-    "icon": "SiMongodb"
+    "icon": SiMongodb
   },
   {
     "id": 10,
     "title": "Supabase",
-    "icon": "SiSupabase"
+    "icon": SiSupabase
   },
   {
     "id": 11,
     "title": "Vercel",
-    "icon": "SiVercel"
+    "icon": SiVercel
   },
   {
     "id": 12,
     "title": "Jest",
-    "icon": "SiJest"
+    "icon": SiJest
   }
 ];
 export const datascienceSkills = [
   {
     "id": 13,
     "title": "Python",
-    "icon": "SiPython"
+    "icon": SiPython
   },
   {
     "id": 14,
     "title": "Pandas",
-    "icon": "SiPandas"
+    "icon": SiPandas
   },
   {
     "id": 15,
     "title": "Scikit-learn",
-    "icon": "SiScikitlearn"
+    "icon": SiScikitlearn
   },
   {
     "id": 1,
     "title": "Tensorflow",
-    "icon": "SiTensorflow"
+    "icon": SiTensorflow
   }
 ]
