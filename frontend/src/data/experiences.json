@@ -1,9 +1,13 @@
 [
   {
+    "id": 1,
     "title": "Software Engineering Intern @ Fluxo Consultoria",
-    "startDate": "Jun 2023",
-    "endDate": "Jan 2024",
-    "location": "Rio de Janeiro, Brazil",
+    "startMonth": "Jun",
+    "startYear": 2023,
+    "endMonth": "Jan",
+    "endYear": 2024,
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
     "responsibilities": [
       "Collaborated directly with clients to understand business needs and transform their ideas into fully functional systems.",
       "Worked with a multidisciplinary team of undergraduate engineers to design system architectures, define technical requirements, and develop user-friendly applications from scratch.",
@@ -22,16 +26,19 @@
     ],
     "tech": [
       {
+        "id": 1,
         "title": "NestJS",
         "icon": "SiNestjs",
         "stack": "backend"
       },
       {
+        "id": 2,
         "title": "PostgreSQL",
         "icon": "SiPostgresql",
         "stack": "backend"
       },
       {
+        "id": 3,
         "title": "Figma",
         "icon": "SiFigma",
         "stack": "frontend"
@@ -39,10 +46,14 @@
     ]
   },
   {
+    "id": 2,
     "title": "Machine Learning Researcher @ GTA-UFRJ",
-    "startDate": "Jun 2024",
-    "endDate": "Jan 2025",
-    "location": "Rio de Janeiro, Brazil",
+    "startMonth": "Jun",
+    "startYear": 2024,
+    "endMonth": "Jan",
+    "endYear": 2025,
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
     "responsibilities": [
       "Researched and developed a computer vision module for a real-time security monitoring system, capable of detecting and classifying camera interference or obstruction attempts.",
       "Designed a custom dataset and trained machine learning models using OpenCV and Scikit-learn, achieving approximately 96% accuracy in obstruction classification.",
@@ -60,16 +71,19 @@
     ],
     "tech": [
       {
+        "id": 4,
         "title": "Python",
         "icon": "SiPython",
         "stack": "datascience"
       },
       {
+        "id": 5,
         "title": "OpenCV",
         "icon": "SiOpencv",
         "stack": "datascience"
       },
       {
+        "id": 6,
         "title": "Scikit-learn",
         "icon": "SiScikitlearn",
         "stack": "datascience"
