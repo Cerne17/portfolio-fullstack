@@ -153,7 +153,7 @@ const AboutMe: React.FC = () => {
               Federal University of Rio de Janeiro (UFRJ), Rio de Janeiro, RJ,
               Brazil
             </p>
-            <p className={styles.educationYear}>Graduation: 2027</p>
+            <p className={styles.educationYear}>Graduation: December 2027</p>
           </div>
         </div>
 
