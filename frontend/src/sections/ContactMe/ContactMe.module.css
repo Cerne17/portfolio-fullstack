@@ -1,5 +1,7 @@
+@import "../../styles/variables.css";
+
 .contactSection {
-  padding: 4rem 1rem;
+  padding: var(--space-xxl) var(--space-md);
   text-align: center;
 }
 
@@ -12,7 +14,7 @@
 }
 
 .form label {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-sm);
   font-weight: bold;
 }
 
@@ -34,21 +36,21 @@
   height: 60px;
   border-radius: 30px;
   padding: 0.75rem 1.5rem;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
   border: none;
   font-size: 1.1em;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 1s ease;
+  transition: var(--transition-base);
 }
 
 .form button:hover {
-  background-color: #0056b3;
+  background-color: var(--color-primary-dark);
 }
 
 .validationError {
-  color: red;
+  color: var(--color-error);
   margin-top: -0.75rem;
   margin-bottom: 1rem;
   font-size: 0.9em;
@@ -58,7 +60,7 @@
   text-align: center;
   font-size: 1.2em;
   font-weight: bold;
-  color: #2e7d32;
+  color: var(--color-success);
   padding: 2rem;
 }
 
