@@ -3,14 +3,6 @@
   text-align: center;
 }
 
-.sectionTitle {
-  font-size: 2.5em;
-  color: #007bff;
-  text-align: center;
-  margin-bottom: 40px;
-  padding-top: 30px;
-}
-
 .form {
   max-width: 600px;
   margin: 0 auto;
@@ -80,4 +72,3 @@
     font-size: 0.9em; /* Make text fields slightly smaller */
   }
 }
-
