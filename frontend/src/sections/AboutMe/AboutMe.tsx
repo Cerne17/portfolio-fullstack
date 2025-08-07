@@ -206,7 +206,7 @@ const AboutMe: React.FC = () => {
           </p>
           <CtaBlueButton
             title="My Projects"
-            link="https://calendly.com/miguelcerne-dev/30min"
+            link="https://github.com/Cerne17"
           />
           <CtaTransparentButton
             title="Book a Call"
