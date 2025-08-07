@@ -1,0 +1,79 @@
+[
+  {
+    "title": "Software Engineering Intern @ Fluxo Consultoria",
+    "startDate": "Jun 2023",
+    "endDate": "Jan 2024",
+    "location": "Rio de Janeiro, Brazil",
+    "responsibilities": [
+      "Collaborated directly with clients to understand business needs and transform their ideas into fully functional systems.",
+      "Worked with a multidisciplinary team of undergraduate engineers to design system architectures, define technical requirements, and develop user-friendly applications from scratch.",
+      "Participated in the entire product lifecycle—from initial requirements gathering and database modeling to visual identity design and backend implementation."
+    ],
+    "highlights": [
+      "Requirements engineering",
+      "Database modeling",
+      "Backend API development with NestJS",
+      "Client communication & project delivery"
+    ],
+    "impact": [
+      "Delivered complete software solutions that enabled clients to digitize and scale their business operations.",
+      "Improved team project workflows through clear documentation and collaboration strategies.",
+      "Strengthened consulting soft skills through client interaction and iterative development cycles."
+    ],
+    "tech": [
+      {
+        "title": "NestJS",
+        "icon": "SiNestjs",
+        "stack": "backend"
+      },
+      {
+        "title": "PostgreSQL",
+        "icon": "SiPostgresql",
+        "stack": "backend"
+      },
+      {
+        "title": "Figma",
+        "icon": "SiFigma",
+        "stack": "frontend"
+      }
+    ]
+  },
+  {
+    "title": "Machine Learning Researcher @ GTA-UFRJ",
+    "startDate": "Jun 2024",
+    "endDate": "Jan 2025",
+    "location": "Rio de Janeiro, Brazil",
+    "responsibilities": [
+      "Researched and developed a computer vision module for a real-time security monitoring system, capable of detecting and classifying camera interference or obstruction attempts.",
+      "Designed a custom dataset and trained machine learning models using OpenCV and Scikit-learn, achieving approximately 96% accuracy in obstruction classification.",
+      "Integrated the ML module into a legacy backend system developed in pure Python, ensuring seamless communication with the broader application infrastructure."
+    ],
+    "highlights": [
+      "Computer vision for security systems",
+      "Dataset creation & model evaluation",
+      "Backend integration without frameworks"
+    ],
+    "impact": [
+      "Enhanced the robustness of the security system by enabling proactive detection of camera tampering.",
+      "Achieved high model accuracy while optimizing for real-time inference performance.",
+      "Contributed to an academic research initiative within one of UFRJ's leading engineering laboratories."
+    ],
+    "tech": [
+      {
+        "title": "Python",
+        "icon": "SiPython",
+        "stack": "datascience"
+      },
+      {
+        "title": "OpenCV",
+        "icon": "SiOpencv",
+        "stack": "datascience"
+      },
+      {
+        "title": "Scikit-learn",
+        "icon": "SiScikitlearn",
+        "stack": "datascience"
+      }
+    ]
+  }
+]
