@@ -57,7 +57,7 @@ const AboutMe: React.FC = () => {
 
           {/* Frontend */}
           <div className={styles.techStackContainer}>
-            <h4 className={styles.categoryTitle}>Frontend</h4>
+            <h4 className={`subsubsectionTitle ${styles.leftBar}`}>Frontend</h4>
             <div className={styles.skillsGrid}>
               {frontendSkills.map((skill) => {
                 return (
@@ -75,7 +75,7 @@ const AboutMe: React.FC = () => {
 
           {/* Backend */}
           <div className={styles.techStackContainer}>
-            <h4 className={styles.categoryTitle}>Backend</h4>
+            <h4 className={`subsubsectionTitle ${styles.leftBar}`}>Backend</h4>
             <div className={styles.skillsGrid}>
               {backendSkills.map((skill) => {
                 return (
@@ -93,7 +93,9 @@ const AboutMe: React.FC = () => {
 
           {/* Backend */}
           <div className={styles.techStackContainer}>
-            <h4 className={styles.categoryTitle}>Data Science</h4>
+            <h4 className={`subsubsectionTitle ${styles.leftBar}`}>
+              Data Science
+            </h4>
             <div className={styles.skillsGrid}>
               {datascienceSkills.map((skill) => {
                 return (
