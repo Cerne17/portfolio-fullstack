@@ -86,6 +86,32 @@
   padding: var(--space-xl) 0;
 }
 
+.experienceDetails {
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.experienceHighlights,
+.experienceImpact {
+  list-style-type: circle;
+  margin-left: var(--space-md);
+  padding-left: 0;
+}
+
+.experienceHighlights li,
+.experienceImpact li {
+  margin-bottom: var(--space-xs);
+}
+
+.experienceTechStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
 /* Responsive Design Considerations  */
 @media (max-width: 768px) {
   .sectionTitle {

@@ -1,14 +1,19 @@
-import React, { useMemo } from "react";
+import React from "react";
 import styles from "./AboutMe.module.css";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
 import SkillPill from "../../components/SkillPill/SkillPill";
-import {
-  frontendSkills,
-  backendSkills,
-  datascienceSkills,
-} from "../../data/skills";
+import experiences from "../../data/experiences.json";
+import { frontendSkills, backendSkills, datascienceSkills } from "../../data/skills";
 import "../../styles/globals.css";
+import * as SiIcons from "react-icons/si";
+import { IconType } from "react-icons";
+
+const getIcon = (iconName: string): IconType => {
+  type IconName = keyof typeof SiIcons;
+  const icon = SiIcons[iconName as IconName];
+  return icon;
+};
 
 const AboutMe: React.FC = () => {
   return (
@@ -21,33 +26,30 @@ const AboutMe: React.FC = () => {
           <h3 className={`subsectionTitle`}>Professional Summary</h3>
           <p className={`text`}>
             I am a third-year{" "}
-            <strong>Electrical and Computer Engineering</strong> undergraduate
-            at UFRJ, passionate about bridging the gap between software and
-            hardware through innovative solutions. My academic path and
-            professional experiences have strengthened my skills in{" "}
-            <strong>backend development</strong>,{" "}
-            <strong>machine learning</strong>, and{" "}
-            <strong>data analysis</strong>.
+            <strong>Electrical and Computer Engineering</strong> undergraduate at UFRJ,
+            passionate about bridging the gap between software and hardware through
+            innovative solutions. My academic path and professional experiences have
+            strengthened my skills in <strong>backend development</strong>,{" "}
+            <strong>machine learning</strong>, and <strong>data analysis</strong>.
           </p>
           <p className={`text`}>
             I have worked as a <strong>Backend Developer</strong> at{" "}
-            <strong>Fluxo Consultoria</strong> (Fluxo Consultancy) - an
-            engineering undergratuate business -, where I built and maintained
-            APIs using <strong>NestJS</strong> and <strong>PostgreSQL</strong>,
-            applying clean architecture principles and best practices in
-            software engineering. Additionally, as a{" "}
-            <strong>Machine Learning Researcher</strong> at GTA-UFRJ (Grupo de
-            Teleinformática e Automação - Teleinformatics and Automation Group),
-            I explored data-driven solutions using <strong>Scikit-Learn</strong>
-            , <strong>Pandas</strong>, and <strong>Matplotlib</strong>, while
-            leveraging high-performance computing with TPUs.
+            <strong>Fluxo Consultoria</strong> (Fluxo Consultancy) - an engineering
+            undergratuate business -, where I built and maintained APIs using{" "}
+            <strong>NestJS</strong> and <strong>PostgreSQL</strong>, applying clean
+            architecture principles and best practices in software engineering.
+            Additionally, as a <strong>Machine Learning Researcher</strong> at
+            GTA-UFRJ (Grupo de Teleinformática e Automação - Teleinformatics and
+            Automation Group), I explored data-driven solutions using{" "}
+            <strong>Scikit-Learn</strong>, <strong>Pandas</strong>, and{" "}
+            <strong>Matplotlib</strong>, while leveraging high-performance computing
+            with TPUs.
           </p>
           <p className={`text`}>
-            I thrive on hands-on learning, tackling complex problems, and
-            applying emerging technologies. My goal is to contribute to
-            impactful projects that push the boundaries of software engineering
-            and data science, while continuing to grow as a technology
-            professional.
+            I thrive on hands-on learning, tackling complex problems, and applying
+            emerging technologies. My goal is to contribute to impactful projects
+            that push the boundaries of software engineering and data science, while
+            continuing to grow as a technology professional.
           </p>
         </div>
 
@@ -91,7 +93,7 @@ const AboutMe: React.FC = () => {
             </div>
           </div>
 
-          {/* Backend */}
+          {/* Data Science */}
           <div className={styles.techStackContainer}>
             <h4 className={`subsubsectionTitle ${styles.leftBar}`}>
               Data Science
@@ -114,32 +116,55 @@ const AboutMe: React.FC = () => {
 
         {/* Experience/Work History */}
         <div className={styles.subsection}>
-          <h3 className={`subsectionTitle`}>Experience</h3>
-          <div className={styles.experienceItem}>
-            <h4 className={`subsubsectionTitle`}>
-              Software Engineer Intern at Fluxo Consultoria
-            </h4>
-            <p className={styles.experienceDuration}>Jun 2023 – Jan 2024</p>
-            <ul className={styles.experienceResponsibilities}>
-              <li>Developed and maintained back-end applications.</li>
-              <li>Designed scalable systems, databases and APIs.</li>
-              <li>
-                Implemented RESTful APIs and integrated with various third-party
-                services.
-              </li>
-            </ul>
-          </div>
-          <div className={styles.experienceItem}>
-            <h4 className={`subsubsectionTitle`}>
-              Machine Learning Researcher at GTA-UFRJ
-            </h4>
-            <p className={styles.experienceDuration}>Jun 2024 – Jan 2025</p>
-            <ul className={styles.experienceResponsibilities}>
-              <li>Developed a computer vision model.</li>
-              <li>Designed a customized dataset for training the model.</li>
-              <li>Implemented the model to a django back-end.</li>
-            </ul>
-          </div>
+          <h3 className={`subsectionTitle`}>Experiences</h3>
+          {experiences.map((experience) => {
+            return (
+              <div className={styles.experienceItem} key={experience.id}>
+                <h4 className={`subsubsectionTitle`}>{experience.title}</h4>
+                <p className={styles.experienceDuration}>
+                  {experience.startMonth} {experience.startYear} -{" "}
+                  {experience.endMonth} {experience.endYear}
+                </p>
+                <ul className={styles.experienceResponsibilities}>
+                  {experience.responsibilities.map((responsibility, index) => {
+                    return <li key={index}>{responsibility}</li>;
+                  })}
+                </ul>
+                <div className={styles.experienceDetails}>
+                  <div>
+                    <h5 className={`subsubsectionTitle`}>Highlights</h5>
+                    <ul className={styles.experienceHighlights}>
+                      {experience.highlights.map((highlight, index) => (
+                        <li key={index}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className={`subsubsectionTitle`}>Impact</h5>
+                    <ul className={styles.experienceImpact}>
+                      {experience.impact.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 className={`subsubsectionTitle`}>Technologies Used</h5>
+                    <div className={styles.experienceTechStack}>
+                      {experience.tech.map((tech) => (
+                        <SkillPill
+                          key={tech.id}
+                          id={tech.id}
+                          icon={getIcon(tech.icon)}
+                          title={tech.title}
+                          stack={tech.stack as "frontend" | "backend" | "datascience"}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Education */}
@@ -204,10 +229,7 @@ const AboutMe: React.FC = () => {
           <p className={`text center`}>
             Interested in my work or want to collaborate?
           </p>
-          <CtaBlueButton
-            title="My Projects"
-            link="https://github.com/Cerne17"
-          />
+          <CtaBlueButton title="My Projects" link="https://github.com/Cerne17" />
           <CtaTransparentButton
             title="Book a Call"
             link="https://calendly.com/miguelcerne-dev/30min"
