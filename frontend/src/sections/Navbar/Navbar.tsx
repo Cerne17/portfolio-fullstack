@@ -26,12 +26,11 @@ const Navbar: React.FC = () => {
             </a>
           </li>
 
-          {/* TODO: implement the projects section and enable it on Navbar */}
-          {/* <li className={styles.navItem}> */}
-          {/*   <a href="#projects" className={styles.navLink} onClick={toggleMenu}> */}
-          {/*     Projects */}
-          {/*   </a> */}
-          {/* </li> */}
+          <li className={styles.navItem}>
+            <a href="#projects" className={styles.navLink} onClick={toggleMenu}>
+              Projects
+            </a>
+          </li>
 
           <li className={styles.navItem}>
             <a href="#contact-me" className={styles.navLink} onClick={toggleMenu}>
