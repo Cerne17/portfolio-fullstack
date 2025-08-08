@@ -1,30 +1,70 @@
 .footer {
-  background-color: var(
-    --color-secondary-dark
-  ); /* A dark, professional blue-gray */
-  color: var(--color-text-on-primary); /* A soft white for text */
-  padding: 2rem 1rem;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-text-on-primary);
+  padding: var(--space-xl) var(--space-md);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 75%, transparent 75%, transparent);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  z-index: 0;
 }
 
 .socialLinks {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-md);
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .socialLinks a {
   color: var(--color-text-on-primary);
-  font-size: 2rem; /* Makes icons larger */
-  margin: 0 1rem;
-  transition: color 0.3s ease-in-out;
+  font-size: var(--fs-700);
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--color-text-on-primary);
 }
 
 .socialLinks a:hover {
-  color: var(--color-primary); /* Uses your site's primary blue on hover */
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--box-shadow-md);
 }
 
 .copyrightText {
-  font-size: 0.9rem;
-  color: var(
-    --color-text-on-primary
-  ); /* A slightly dimmer white for the copyright */
+  font-size: var(--fs-300);
+  color: var(--color-text-on-primary);
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .socialLinks {
+    gap: var(--space-md);
+  }
+
+  .socialLinks a {
+    font-size: var(--fs-600);
+    width: 45px;
+    height: 45px;
+  }
 }
