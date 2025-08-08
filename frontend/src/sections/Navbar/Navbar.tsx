@@ -14,7 +14,10 @@ const Navbar: React.FC = () => {
         <a href="#hero" className={styles.brand}>
           Miguel Cerne
         </a>
-        <button className={`${styles.hamburger} ${isOpen ? styles.open : ""}` } onClick={toggleMenu}>
+        <button
+          className={`${styles.hamburger} ${isOpen ? styles.open : ""}`}
+          onClick={toggleMenu}
+        >
           <div />
           <div />
           <div />
@@ -26,14 +29,18 @@ const Navbar: React.FC = () => {
             </a>
           </li>
 
-          <li className={styles.navItem}>
+          {/* <li className={styles.navItem}>
             <a href="#projects" className={styles.navLink} onClick={toggleMenu}>
               Projects
             </a>
-          </li>
+          </li> */}
 
           <li className={styles.navItem}>
-            <a href="#contact-me" className={styles.navLink} onClick={toggleMenu}>
+            <a
+              href="#contact-me"
+              className={styles.navLink}
+              onClick={toggleMenu}
+            >
               Contact Me
             </a>
           </li>
