@@ -1,20 +1,23 @@
 .CtaBlueButton {
   width: 200px;
   height: 60px;
-  border-radius: 30px;
+  border-radius: var(--border-radius-lg);
   font-size: 1.1em;
   text-align: center;
-  font-weight: bold;
-  background-color: #007bff;
-  color: white;
-  border: transparent;
+  font-weight: var(--fw-bold);
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: none;
   margin: 2em 10px;
   cursor: pointer;
-  transition: background-color 1s ease;
+  transition: var(--transition-base);
+  box-shadow: var(--box-shadow-sm);
 }
 
 .CtaBlueButton:hover {
-  background-color: #0056b3;
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--box-shadow-md);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -22,4 +25,3 @@
     margin: 0.75rem 10px;
   }
 }
-
