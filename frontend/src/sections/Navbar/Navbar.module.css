@@ -8,7 +8,6 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  /* No max-width here, so it spans full width */
 }
 
 .container {
@@ -20,7 +19,7 @@
 }
 
 .brand {
-  color: var(--color-primary); /* Changed brand color for visibility */
+  color: var(--color-primary);
   text-decoration: none;
   font-size: var(--fs-700);
   font-weight: bold;
@@ -38,46 +37,89 @@
 }
 
 .navLink {
-  color: var(--color-text-base); /* Adjusted link color for contrast */
+  color: var(--color-text-base);
   text-decoration: none;
   font-size: var(--fs-400);
   padding: var(--space-xs) 0;
   transition: var(--transition-base);
+  position: relative;
 }
 
-.navLink:hover,
-.navLink:focus {
-  color: var(--color-primary); /* Keep highlight color consistent */
+.navLink::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease-in-out;
+}
+
+.navLink:hover::after,
+.navLink:focus::after {
+  width: 100%;
 }
 
 .hamburger {
   display: none;
-  background: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
   border: none;
-  color: inherit;
-  font-size: var(--fs-600);
   cursor: pointer;
-  z-index: 1001; /* Ensure it's above other content */
+  padding: 0;
+  z-index: 10;
 }
 
-/* breakpoint-md */
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger div {
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--color-primary);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburger.open div:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger.open div:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger.open div:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
 @media (max-width: 768px) {
   .navList {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: -100%;
+    width: 70%;
     height: 100vh;
-    background-color: var(--color-secondary);
+    background-color: var(--color-background-component);
     justify-content: center;
     align-items: center;
     gap: var(--space-xl);
+    transition: right 0.5s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
   }
 
   .navList.open {
-    display: flex;
+    right: 0;
   }
 
   .navLink {
@@ -85,6 +127,6 @@
   }
 
   .hamburger {
-    display: block;
+    display: flex;
   }
 }

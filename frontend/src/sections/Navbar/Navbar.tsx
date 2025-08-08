@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
 import styles from "./Navbar.module.css"; // Import CSS Module
 
 const Navbar: React.FC = () => {
@@ -15,29 +14,34 @@ const Navbar: React.FC = () => {
         <a href="#hero" className={styles.brand}>
           Miguel Cerne
         </a>
+        <button className={`${styles.hamburger} ${isOpen ? styles.open : ""}` } onClick={toggleMenu}>
+          <div />
+          <div />
+          <div />
+        </button>
         <ul className={`${styles.navList} ${isOpen ? styles.open : ""}`}>
           <li className={styles.navItem}>
-            <a href="#about-me" className={styles.navLink}>
+            <a href="#about-me" className={styles.navLink} onClick={toggleMenu}>
               About Me
             </a>
           </li>
 
           {/* TODO: implement the projects section and enable it on Navbar */}
           {/* <li className={styles.navItem}> */}
-          {/*   <a href="#projects" className={styles.navLink}> */}
+          {/*   <a href="#projects" className={styles.navLink} onClick={toggleMenu}> */}
           {/*     Projects */}
           {/*   </a> */}
           {/* </li> */}
 
           <li className={styles.navItem}>
-            <a href="#contact-me" className={styles.navLink}>
+            <a href="#contact-me" className={styles.navLink} onClick={toggleMenu}>
               Contact Me
             </a>
           </li>
 
           {/* TODO: implement the Blog Page and enable it on Navbar */}
           {/* <li className={styles.navItem}> */}
-          {/*   <a href="#blog" className={styles.navLink}> */}
+          {/*   <a href="#blog" className={styles.navLink} onClick={toggleMenu}> */}
           {/*     Blog */}
           {/*   </a> */}
           {/* </li> */}
