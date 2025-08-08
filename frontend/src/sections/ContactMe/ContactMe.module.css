@@ -32,9 +32,9 @@
   resize: vertical;
 }
 
-.form button {
+.submitButton {
   height: 60px;
-  border-radius: 30px;
+  border-radius: var(--border-radius-lg);
   padding: 0.75rem 1.5rem;
   background-color: var(--color-primary);
   color: var(--color-text-on-primary);
@@ -43,10 +43,13 @@
   font-weight: bold;
   cursor: pointer;
   transition: var(--transition-base);
+  box-shadow: var(--box-shadow-sm);
 }
 
-.form button:hover {
+.submitButton:hover {
   background-color: var(--color-primary-dark);
+  box-shadow: var(--box-shadow-md);
+  transform: translateY(-2px);
 }
 
 .validationError {

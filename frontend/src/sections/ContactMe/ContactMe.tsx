@@ -41,7 +41,7 @@ const ContactForm: React.FC = () => {
           className={styles.validationError}
         />
 
-        <button type="submit" disabled={state.submitting}>
+        <button type="submit" disabled={state.submitting} className={styles.submitButton}>
           {state.submitting ? "Sending..." : "Send Message"}
         </button>
       </form>
