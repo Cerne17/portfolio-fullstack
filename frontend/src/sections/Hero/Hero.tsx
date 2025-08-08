@@ -2,43 +2,35 @@ import React from "react";
 import styles from "./Hero.module.css";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
-// import "@/styles/globals.css";
 import "../../styles/globals.css";
 
 const Hero: React.FC = () => {
   return (
     <section id="hero" className={styles.heroSection}>
-      <h3 className={`sectionTitle`}>Who's Miguel Cerne?</h3>
-      <div className={styles.heroContainer}>
-        <div className={styles.leftHeroContainer}>
-          <p className={`text`}>
-            I am a Brazilian Full-Stack Engineer and a third-year Electrical and
-            Computer Engineering undergraduate at the Federal University of Rio
-            de Janeiro (UFRJ). While my engineering studies provided a rigorous
-            foundation, my journey into software was truly sparked by
-            discovering Conway's Game of Life. The realization that I could
-            build entire systems from the ground up, blending my lifelong love
-            for math and logic with pure creativity, ignited a passion that
-            drives me to this day.
-          </p>
-          <p className={`text`}>
-            This passion has led me to explore and deliver projects across
-            multiple domains, from Web Development to Data Science and Machine
-            Learning. What I love most is the multi-disciplinarity of it
-            all—seeing how a few simple concepts can emerge and combine to build
-            complex solutions that solve real problems for real people.
-            Ultimately, that is my goal: to use technology to make a tangible,
-            positive impact.
-          </p>
+      <div className={styles.heroContent}>
+        <h1 className={`sectionTitle ${styles.heroTitle}`}>Miguel Cerne</h1>
+        <h2 className={`subsectionTitle ${styles.heroSubtitle}`}>
+          Full-Stack Engineer & Machine Learning Researcher
+        </h2>
+        <p className={styles.text}>
+          I am a Brazilian Full-Stack Engineer and a third-year Electrical and
+          Computer Engineering undergraduate at the Federal University of Rio
+          de Janeiro (UFRJ). My passion is to build entire systems from the
+          ground up, blending my lifelong love for math and logic with pure
+          creativity.
+        </p>
+        <div className={styles.btnContainer}>
+          <CtaBlueButton
+            title="My Projects"
+            link="https://github.com/Cerne17"
+            className={styles.heroCtaBlueButton}
+          />
+          <CtaTransparentButton
+            title="Book a Call"
+            link="https://calendly.com/miguelcerne-dev/30min"
+            className={styles.heroCtaTransparentButton}
+          />
         </div>
-        <div className={styles.bannerPlaceholder}></div>
-      </div>
-      <div className={styles.btnContainer}>
-        <CtaBlueButton title="My Projects" link="https://github.com/Cerne17" />
-        <CtaTransparentButton
-          title="Book a Call"
-          link="https://calendly.com/miguelcerne-dev/30min"
-        />
       </div>
     </section>
   );
