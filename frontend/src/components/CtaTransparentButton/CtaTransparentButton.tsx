@@ -4,11 +4,11 @@ import styles from "./CtaTransparentButton.module.css";
 interface CtaTransparentButtonProps {
   title?: string;
   link: string;
-  className?: string;
+  isDark?: boolean;
 }
 
-const CtaTransparentButton: React.FC<CtaTransparentButtonProps> = ({ title = "Click Me!", link, className }) => {
-  const buttonClassName = `${styles.CtaTransparentButton} ${className || ''}`.trim();
+const CtaTransparentButton: React.FC<CtaTransparentButtonProps> = ({ title = "Click Me!", link, isDark }) => {
+  const buttonClassName = `${styles.CtaTransparentButton} ${isDark ? styles.dark : ''}`.trim();
 
   return (
     <a href={link} target="_blank" rel="noopener noreferrer">

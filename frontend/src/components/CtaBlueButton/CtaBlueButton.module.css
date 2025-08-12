@@ -25,3 +25,14 @@
     margin: 0.75rem 10px;
   }
 }
+
+.CtaBlueButton.dark {
+  background-color: var(--color-text-on-primary);
+  color: black;
+  border: none;
+}
+
+.CtaBlueButton.dark:hover {
+  background-color: #f0f0f0;
+  color: var(--color-primary-dark);
+}

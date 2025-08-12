@@ -4,11 +4,11 @@ import styles from "./CtaBlueButton.module.css";
 interface CtaBlueButtonProps {
   title?: string;
   link: string;
-  className?: string;
+  isDark?: boolean;
 }
 
-const CtaBlueButton: React.FC<CtaBlueButtonProps> = ({ title = "Click Me!", link, className }) => {
-  const buttonClassName = `${styles.CtaBlueButton} ${className || ''}`.trim();
+const CtaBlueButton: React.FC<CtaBlueButtonProps> = ({ title = "Click Me!", link, isDark }) => {
+  const buttonClassName = `${styles.CtaBlueButton} ${isDark ? styles.dark : ''}`.trim();
 
   return (
     <a href={link} target="_blank" rel="noopener noreferrer">

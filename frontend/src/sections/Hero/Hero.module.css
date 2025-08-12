@@ -39,13 +39,23 @@
 }
 
 .heroTitle {
+  font-size: clamp(var(--fs-600), calc(5vw + 1em), var(--fs-800));
   color: var(--color-text-on-primary);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  padding-bottom: var(--space-xl);
+  padding-top: var(--space-xl);
+  line-height: var(--line-height-heading);
 }
 
 .heroSubtitle {
   color: var(--color-text-on-primary);
   border-left: none;
   text-align: center;
+  padding-left: 0;
+  font-weight: var(--fw-bold);
+  font-size: clamp(var(--fs-500), calc(4.5vw + 1em), var(--fs-600));
+  margin-bottom: var(--space-md);
 }
 
 .text {
@@ -63,28 +73,7 @@
   margin-top: var(--space-lg);
 }
 
-/* Override for Blue Button in Hero */
-.heroCtaBlueButton {
-  background-color: var(--color-primary);
-  color: var(--color-text-on-primary);
-}
 
-.heroCtaBlueButton:hover {
-  background-color: var(--color-primary-dark);
-}
-
-/* Override for Transparent Button in Hero */
-.heroCtaTransparentButton {
-  background-color: transparent;
-  color: var(--color-text-on-primary);
-  border: 2px solid var(--color-text-on-primary);
-}
-
-.heroCtaTransparentButton:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-text-on-primary);
-  color: var(--color-text-on-primary);
-}
 
 @media (max-width: 768px) {
   .heroSection {

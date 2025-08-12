@@ -8,8 +8,8 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className={styles.heroSection}>
       <div className={styles.heroContent}>
-        <h1 className={`sectionTitle ${styles.heroTitle}`}>Miguel Cerne</h1>
-        <h2 className={`subsectionTitle ${styles.heroSubtitle}`}>
+        <h1 className={styles.heroTitle}>Miguel Cerne</h1>
+        <h2 className={styles.heroSubtitle}>
           Full-Stack Engineer & Machine Learning Researcher
         </h2>
         <p className={styles.text}>
@@ -23,12 +23,12 @@ const Hero: React.FC = () => {
           <CtaBlueButton
             title="My Projects"
             link="https://github.com/Cerne17"
-            className={styles.heroCtaBlueButton}
+            isDark={true}
           />
           <CtaTransparentButton
             title="Book a Call"
             link="https://calendly.com/miguelcerne-dev/30min"
-            className={styles.heroCtaTransparentButton}
+            isDark={true}
           />
         </div>
       </div>
