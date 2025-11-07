@@ -89,5 +89,43 @@
         "stack": "datascience"
       }
     ]
+  },
+  {
+    "id": 3,
+    "title": "Spatial Audio Researcher @ UFRJ",
+    "startMonth": "Sep",
+    "startYear": 2025,
+    "endMonth": "Present",
+    "endYear": "",
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "responsibilities": [
+      "Investigating the principles of Ambisonics (First-Order and Higher-Order) and spherical harmonics to enhance audio precision for immersive simulations.",
+      "Researching the feasibility of developing a custom 360° video player optimized for high-precision spatial audio rendering (HOA).",
+      "Developed and validated an end-to-end software pipeline for multiplexing 4-channel First-Order Ambisonics (FOA) audio with 360° video for the YouTube platform.",
+      "Engineered the FOA workflow using DaVinci Resolve for multitrack audio configuration and the Spatial Media Metadata Injector to 'flag' files for binaural rendering.",
+      "Conducting validation tests to troubleshoot playback inconsistencies, differentiating between file-level encoding and player-side rendering issues."
+    ],
+    "highlights": [
+      "Architectural acoustics & psychoacoustics research",
+      "Higher-Order Ambisonics (HOA) viability analysis",
+      "First-Order Ambisonics (FOA) pipeline development",
+      "Custom 360° video player feasibility study",
+      "Playback validation & troubleshooting"
+    ],
+    "impact": [
+      "Developing a simulation tool for architectural acoustics to study how sound in built environments affects human emotion (stress, joy, etc.).",
+      "The research aims to replace costly, in-person environmental studies by enabling professionals to record a location once and conduct remote psychoacoustic tests online.",
+      "Created a validated, replicable process for publishing immersive 360° audio content on major streaming platforms.",
+      "Successfully diagnosed playback inconsistencies by differentiating between file-level encoding errors and player-side rendering issues."
+    ],
+    "tech": [
+      {
+        "id": 7,
+        "title": "DaVinci Resolve",
+        "icon": "SiDavinciresolve",
+        "stack": "backend"
+      }
+    ]
   }
 ]
