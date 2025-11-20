@@ -12,7 +12,7 @@ import { IconType } from "react-icons";
 const getIcon = (iconName: string): IconType => {
   type IconName = keyof typeof SiIcons;
   const icon = SiIcons[iconName as IconName];
-  return icon;
+  return icon || SiIcons.SiCodeigniter;
 };
 
 const AboutMe: React.FC = () => {
