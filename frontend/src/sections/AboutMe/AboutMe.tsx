@@ -3,17 +3,9 @@ import styles from "./AboutMe.module.css";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
 import SkillPill from "../../components/SkillPill/SkillPill";
-import experiences from "../../data/experiences.json";
+import experiences from "../../data/experiences";
 import { frontendSkills, backendSkills, datascienceSkills } from "../../data/skills";
 import "../../styles/globals.css";
-import * as SiIcons from "react-icons/si";
-import { IconType } from "react-icons";
-
-const getIcon = (iconName: string): IconType => {
-  type IconName = keyof typeof SiIcons;
-  const icon = SiIcons[iconName as IconName];
-  return icon || SiIcons.SiCodeigniter;
-};
 
 const AboutMe: React.FC = () => {
   return (
@@ -154,7 +146,7 @@ const AboutMe: React.FC = () => {
                         <SkillPill
                           key={tech.id}
                           id={tech.id}
-                          icon={getIcon(tech.icon)}
+                          icon={tech.icon}
                           title={tech.title}
                           stack={tech.stack as "frontend" | "backend" | "datascience"}
                         />
