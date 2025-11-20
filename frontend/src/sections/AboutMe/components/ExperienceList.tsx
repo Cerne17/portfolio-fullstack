@@ -1,0 +1,62 @@
+import React from "react";
+import styles from "../../AboutMe.module.css";
+import SkillPill from "../../../components/SkillPill/SkillPill";
+import experiences from "../../../data/experiences";
+
+const ExperienceList: React.FC = () => {
+  return (
+    <div className={styles.subsection}>
+      <h3 className={`subsectionTitle`}>Experiences</h3>
+      {experiences.map((experience) => {
+        return (
+          <div className={styles.experienceItem} key={experience.id}>
+            <h4 className={`subsubsectionTitle`}>{experience.title}</h4>
+            <p className={styles.experienceDuration}>
+              {experience.startMonth} {experience.startYear} -{" "}
+              {experience.endMonth} {experience.endYear}
+            </p>
+            <ul className={styles.experienceResponsibilities}>
+              {experience.responsibilities.map((responsibility, index) => {
+                return <li key={index}>{responsibility}</li>;
+              })}
+            </ul>
+            <div className={styles.experienceDetails}>
+              <div>
+                <h5 className={`subsubsectionTitle`}>Highlights</h5>
+                <ul className={styles.experienceHighlights}>
+                  {experience.highlights.map((highlight, index) => (
+                    <li key={index}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h5 className={`subsubsectionTitle`}>Impact</h5>
+                <ul className={styles.experienceImpact}>
+                  {experience.impact.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h5 className={`subsubsectionTitle`}>Technologies Used</h5>
+                <div className={styles.experienceTechStack}>
+                  {experience.tech.map((tech) => (
+                    <SkillPill
+                      key={tech.id}
+                      id={tech.id}
+                      icon={tech.icon}
+                      title={tech.title}
+                      stack={tech.stack as "frontend" | "backend" | "datascience"}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default ExperienceList;
