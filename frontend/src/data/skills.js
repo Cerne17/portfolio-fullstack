@@ -15,6 +15,7 @@ import {
   SiScikitlearn,
   SiPandas,
   SiTensorflow,
+  SiJupyter,
 } from "react-icons/si";
 
 export const frontendSkills = [
@@ -101,5 +102,10 @@ export const datascienceSkills = [
     "id": 1,
     "title": "Tensorflow",
     "icon": SiTensorflow
+  },
+  {
+    "id": 16,
+    "title": "MATLAB",
+    "icon": SiJupyter // Using SiJupyter as fallback for SiMatlab
   }
 ]

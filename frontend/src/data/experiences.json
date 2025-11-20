@@ -125,6 +125,12 @@
         "title": "DaVinci Resolve",
         "icon": "SiDavinciresolve",
         "stack": "backend"
+      },
+      {
+        "id": 8,
+        "title": "MATLAB",
+        "icon": "SiJupyter",
+        "stack": "datascience"
       }
     ]
   }
