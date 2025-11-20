@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../AboutMe.module.css";
+import styles from "../AboutMe.module.css";
 import SkillPill from "../../../components/SkillPill/SkillPill";
 import { frontendSkills, backendSkills, datascienceSkills } from "../../../data/skills";
 
