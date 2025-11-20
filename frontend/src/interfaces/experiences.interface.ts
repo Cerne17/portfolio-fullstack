@@ -15,7 +15,8 @@ export interface IExperience {
     | "Sep"
     | "Oct"
     | "Nov"
-    | "Dec";
+    | "Dec"
+    | "Present";
   startYear: number;
   endMonth:
     | "Jan"
@@ -29,8 +30,9 @@ export interface IExperience {
     | "Sep"
     | "Oct"
     | "Nov"
-    | "Dec";
-  endYear: number;
+    | "Dec"
+    | "Present";
+  endYear: number | string;
   city: string;
   country: string;
   responsibilities: string[];
