@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css"; // Import CSS Module
+import navLinks from "../../data/navigation";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,34 +24,17 @@ const Navbar: React.FC = () => {
           <div />
         </button>
         <ul className={`${styles.navList} ${isOpen ? styles.open : ""}`}>
-          <li className={styles.navItem}>
-            <a href="#about-me" className={styles.navLink} onClick={toggleMenu}>
-              About Me
-            </a>
-          </li>
-
-          {/* <li className={styles.navItem}>
-            <a href="#projects" className={styles.navLink} onClick={toggleMenu}>
-              Projects
-            </a>
-          </li> */}
-
-          <li className={styles.navItem}>
-            <a
-              href="#contact-me"
-              className={styles.navLink}
-              onClick={toggleMenu}
-            >
-              Contact Me
-            </a>
-          </li>
-
-          {/* TODO: implement the Blog Page and enable it on Navbar */}
-          {/* <li className={styles.navItem}> */}
-          {/*   <a href="#blog" className={styles.navLink} onClick={toggleMenu}> */}
-          {/*     Blog */}
-          {/*   </a> */}
-          {/* </li> */}
+          {navLinks.map((link) => (
+            <li className={styles.navItem} key={link.id}>
+              <a
+                href={link.href}
+                className={styles.navLink}
+                onClick={toggleMenu}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
