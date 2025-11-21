@@ -11,11 +11,11 @@ const navLinks: INavLink[] = [
     label: "Contact Me",
     href: "#contact-me",
   },
-  // {
-  //   id: "projects",
-  //   label: "Projects",
-  //   href: "#projects",
-  // },
+  {
+    id: "projects",
+    label: "Projects",
+    href: "#projects",
+  },
   // {
   //   id: "blog",
   //   label: "Blog",
