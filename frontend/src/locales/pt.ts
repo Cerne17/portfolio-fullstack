@@ -1,0 +1,236 @@
+import {
+  SiNestjs,
+  SiPostgresql,
+  SiFigma,
+  SiPython,
+  SiOpencv,
+  SiScikitlearn,
+  SiDavinciresolve,
+  SiJupyter,
+} from "react-icons/si";
+
+export const pt = {
+  hero: {
+    title: "Miguel Cerne",
+    subtitle: "Engenheiro Full-Stack & Pesquisador de Machine Learning",
+    intro:
+      "Sou um Engenheiro Full-Stack brasileiro e graduando do terceiro ano de Engenharia Eletrônica e de Computação na Universidade Federal do Rio de Janeiro (UFRJ). Minha paixão é construir sistemas completos do zero, unindo meu amor pela matemática e lógica com a criatividade pura.",
+    ctaProjects: "Meus Projetos",
+    ctaCall: "Agendar uma Chamada",
+  },
+  aboutMe: {
+    title: "Sobre Mim",
+    professionalSummaryTitle: "Resumo Profissional",
+    interestsTitle: "Interesses",
+    experiencesTitle: "Experiências",
+    educationTitle: "Educação",
+    highlightsTitle: "Destaques",
+    impactTitle: "Impacto",
+    techTitle: "Tecnologias Usadas",
+    summary: [
+      "Sou graduando do terceiro ano de <strong>Engenharia Eletrônica e de Computação</strong> na UFRJ, apaixonado por conectar software e hardware através de soluções inovadoras. Minha trajetória acadêmica e experiências profissionais fortaleceram minhas habilidades em <strong>desenvolvimento backend</strong>, <strong>machine learning</strong> e <strong>análise de dados</strong>.",
+      "Trabalhei como <strong>Desenvolvedor Backend</strong> na <strong>Fluxo Consultoria</strong> - uma empresa júnior de engenharia -, onde construí e mantive APIs usando <strong>NestJS</strong> e <strong>PostgreSQL</strong>, aplicando princípios de arquitetura limpa e boas práticas de engenharia de software. Além disso, como <strong>Pesquisador de Machine Learning</strong> no GTA-UFRJ (Grupo de Teleinformática e Automação), explorei soluções baseadas em dados usando <strong>Scikit-Learn</strong>, <strong>Pandas</strong> e <strong>Matplotlib</strong>, aproveitando a computação de alto desempenho com TPUs.",
+      "Gosto de aprender na prática, resolver problemas complexos e aplicar tecnologias emergentes. Meu objetivo é contribuir para projetos impactantes que expandam os limites da engenharia de software e ciência de dados, enquanto continuo crescendo como profissional de tecnologia.",
+    ],
+    interests: [
+      "Tenho profundo interesse em tecnologias que conectam teoria com impacto no mundo real. Minha curiosidade me leva a explorar áreas como <strong>desenvolvimento backend</strong>, <strong>sistemas distribuídos</strong> e <strong>design de APIs escaláveis</strong>, onde posso aplicar princípios de engenharia para construir soluções robustas e eficientes.",
+      "No lado da pesquisa, sou fascinado por algoritmos de machine learning e suas aplicações na <strong>tomada de decisão baseada em dados</strong>. Gosto de experimentar modelos, otimizar seu desempenho e entender como tecnologias emergentes podem transformar indústrias.",
+      "Além do software, valorizo a sinergia entre hardware e software, uma perspectiva enraizada na minha formação em Engenharia Eletrônica e de Computação. Isso me motiva a me manter atualizado com os avanços em <strong>arquiteturas de computação</strong> e <strong>sistemas embarcados</strong>.",
+      "Acima de tudo, sou apaixonado pelo <strong>aprendizado contínuo</strong>—seja dominando um novo framework, contribuindo para projetos open-source ou mergulhando nas últimas tendências tecnológicas. Meu objetivo é continuar expandindo meu conhecimento enquanto construo soluções que fazem a diferença.",
+    ],
+  },
+  projects: {
+    title: "Projetos",
+    viewCode: "Ver Código",
+    viewDemo: "Ver Demo",
+    list: [
+      {
+        id: 1,
+        title: "Database Population",
+        description:
+          "Projetado para resolver o desafio de popular esquemas relacionais complexos, este projeto é um pipeline de dados totalmente automatizado construído com Python. Ele gera dados sintéticos realistas orquestrando entradas da biblioteca 'Faker' e consumindo APIs oficiais do governo brasileiro. O sistema cria entidades coerentes e interconectadas (como perfis de usuários, endereços válidos e estruturas corporativas), agilizando o processo de semeadura de bancos de dados para testes e desenvolvimento.",
+        techStack: ["Python"],
+        repoUrl: "https://github.com/Cerne17/Database-Population/tree/main",
+        image: "DatabasePopulationBanner.png",
+      },
+      {
+        id: 2,
+        title: "ProjetoNotas",
+        description:
+          'Desenvolvido durante a "Imersão IA" (uma colaboração entre Alura e Google), este projeto resolve uma dor acadêmica clássica: converter notas manuscritas caóticas em materiais de estudo estruturados. Indo além do Reconhecimento Óptico de Caracteres (OCR) tradicional, o ProjetoNotas aproveita as capacidades multimodais da API Gemini do Google. O sistema não apenas "lê" o texto; ele interpreta a estrutura semântica das páginas manuscritas para sintetizar um PDF limpo e logicamente formatado. Representa uma mudança do caos analógico para a ordem digital, demonstrando senso prático de produto e engenharia de prompt avançada.',
+        techStack: ["Python", "Gemini"],
+        repoUrl: "https://github.com/Cerne17/ProjetoNotas",
+        image: "ProjetoNotasBanner.png",
+      },
+      {
+        id: 3,
+        title: "Design-Patterns",
+        description:
+          "Uma exploração técnica da arquitetura de software clássica aplicada ao ecossistema web moderno. Este projeto preenche a lacuna entre a POO teórica e o desenvolvimento prático em TypeScript. Ele aborda os desafios específicos de implementar contratos estritos e comportamento polimórfico em um ambiente baseado em JavaScript. Ao ir além de scripts simples para soluções arquitetadas, este repositório serve como referência para bases de código mais limpas, modulares e testáveis.",
+        techStack: ["Typescript", "Uml"],
+        repoUrl: "https://github.com/Cerne17/Design-Patterns",
+        image: "DesignPatternsBanner.png",
+      },
+    ],
+  },
+  contact: {
+    title: "Entre em Contato",
+    nameLabel: "Nome",
+    emailLabel: "Email",
+    messageLabel: "Mensagem",
+    submitButton: "Enviar Mensagem",
+    sending: "Enviando...",
+    successMessage: "Obrigado pela sua mensagem! Entrarei em contato em breve.",
+    errorMessage: "Ops! Houve um problema ao enviar seu formulário",
+  },
+  footer: {
+    copyright: "© 2024 Miguel Cerne. Todos os direitos reservados.",
+  },
+  experiences: [
+    {
+      id: 1,
+      title: "Estagiário de Engenharia de Software @ Fluxo Consultoria",
+      startMonth: "Jun",
+      startYear: 2023,
+      endMonth: "Jan",
+      endYear: 2024,
+      city: "Rio de Janeiro",
+      country: "Brasil",
+      responsibilities: [
+        "Colaborei diretamente com clientes para entender as necessidades de negócios e transformar suas ideias em sistemas totalmente funcionais.",
+        "Trabalhei com uma equipe multidisciplinar de estudantes de engenharia para projetar arquiteturas de sistemas, definir requisitos técnicos e desenvolver aplicativos amigáveis do zero.",
+        "Participei de todo o ciclo de vida do produto—desde o levantamento inicial de requisitos e modelagem de banco de dados até o design de identidade visual e implementação de backend.",
+      ],
+      highlights: [
+        "Engenharia de requisitos",
+        "Modelagem de banco de dados",
+        "Desenvolvimento de API Backend com NestJS",
+        "Comunicação com cliente e entrega de projeto",
+      ],
+      impact: [
+        "Entreguei soluções de software completas que permitiram aos clientes digitalizar e escalar suas operações de negócios.",
+        "Melhorei os fluxos de trabalho de projetos da equipe através de documentação clara e estratégias de colaboração.",
+        "Fortaleci habilidades interpessoais de consultoria através da interação com clientes e ciclos de desenvolvimento iterativos.",
+      ],
+      tech: [
+        {
+          id: 1,
+          title: "NestJS",
+          icon: SiNestjs,
+          stack: "backend",
+        },
+        {
+          id: 2,
+          title: "PostgreSQL",
+          icon: SiPostgresql,
+          stack: "backend",
+        },
+        {
+          id: 3,
+          title: "Figma",
+          icon: SiFigma,
+          stack: "frontend",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "Pesquisador de Machine Learning @ GTA-UFRJ",
+      startMonth: "Jun",
+      startYear: 2024,
+      endMonth: "Jan",
+      endYear: 2025,
+      city: "Rio de Janeiro",
+      country: "Brasil",
+      responsibilities: [
+        "Pesquisei e desenvolvi um módulo de visão computacional para um sistema de monitoramento de segurança em tempo real, capaz de detectar e classificar interferências ou tentativas de obstrução de câmeras.",
+        "Projetei um dataset personalizado e treinei modelos de machine learning usando OpenCV e Scikit-learn, alcançando aproximadamente 96% de precisão na classificação de obstruções.",
+        "Integrei o módulo de ML em um sistema backend legado desenvolvido em Python puro, garantindo comunicação perfeita com a infraestrutura mais ampla da aplicação.",
+      ],
+      highlights: [
+        "Visão computacional para sistemas de segurança",
+        "Criação de dataset e avaliação de modelos",
+        "Integração de backend sem frameworks",
+      ],
+      impact: [
+        "Aumentei a robustez do sistema de segurança permitindo a detecção proativa de adulteração de câmeras.",
+        "Alcancei alta precisão do modelo enquanto otimizava para desempenho de inferência em tempo real.",
+        "Contribuí para uma iniciativa de pesquisa acadêmica dentro de um dos principais laboratórios de engenharia da UFRJ.",
+      ],
+      tech: [
+        {
+          id: 4,
+          title: "Python",
+          icon: SiPython,
+          stack: "datascience",
+        },
+        {
+          id: 5,
+          title: "OpenCV",
+          icon: SiOpencv,
+          stack: "datascience",
+        },
+        {
+          id: 6,
+          title: "Scikit-learn",
+          icon: SiScikitlearn,
+          stack: "datascience",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Pesquisador de Áudio Espacial @ UFRJ",
+      startMonth: "Set",
+      startYear: 2025,
+      endMonth: "Atualmente",
+      endYear: "",
+      city: "Rio de Janeiro",
+      country: "Brasil",
+      responsibilities: [
+        "Investigando os princípios de Ambisonics (Primeira Ordem e Ordem Superior) e harmônicos esféricos para aprimorar a precisão de áudio para simulações imersivas.",
+        "Pesquisando a viabilidade de desenvolver um player de vídeo 360° personalizado otimizado para renderização de áudio espacial de alta precisão (HOA).",
+        "Desenvolvi e validei um pipeline de software de ponta a ponta para multiplexar áudio Ambisonics de Primeira Ordem (FOA) de 4 canais com vídeo 360° para a plataforma YouTube.",
+        "Engenhei o fluxo de trabalho FOA usando DaVinci Resolve para configuração de áudio multitrack e o Spatial Media Metadata Injector para 'sinalizar' arquivos para renderização binaural.",
+        "Conduzindo testes de validação para solucionar inconsistências de reprodução, diferenciando entre codificação em nível de arquivo e problemas de renderização no player.",
+      ],
+      highlights: [
+        "Pesquisa em acústica arquitetônica e psicoacústica",
+        "Análise de viabilidade de Ambisonics de Ordem Superior (HOA)",
+        "Desenvolvimento de pipeline de Ambisonics de Primeira Ordem (FOA)",
+        "Estudo de viabilidade de player de vídeo 360° personalizado",
+        "Validação de reprodução e solução de problemas",
+      ],
+      impact: [
+        "Desenvolvendo uma ferramenta de simulação para acústica arquitetônica para estudar como o som em ambientes construídos afeta a emoção humana (estresse, alegria, etc.).",
+        "A pesquisa visa substituir estudos ambientais presenciais custosos, permitindo que profissionais gravem um local uma vez e conduzam testes psicoacústicos remotos online.",
+        "Criei um processo validado e replicável para publicar conteúdo de áudio imersivo 360° nas principais plataformas de streaming.",
+        "Diagnostiquei com sucesso inconsistências de reprodução diferenciando entre erros de codificação em nível de arquivo e problemas de renderização no player.",
+      ],
+      tech: [
+        {
+          id: 7,
+          title: "DaVinci Resolve",
+          icon: SiDavinciresolve,
+          stack: "backend",
+        },
+        {
+          id: 8,
+          title: "MATLAB",
+          icon: SiJupyter,
+          stack: "datascience",
+        },
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 1,
+      degree: "Bacharelado em Engenharia de Computação e Informação (GPA 3.3 - 8.2/10)",
+      institution:
+        "Universidade Federal do Rio de Janeiro (UFRJ), Rio de Janeiro, RJ, Brasil",
+      location: "Rio de Janeiro, RJ, Brasil",
+      graduation: "Dezembro 2027",
+    },
+  ],
+};

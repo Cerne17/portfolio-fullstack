@@ -1,16 +1,19 @@
 import React from "react";
 import styles from "./Projects.module.css";
-import projects, { projectSkills } from "../../data/projects";
+import { projectSkills } from "../../data/projects";
 import SkillPill from "../../components/SkillPill/SkillPill";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Projects: React.FC = () => {
+  const { translations } = useLanguage();
+
   return (
     <section id="projects" className={styles.projectsSection}>
-      <h2 className={`sectionTitle`}>My Projects</h2>
+      <h2 className={`sectionTitle`}>{translations.projects.title}</h2>
       <div className={styles.projectsGrid}>
-        {projects.map((project) => (
+        {translations.projects.list.map((project) => (
           <div className={styles.projectCard} key={project.id}>
             {project.image && (
               <img
@@ -42,15 +45,13 @@ const Projects: React.FC = () => {
                 })}
               </div>
               <div className={styles.projectLinks}>
-                {project.demoUrl && (
-                  <CtaBlueButton title="Live Demo" link={project.demoUrl} />
-                )}
                 {project.repoUrl && (
                   <CtaTransparentButton
-                    title="Source Code"
+                    title={translations.projects.viewCode}
                     link={project.repoUrl}
                   />
                 )}
+                {/* Demo URL handling if present in data, currently commented out in original data but interface supports it */}
               </div>
             </div>
           </div>

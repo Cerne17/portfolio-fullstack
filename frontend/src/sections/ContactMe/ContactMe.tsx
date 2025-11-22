@@ -3,7 +3,10 @@ import { useForm, ValidationError } from "@formspree/react";
 import styles from "./ContactMe.module.css";
 import "../../styles/globals.css";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const ContactForm: React.FC = () => {
+  const { translations } = useLanguage();
   const [state, handleSubmit] = useForm(
     process.env.REACT_APP_FORMSPREE_FORM_ID!
   );
@@ -11,19 +14,19 @@ const ContactForm: React.FC = () => {
   if (state.succeeded) {
     return (
       <p className={styles.successMessage}>
-        Thanks for your message! I'll get back to you soon.
+        {translations.contact.successMessage}
       </p>
     );
   }
 
   return (
     <section id="contact-me" className={styles.contactSection}>
-      <h2 className={`sectionTitle`}>Contact Me</h2>
+      <h2 className={`sectionTitle`}>{translations.contact.title}</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">{translations.contact.nameLabel}</label>
         <input id="name" type="text" name="name" required />
 
-        <label htmlFor="email">Email Address</label>
+        <label htmlFor="email">{translations.contact.emailLabel}</label>
         <input id="email" type="email" name="email" required />
         <ValidationError
           prefix="Email"
@@ -32,7 +35,7 @@ const ContactForm: React.FC = () => {
           className={styles.validationError}
         />
 
-        <label htmlFor="message">Message</label>
+        <label htmlFor="message">{translations.contact.messageLabel}</label>
         <textarea id="message" name="message" required />
         <ValidationError
           prefix="Message"
@@ -42,7 +45,7 @@ const ContactForm: React.FC = () => {
         />
 
         <button type="submit" disabled={state.submitting} className={styles.submitButton}>
-          {state.submitting ? "Sending..." : "Send Message"}
+          {state.submitting ? translations.contact.sending : translations.contact.submitButton}
         </button>
       </form>
     </section>

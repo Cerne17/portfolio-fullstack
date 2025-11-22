@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "../AboutMe.module.css";
-import profile from "../../../data/profile";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const ProfessionalSummary: React.FC = () => {
+  const { translations } = useLanguage();
+
   return (
     <div className={styles.subsection}>
-      <h3 className={`subsectionTitle`}>Professional Summary</h3>
-      {profile.summary.map((paragraph, index) => (
+      <h3 className={`subsectionTitle`}>
+        {translations.aboutMe.professionalSummaryTitle}
+      </h3>
+      {translations.aboutMe.summary.map((paragraph, index) => (
         <p
           key={index}
           className={`text`}

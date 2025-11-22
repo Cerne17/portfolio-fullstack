@@ -1,13 +1,17 @@
 import React from "react";
 import styles from "../AboutMe.module.css";
 import SkillPill from "../../../components/SkillPill/SkillPill";
-import experiences from "../../../data/experiences";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const ExperienceList: React.FC = () => {
+  const { translations } = useLanguage();
+
   return (
     <div className={styles.subsection}>
-      <h3 className={`subsectionTitle`}>Experiences</h3>
-      {experiences.map((experience) => {
+      <h3 className={`subsectionTitle`}>
+        {translations.aboutMe.experiencesTitle}
+      </h3>
+      {translations.experiences.map((experience) => {
         return (
           <div className={styles.experienceItem} key={experience.id}>
             <h4 className={`subsubsectionTitle`}>{experience.title}</h4>
@@ -22,7 +26,9 @@ const ExperienceList: React.FC = () => {
             </ul>
             <div className={styles.experienceDetails}>
               <div>
-                <h5 className={`subsubsectionTitle`}>Highlights</h5>
+                <h5 className={`subsubsectionTitle`}>
+                  {translations.aboutMe.highlightsTitle}
+                </h5>
                 <ul className={styles.experienceHighlights}>
                   {experience.highlights.map((highlight, index) => (
                     <li key={index}>{highlight}</li>
@@ -30,7 +36,9 @@ const ExperienceList: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h5 className={`subsubsectionTitle`}>Impact</h5>
+                <h5 className={`subsubsectionTitle`}>
+                  {translations.aboutMe.impactTitle}
+                </h5>
                 <ul className={styles.experienceImpact}>
                   {experience.impact.map((item, index) => (
                     <li key={index}>{item}</li>
@@ -38,7 +46,9 @@ const ExperienceList: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h5 className={`subsubsectionTitle`}>Technologies Used</h5>
+                <h5 className={`subsubsectionTitle`}>
+                  {translations.aboutMe.techTitle}
+                </h5>
                 <div className={styles.experienceTechStack}>
                   {experience.tech.map((tech) => (
                     <SkillPill

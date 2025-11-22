@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.css"; // Import CSS Module
 import navLinks from "../../data/navigation";
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
+import LanguageToggle from "../../components/LanguageToggle/LanguageToggle";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,9 @@ const Navbar: React.FC = () => {
           ))}
           <li className={styles.navItem}>
             <ThemeToggle />
+          </li>
+          <li className={styles.navItem}>
+            <LanguageToggle />
           </li>
         </ul>
       </div>

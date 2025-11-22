@@ -12,11 +12,15 @@ import Education from "./components/Education";
 import Certifications from "./components/Certifications";
 import Interests from "./components/Interests";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const AboutMe: React.FC = () => {
+  const { translations } = useLanguage();
+
   return (
     <section id="about-me" className={styles.aboutMeSection}>
       <div className={styles.container}>
-        <h2 className={`sectionTitle`}>About Me</h2>
+        <h2 className={`sectionTitle`}>{translations.aboutMe.title}</h2>
 
         <ProfessionalSummary />
         <TechStack />

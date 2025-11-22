@@ -3,23 +3,27 @@ import styles from "./Hero.module.css";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import "../../styles/globals.css";
-import profile from "../../data/profile";
+import "../../styles/globals.css";
+
+import { useLanguage } from "../../context/LanguageContext";
 
 const Hero: React.FC = () => {
+  const { translations } = useLanguage();
+
   return (
     <section id="hero" className={styles.heroSection}>
       <div className={styles.heroContent}>
-        <h1 className={styles.heroTitle}>{profile.name}</h1>
-        <h2 className={styles.heroSubtitle}>{profile.role}</h2>
-        <p className={styles.text}>{profile.intro}</p>
+        <h1 className={styles.heroTitle}>{translations.hero.title}</h1>
+        <h2 className={styles.heroSubtitle}>{translations.hero.subtitle}</h2>
+        <p className={styles.text}>{translations.hero.intro}</p>
         <div className={styles.btnContainer}>
           <CtaBlueButton
-            title="My Projects"
+            title={translations.hero.ctaProjects}
             link="https://github.com/Cerne17"
             isDark={true}
           />
           <CtaTransparentButton
-            title="Book a Call"
+            title={translations.hero.ctaCall}
             link="https://calendly.com/miguelcerne-dev/30min"
             isDark={true}
           />

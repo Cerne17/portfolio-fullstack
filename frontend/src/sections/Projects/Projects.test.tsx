@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import Projects from "./Projects";
+import { LanguageProvider } from "../../context/LanguageContext";
 
 // Mock the data to avoid dependency on actual data file
 jest.mock("../../data/projects", () => {
@@ -28,20 +29,32 @@ jest.mock("../../assets/history.png", () => "history.png");
 
 describe("Projects Component", () => {
   test("renders projects section title", () => {
-    render(<Projects />);
+    render(
+      <LanguageProvider>
+        <Projects />
+      </LanguageProvider>
+    );
     const titleElement = screen.getByText(/My Projects/i);
     expect(titleElement).toBeInTheDocument();
   });
 
   test("renders project card with details", () => {
-    render(<Projects />);
+    render(
+      <LanguageProvider>
+        <Projects />
+      </LanguageProvider>
+    );
     expect(screen.getByText("Test Project")).toBeInTheDocument();
     expect(screen.getByText("Test Description")).toBeInTheDocument();
     expect(screen.getByText("React")).toBeInTheDocument();
   });
 
   test("renders project links", () => {
-    render(<Projects />);
+    render(
+      <LanguageProvider>
+        <Projects />
+      </LanguageProvider>
+    );
     expect(screen.getByText("Live Demo").closest("a")).toHaveAttribute(
       "href",
       "https://demo.com"

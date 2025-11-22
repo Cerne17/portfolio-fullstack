@@ -8,18 +8,22 @@ import ContactForm from "./sections/ContactMe/ContactMe";
 import Footer from "./sections/Footer/Footer";
 import "./App.css";
 
+import { LanguageProvider } from "./context/LanguageContext";
+
 function App() {
   return (
-    <ThemeProvider>
-      <div className="app-container">
-        <Navbar />
-        <Hero />
-        <AboutMe />
-        <Projects />
-        <ContactForm />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <div className="app-container">
+          <Navbar />
+          <Hero />
+          <AboutMe />
+          <Projects />
+          <ContactForm />
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

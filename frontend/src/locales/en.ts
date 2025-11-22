@@ -1,0 +1,236 @@
+import {
+  SiNestjs,
+  SiPostgresql,
+  SiFigma,
+  SiPython,
+  SiOpencv,
+  SiScikitlearn,
+  SiDavinciresolve,
+  SiJupyter,
+} from "react-icons/si";
+
+export const en = {
+  hero: {
+    title: "Miguel Cerne",
+    subtitle: "Full-Stack Engineer & Machine Learning Researcher",
+    intro:
+      "I am a Brazilian Full-Stack Engineer and a third-year Electrical and Computer Engineering undergraduate at the Federal University of Rio de Janeiro (UFRJ). My passion is to build entire systems from the ground up, blending my lifelong love for math and logic with pure creativity.",
+    ctaProjects: "My Projects",
+    ctaCall: "Book a Call",
+  },
+  aboutMe: {
+    title: "About Me",
+    professionalSummaryTitle: "Professional Summary",
+    interestsTitle: "Interests",
+    experiencesTitle: "Experiences",
+    educationTitle: "Education",
+    highlightsTitle: "Highlights",
+    impactTitle: "Impact",
+    techTitle: "Technologies Used",
+    summary: [
+      "I am a third-year <strong>Electrical and Computer Engineering</strong> undergraduate at UFRJ, passionate about bridging the gap between software and hardware through innovative solutions. My academic path and professional experiences have strengthened my skills in <strong>backend development</strong>, <strong>machine learning</strong>, and <strong>data analysis</strong>.",
+      "I have worked as a <strong>Backend Developer</strong> at <strong>Fluxo Consultoria</strong> (Fluxo Consultancy) - an engineering undergratuate business -, where I built and maintained APIs using <strong>NestJS</strong> and <strong>PostgreSQL</strong>, applying clean architecture principles and best practices in software engineering. Additionally, as a <strong>Machine Learning Researcher</strong> at GTA-UFRJ (Grupo de Teleinformática e Automação - Teleinformatics and Automation Group), I explored data-driven solutions using <strong>Scikit-Learn</strong>, <strong>Pandas</strong>, and <strong>Matplotlib</strong>, while leveraging high-performance computing with TPUs.",
+      "I thrive on hands-on learning, tackling complex problems, and applying emerging technologies. My goal is to contribute to impactful projects that push the boundaries of software engineering and data science, while continuing to grow as a technology professional.",
+    ],
+    interests: [
+      "I am deeply interested in technologies that connect theory with real-world impact. My curiosity drives me to explore areas such as <strong>backend development</strong>, <strong>distributed systems</strong>, and <strong>scalable API design</strong>, where I can apply engineering principles to build robust and efficient solutions.",
+      "On the research side, I am fascinated by machine learning algorithms and their applications in <strong>data-driven decision-making</strong>. I enjoy experimenting with models, optimizing their performance, and understanding how emerging technologies can transform industries.",
+      "Beyond software, I value the synergy between hardware and software, a perspective rooted in my Electronic and Computer Engineering background. This motivates me to stay up-to-date with advancements in <strong>computing architectures</strong> and <strong>embedded systems</strong>.",
+      "Above all, I am passionate about <strong>continuous learning</strong>—whether it's mastering a new framework, contributing to open-source projects, or diving deep into the latest tech trends. My goal is to keep expanding my knowledge while building solutions that make a difference.",
+    ],
+  },
+  projects: {
+    title: "Projects",
+    viewCode: "View Code",
+    viewDemo: "View Demo",
+    list: [
+      {
+        id: 1,
+        title: "Database Population",
+        description:
+          "Designed to solve the challenge of populating complex relational schemas, this project is a fully automated data pipeline built with Python. It generates realistic synthetic data by orchestrating inputs from the 'Faker' library and consuming official Brazilian government APIs. The system creates coherent, interconnected entities (such as user profiles, valid addresses, and corporate structures) streamlining the process of seeding databases for testing and development.",
+        techStack: ["Python"],
+        repoUrl: "https://github.com/Cerne17/Database-Population/tree/main",
+        image: "DatabasePopulationBanner.png",
+      },
+      {
+        id: 2,
+        title: "ProjetoNotas",
+        description:
+          'Developed during the "Imersão IA" (a collaboration between Alura and Google), this project solves a classic academic pain point: converting chaotic handwritten notes into structured study materials. Moving beyond traditional Optical Character Recognition (OCR), ProjetoNotas leverages the multimodal capabilities of Google\'s Gemini API. The system doesn\'t just "read" text; it interprets the semantic structure of handwritten pages to synthesize a clean, logically formatted PDF. It represents a shift from analog chaos to digital order, demonstrating practical product sense and advanced prompt engineering.',
+        techStack: ["Python", "Gemini"],
+        repoUrl: "https://github.com/Cerne17/ProjetoNotas",
+        image: "ProjetoNotasBanner.png",
+      },
+      {
+        id: 3,
+        title: "Design-Patterns",
+        description:
+          "A technical exploration of classical software architecture applied to the modern web ecosystem. This project bridges the gap between theoretical OOP and practical TypeScript development. It addresses the specific challenges of implementing strict contracts and polymorphic behavior in a JavaScript-based environment. By moving beyond simple scripting to architected solutions, this repository serves as a reference for cleaner, modular, and testable codebases.",
+        techStack: ["Typescript", "Uml"],
+        repoUrl: "https://github.com/Cerne17/Design-Patterns",
+        image: "DesignPatternsBanner.png",
+      },
+    ],
+  },
+  contact: {
+    title: "Contact Me",
+    nameLabel: "Name",
+    emailLabel: "Email",
+    messageLabel: "Message",
+    submitButton: "Send Message",
+    sending: "Sending...",
+    successMessage: "Thanks for your message! I'll get back to you soon.",
+    errorMessage: "Oops! There was a problem submitting your form",
+  },
+  footer: {
+    copyright: "© 2024 Miguel Cerne. All rights reserved.",
+  },
+  experiences: [
+    {
+      id: 1,
+      title: "Software Engineering Intern @ Fluxo Consultoria",
+      startMonth: "Jun",
+      startYear: 2023,
+      endMonth: "Jan",
+      endYear: 2024,
+      city: "Rio de Janeiro",
+      country: "Brazil",
+      responsibilities: [
+        "Collaborated directly with clients to understand business needs and transform their ideas into fully functional systems.",
+        "Worked with a multidisciplinary team of undergraduate engineers to design system architectures, define technical requirements, and develop user-friendly applications from scratch.",
+        "Participated in the entire product lifecycle—from initial requirements gathering and database modeling to visual identity design and backend implementation.",
+      ],
+      highlights: [
+        "Requirements engineering",
+        "Database modeling",
+        "Backend API development with NestJS",
+        "Client communication & project delivery",
+      ],
+      impact: [
+        "Delivered complete software solutions that enabled clients to digitize and scale their business operations.",
+        "Improved team project workflows through clear documentation and collaboration strategies.",
+        "Strengthened consulting soft skills through client interaction and iterative development cycles.",
+      ],
+      tech: [
+        {
+          id: 1,
+          title: "NestJS",
+          icon: SiNestjs,
+          stack: "backend",
+        },
+        {
+          id: 2,
+          title: "PostgreSQL",
+          icon: SiPostgresql,
+          stack: "backend",
+        },
+        {
+          id: 3,
+          title: "Figma",
+          icon: SiFigma,
+          stack: "frontend",
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "Machine Learning Researcher @ GTA-UFRJ",
+      startMonth: "Jun",
+      startYear: 2024,
+      endMonth: "Jan",
+      endYear: 2025,
+      city: "Rio de Janeiro",
+      country: "Brazil",
+      responsibilities: [
+        "Researched and developed a computer vision module for a real-time security monitoring system, capable of detecting and classifying camera interference or obstruction attempts.",
+        "Designed a custom dataset and trained machine learning models using OpenCV and Scikit-learn, achieving approximately 96% accuracy in obstruction classification.",
+        "Integrated the ML module into a legacy backend system developed in pure Python, ensuring seamless communication with the broader application infrastructure.",
+      ],
+      highlights: [
+        "Computer vision for security systems",
+        "Dataset creation & model evaluation",
+        "Backend integration without frameworks",
+      ],
+      impact: [
+        "Enhanced the robustness of the security system by enabling proactive detection of camera tampering.",
+        "Achieved high model accuracy while optimizing for real-time inference performance.",
+        "Contributed to an academic research initiative within one of UFRJ's leading engineering laboratories.",
+      ],
+      tech: [
+        {
+          id: 4,
+          title: "Python",
+          icon: SiPython,
+          stack: "datascience",
+        },
+        {
+          id: 5,
+          title: "OpenCV",
+          icon: SiOpencv,
+          stack: "datascience",
+        },
+        {
+          id: 6,
+          title: "Scikit-learn",
+          icon: SiScikitlearn,
+          stack: "datascience",
+        },
+      ],
+    },
+    {
+      id: 3,
+      title: "Spatial Audio Researcher @ UFRJ",
+      startMonth: "Sep",
+      startYear: 2025,
+      endMonth: "Present",
+      endYear: "",
+      city: "Rio de Janeiro",
+      country: "Brazil",
+      responsibilities: [
+        "Investigating the principles of Ambisonics (First-Order and Higher-Order) and spherical harmonics to enhance audio precision for immersive simulations.",
+        "Researching the feasibility of developing a custom 360° video player optimized for high-precision spatial audio rendering (HOA).",
+        "Developed and validated an end-to-end software pipeline for multiplexing 4-channel First-Order Ambisonics (FOA) audio with 360° video for the YouTube platform.",
+        "Engineered the FOA workflow using DaVinci Resolve for multitrack audio configuration and the Spatial Media Metadata Injector to 'flag' files for binaural rendering.",
+        "Conducting validation tests to troubleshoot playback inconsistencies, differentiating between file-level encoding and player-side rendering issues.",
+      ],
+      highlights: [
+        "Architectural acoustics & psychoacoustics research",
+        "Higher-Order Ambisonics (HOA) viability analysis",
+        "First-Order Ambisonics (FOA) pipeline development",
+        "Custom 360° video player feasibility study",
+        "Playback validation & troubleshooting",
+      ],
+      impact: [
+        "Developing a simulation tool for architectural acoustics to study how sound in built environments affects human emotion (stress, joy, etc.).",
+        "The research aims to replace costly, in-person environmental studies by enabling professionals to record a location once and conduct remote psychoacoustic tests online.",
+        "Created a validated, replicable process for publishing immersive 360° audio content on major streaming platforms.",
+        "Successfully diagnosed playback inconsistencies by differentiating between file-level encoding errors and player-side rendering issues.",
+      ],
+      tech: [
+        {
+          id: 7,
+          title: "DaVinci Resolve",
+          icon: SiDavinciresolve,
+          stack: "backend",
+        },
+        {
+          id: 8,
+          title: "MATLAB",
+          icon: SiJupyter,
+          stack: "datascience",
+        },
+      ],
+    },
+  ],
+  education: [
+    {
+      id: 1,
+      degree: "Bachelor of Electrical & Computer Engineering (GPA 3.3 - 8.2/10)",
+      institution:
+        "Federal University of Rio de Janeiro (UFRJ), Rio de Janeiro, RJ, Brazil",
+      location: "Rio de Janeiro, RJ, Brazil",
+      graduation: "December 2027",
+    },
+  ],
+};

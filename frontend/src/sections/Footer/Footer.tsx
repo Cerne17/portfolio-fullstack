@@ -2,7 +2,10 @@ import React from 'react';
 import styles from './Footer.module.css';
 import profile from "../../data/profile";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const Footer: React.FC = () => {
+  const { translations } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -24,7 +27,7 @@ const Footer: React.FC = () => {
         })}
       </div>
       <p className={styles.copyrightText}>
-        © {currentYear} Miguel Cerne. All Rights Reserved.
+        {translations.footer.copyright}
       </p>
     </footer>
   );
