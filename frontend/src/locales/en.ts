@@ -18,6 +18,12 @@ export const en = {
     ctaProjects: "My Projects",
     ctaCall: "Book a Call",
   },
+  nav: {
+    aboutMe: "About Me",
+    projects: "Projects",
+    contactMe: "Contact Me",
+    blog: "Blog",
+  },
   aboutMe: {
     title: "About Me",
     professionalSummaryTitle: "Professional Summary",

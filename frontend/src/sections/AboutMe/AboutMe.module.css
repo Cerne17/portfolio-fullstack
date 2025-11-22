@@ -82,8 +82,12 @@
 }
 
 .callToAction {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   padding: var(--space-xl) 0;
+  flex-wrap: wrap;
 }
 
 .experienceDetails {

@@ -4,11 +4,29 @@ import navLinks from "../../data/navigation";
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
 import LanguageToggle from "../../components/LanguageToggle/LanguageToggle";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { translations } = useLanguage();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const getLabel = (id: string) => {
+    switch (id) {
+      case "about-me":
+        return translations.nav.aboutMe;
+      case "projects":
+        return translations.nav.projects;
+      case "contact-me":
+        return translations.nav.contactMe;
+      case "blog":
+        return translations.nav.blog;
+      default:
+        return "";
+    }
   };
 
   return (
@@ -34,7 +52,7 @@ const Navbar: React.FC = () => {
                 className={styles.navLink}
                 onClick={toggleMenu}
               >
-                {link.label}
+                {getLabel(link.id)}
               </a>
             </li>
           ))}
