@@ -192,7 +192,7 @@ export const pt = {
     },
     {
       id: 3,
-      title: "Pesquisador de Áudio Espacial @ UFRJ",
+      title: "Pesquisador de Áudio Espacial @ LISA-UFRJ",
       startMonth: "Set",
       startYear: 2025,
       endMonth: "Atualmente",

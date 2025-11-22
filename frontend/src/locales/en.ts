@@ -192,7 +192,7 @@ export const en = {
     },
     {
       id: 3,
-      title: "Spatial Audio Researcher @ UFRJ",
+      title: "Spatial Audio Researcher @ LISA-UFRJ",
       startMonth: "Sep",
       startYear: 2025,
       endMonth: "Present",
