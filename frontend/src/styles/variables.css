@@ -13,6 +13,7 @@
 
   --color-background-body: #f9f9f9;
   --color-background-component: #ffffff;
+  --color-background-component-rgb: 255, 255, 255;
 
   --color-text-base: #333;
   --color-text-secondary: #555;
@@ -102,6 +103,7 @@
   
   --color-background-body: #121212;
   --color-background-component: #1e1e1e;
+  --color-background-component-rgb: 30, 30, 30;
 
   --color-text-base: #e0e0e0;
   --color-text-secondary: #cccccc; /* Brighter secondary text */

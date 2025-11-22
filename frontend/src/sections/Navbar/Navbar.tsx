@@ -51,6 +51,7 @@ const Navbar: React.FC = () => {
                 href={link.href}
                 className={styles.navLink}
                 onClick={toggleMenu}
+                style={{ "--i": navLinks.indexOf(link) } as React.CSSProperties}
               >
                 {getLabel(link.id)}
               </a>
