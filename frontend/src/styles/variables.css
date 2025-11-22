@@ -93,3 +93,24 @@
     0 2px 4px -2px rgb(0 0 0 / 0.1);
   --transition-base: all 250ms ease-in-out;
 }
+
+[data-theme='dark'] {
+  --color-primary: #3395ff;
+  --color-primary-dark: #66b2ff;
+  --color-secondary: #aab0b5;
+  --color-secondary-dark: #d0d4d8;
+  
+  --color-background-body: #121212;
+  --color-background-component: #1e1e1e;
+
+  --color-text-base: #e0e0e0;
+  --color-text-secondary: #b0b0b0;
+  --color-text-muted: #888888;
+  --color-text-on-primary: #ffffff;
+
+  --color-border: #333333;
+  
+  --box-shadow-sm: 0 1px 2px 0 rgb(255 255 255 / 0.05);
+  --box-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3),
+    0 2px 4px -2px rgb(0 0 0 / 0.3);
+}

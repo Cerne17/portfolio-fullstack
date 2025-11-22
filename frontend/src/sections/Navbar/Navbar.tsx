@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css"; // Import CSS Module
 import navLinks from "../../data/navigation";
+import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,6 +19,7 @@ const Navbar: React.FC = () => {
         <button
           className={`${styles.hamburger} ${isOpen ? styles.open : ""}`}
           onClick={toggleMenu}
+          aria-label="Toggle menu"
         >
           <div />
           <div />
@@ -35,6 +37,9 @@ const Navbar: React.FC = () => {
               </a>
             </li>
           ))}
+          <li className={styles.navItem}>
+            <ThemeToggle />
+          </li>
         </ul>
       </div>
     </nav>
