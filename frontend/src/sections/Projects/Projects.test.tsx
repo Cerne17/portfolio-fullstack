@@ -7,22 +7,36 @@ import { LanguageProvider } from "../../context/LanguageContext";
 jest.mock("../../data/projects", () => {
   return {
     __esModule: true,
-    default: [
-      {
-        id: 1,
-        title: "Test Project",
-        description: "Test Description",
-        techStack: ["React"],
-        demoUrl: "https://demo.com",
-        repoUrl: "https://repo.com",
-        image: "history.png",
-      },
-    ],
     projectSkills: {
       "React": { icon: () => <div>Icon</div>, stack: "frontend" },
     },
   };
 });
+
+// Mock LanguageContext
+jest.mock("../../context/LanguageContext", () => ({
+  useLanguage: () => ({
+    translations: {
+      projects: {
+        title: "My Projects",
+        viewCode: "Source Code",
+        viewDemo: "View Demo",
+        list: [
+          {
+            id: 1,
+            title: "Test Project",
+            description: "Test Description",
+            techStack: ["React"],
+            demoUrl: "https://demo.com",
+            repoUrl: "https://repo.com",
+            image: "history.png",
+          },
+        ],
+      },
+    },
+  }),
+  LanguageProvider: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
 
 // Mock the image import
 jest.mock("../../assets/history.png", () => "history.png");
@@ -55,7 +69,7 @@ describe("Projects Component", () => {
         <Projects />
       </LanguageProvider>
     );
-    expect(screen.getByText("Live Demo").closest("a")).toHaveAttribute(
+    expect(screen.getByText("View Demo").closest("a")).toHaveAttribute(
       "href",
       "https://demo.com"
     );

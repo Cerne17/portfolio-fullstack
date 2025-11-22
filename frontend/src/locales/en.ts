@@ -27,6 +27,9 @@ export const en = {
     highlightsTitle: "Highlights",
     impactTitle: "Impact",
     techTitle: "Technologies Used",
+    ctaText: "Interested in my work or want to collaborate?",
+    ctaProjects: "My Projects",
+    ctaCall: "Book a Call",
     summary: [
       "I am a third-year <strong>Electrical and Computer Engineering</strong> undergraduate at UFRJ, passionate about bridging the gap between software and hardware through innovative solutions. My academic path and professional experiences have strengthened my skills in <strong>backend development</strong>, <strong>machine learning</strong>, and <strong>data analysis</strong>.",
       "I have worked as a <strong>Backend Developer</strong> at <strong>Fluxo Consultoria</strong> (Fluxo Consultancy) - an engineering undergratuate business -, where I built and maintained APIs using <strong>NestJS</strong> and <strong>PostgreSQL</strong>, applying clean architecture principles and best practices in software engineering. Additionally, as a <strong>Machine Learning Researcher</strong> at GTA-UFRJ (Grupo de Teleinformática e Automação - Teleinformatics and Automation Group), I explored data-driven solutions using <strong>Scikit-Learn</strong>, <strong>Pandas</strong>, and <strong>Matplotlib</strong>, while leveraging high-performance computing with TPUs.",
@@ -51,6 +54,7 @@ export const en = {
           "Designed to solve the challenge of populating complex relational schemas, this project is a fully automated data pipeline built with Python. It generates realistic synthetic data by orchestrating inputs from the 'Faker' library and consuming official Brazilian government APIs. The system creates coherent, interconnected entities (such as user profiles, valid addresses, and corporate structures) streamlining the process of seeding databases for testing and development.",
         techStack: ["Python"],
         repoUrl: "https://github.com/Cerne17/Database-Population/tree/main",
+        demoUrl: "",
         image: "DatabasePopulationBanner.png",
       },
       {
@@ -60,6 +64,7 @@ export const en = {
           'Developed during the "Imersão IA" (a collaboration between Alura and Google), this project solves a classic academic pain point: converting chaotic handwritten notes into structured study materials. Moving beyond traditional Optical Character Recognition (OCR), ProjetoNotas leverages the multimodal capabilities of Google\'s Gemini API. The system doesn\'t just "read" text; it interprets the semantic structure of handwritten pages to synthesize a clean, logically formatted PDF. It represents a shift from analog chaos to digital order, demonstrating practical product sense and advanced prompt engineering.',
         techStack: ["Python", "Gemini"],
         repoUrl: "https://github.com/Cerne17/ProjetoNotas",
+        demoUrl: "",
         image: "ProjetoNotasBanner.png",
       },
       {
@@ -69,6 +74,7 @@ export const en = {
           "A technical exploration of classical software architecture applied to the modern web ecosystem. This project bridges the gap between theoretical OOP and practical TypeScript development. It addresses the specific challenges of implementing strict contracts and polymorphic behavior in a JavaScript-based environment. By moving beyond simple scripting to architected solutions, this repository serves as a reference for cleaner, modular, and testable codebases.",
         techStack: ["Typescript", "Uml"],
         repoUrl: "https://github.com/Cerne17/Design-Patterns",
+        demoUrl: "",
         image: "DesignPatternsBanner.png",
       },
     ],
@@ -84,7 +90,7 @@ export const en = {
     errorMessage: "Oops! There was a problem submitting your form",
   },
   footer: {
-    copyright: "© 2024 Miguel Cerne. All rights reserved.",
+    copyright: "© {year} Miguel Cerne. All Rights Reserved.",
   },
   experiences: [
     {

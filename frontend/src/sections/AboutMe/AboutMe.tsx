@@ -32,11 +32,11 @@ const AboutMe: React.FC = () => {
         {/* Call to Action */}
         <div className={styles.callToAction}>
           <p className={`text center`}>
-            Interested in my work or want to collaborate?
+            {translations.aboutMe.ctaText}
           </p>
-          <CtaBlueButton title="My Projects" link="https://github.com/Cerne17" />
+          <CtaBlueButton title={translations.aboutMe.ctaProjects} link="https://github.com/Cerne17" />
           <CtaTransparentButton
-            title="Book a Call"
+            title={translations.aboutMe.ctaCall}
             link="https://calendly.com/miguelcerne-dev/30min"
           />
         </div>

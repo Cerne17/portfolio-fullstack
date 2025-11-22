@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
         })}
       </div>
       <p className={styles.copyrightText}>
-        {translations.footer.copyright}
+        {translations.footer.copyright.replace("{year}", currentYear.toString())}
       </p>
     </footer>
   );

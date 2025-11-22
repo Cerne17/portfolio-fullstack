@@ -45,13 +45,18 @@ const Projects: React.FC = () => {
                 })}
               </div>
               <div className={styles.projectLinks}>
+                {project.demoUrl && (
+                  <CtaBlueButton
+                    title={translations.projects.viewDemo}
+                    link={project.demoUrl}
+                  />
+                )}
                 {project.repoUrl && (
                   <CtaTransparentButton
                     title={translations.projects.viewCode}
                     link={project.repoUrl}
                   />
                 )}
-                {/* Demo URL handling if present in data, currently commented out in original data but interface supports it */}
               </div>
             </div>
           </div>

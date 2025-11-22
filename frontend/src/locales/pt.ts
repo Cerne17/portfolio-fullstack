@@ -27,6 +27,9 @@ export const pt = {
     highlightsTitle: "Destaques",
     impactTitle: "Impacto",
     techTitle: "Tecnologias Usadas",
+    ctaText: "Interessado no meu trabalho ou quer colaborar?",
+    ctaProjects: "Meus Projetos",
+    ctaCall: "Agendar uma Chamada",
     summary: [
       "Sou graduando do terceiro ano de <strong>Engenharia Eletrônica e de Computação</strong> na UFRJ, apaixonado por conectar software e hardware através de soluções inovadoras. Minha trajetória acadêmica e experiências profissionais fortaleceram minhas habilidades em <strong>desenvolvimento backend</strong>, <strong>machine learning</strong> e <strong>análise de dados</strong>.",
       "Trabalhei como <strong>Desenvolvedor Backend</strong> na <strong>Fluxo Consultoria</strong> - uma empresa júnior de engenharia -, onde construí e mantive APIs usando <strong>NestJS</strong> e <strong>PostgreSQL</strong>, aplicando princípios de arquitetura limpa e boas práticas de engenharia de software. Além disso, como <strong>Pesquisador de Machine Learning</strong> no GTA-UFRJ (Grupo de Teleinformática e Automação), explorei soluções baseadas em dados usando <strong>Scikit-Learn</strong>, <strong>Pandas</strong> e <strong>Matplotlib</strong>, aproveitando a computação de alto desempenho com TPUs.",
@@ -51,6 +54,7 @@ export const pt = {
           "Projetado para resolver o desafio de popular esquemas relacionais complexos, este projeto é um pipeline de dados totalmente automatizado construído com Python. Ele gera dados sintéticos realistas orquestrando entradas da biblioteca 'Faker' e consumindo APIs oficiais do governo brasileiro. O sistema cria entidades coerentes e interconectadas (como perfis de usuários, endereços válidos e estruturas corporativas), agilizando o processo de semeadura de bancos de dados para testes e desenvolvimento.",
         techStack: ["Python"],
         repoUrl: "https://github.com/Cerne17/Database-Population/tree/main",
+        demoUrl: "",
         image: "DatabasePopulationBanner.png",
       },
       {
@@ -60,6 +64,7 @@ export const pt = {
           'Desenvolvido durante a "Imersão IA" (uma colaboração entre Alura e Google), este projeto resolve uma dor acadêmica clássica: converter notas manuscritas caóticas em materiais de estudo estruturados. Indo além do Reconhecimento Óptico de Caracteres (OCR) tradicional, o ProjetoNotas aproveita as capacidades multimodais da API Gemini do Google. O sistema não apenas "lê" o texto; ele interpreta a estrutura semântica das páginas manuscritas para sintetizar um PDF limpo e logicamente formatado. Representa uma mudança do caos analógico para a ordem digital, demonstrando senso prático de produto e engenharia de prompt avançada.',
         techStack: ["Python", "Gemini"],
         repoUrl: "https://github.com/Cerne17/ProjetoNotas",
+        demoUrl: "",
         image: "ProjetoNotasBanner.png",
       },
       {
@@ -69,6 +74,7 @@ export const pt = {
           "Uma exploração técnica da arquitetura de software clássica aplicada ao ecossistema web moderno. Este projeto preenche a lacuna entre a POO teórica e o desenvolvimento prático em TypeScript. Ele aborda os desafios específicos de implementar contratos estritos e comportamento polimórfico em um ambiente baseado em JavaScript. Ao ir além de scripts simples para soluções arquitetadas, este repositório serve como referência para bases de código mais limpas, modulares e testáveis.",
         techStack: ["Typescript", "Uml"],
         repoUrl: "https://github.com/Cerne17/Design-Patterns",
+        demoUrl: "",
         image: "DesignPatternsBanner.png",
       },
     ],
@@ -84,7 +90,7 @@ export const pt = {
     errorMessage: "Ops! Houve um problema ao enviar seu formulário",
   },
   footer: {
-    copyright: "© 2024 Miguel Cerne. Todos os direitos reservados.",
+    copyright: "© {year} Miguel Cerne. Todos os direitos reservados.",
   },
   experiences: [
     {
