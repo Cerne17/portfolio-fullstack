@@ -98,14 +98,14 @@
   --color-primary: #3395ff;
   --color-primary-dark: #66b2ff;
   --color-secondary: #aab0b5;
-  --color-secondary-dark: #d0d4d8;
+  --color-secondary-dark: #1a1a1a; /* Darker background for footer in dark mode */
   
   --color-background-body: #121212;
   --color-background-component: #1e1e1e;
 
   --color-text-base: #e0e0e0;
-  --color-text-secondary: #b0b0b0;
-  --color-text-muted: #888888;
+  --color-text-secondary: #cccccc; /* Brighter secondary text */
+  --color-text-muted: #bbbbbb; /* Brighter muted text for dates/institutions */
   --color-text-on-primary: #ffffff;
 
   --color-border: #333333;

@@ -16,6 +16,7 @@
 .form label {
   margin-bottom: var(--space-sm);
   font-weight: bold;
+  color: var(--color-text-base);
 }
 
 .form input,

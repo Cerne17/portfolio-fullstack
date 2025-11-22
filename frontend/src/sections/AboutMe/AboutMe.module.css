@@ -55,7 +55,7 @@
 .educationInstitution,
 .educationYear {
   font-size: 0.95em;
-  color: #777;
+  color: var(--color-text-muted);
   margin-bottom: var(--space-xs);
 }
 
