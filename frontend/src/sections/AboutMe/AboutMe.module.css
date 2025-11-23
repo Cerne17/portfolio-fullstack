@@ -145,4 +145,10 @@
   .aboutMeSection {
     padding: var(--space-md) var(--space-sm);
   }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 }
