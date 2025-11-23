@@ -34,11 +34,13 @@ const AboutMe: React.FC = () => {
           <p className={`text center`}>
             {translations.aboutMe.ctaText}
           </p>
-          <CtaBlueButton title={translations.aboutMe.ctaProjects} link="https://github.com/Cerne17" />
-          <CtaTransparentButton
-            title={translations.aboutMe.ctaCall}
-            link="https://calendly.com/miguelcerne-dev/30min"
-          />
+          <div className={styles.ctaButtons}>
+            <CtaBlueButton title={translations.aboutMe.ctaProjects} link="https://github.com/Cerne17" />
+            <CtaTransparentButton
+              title={translations.aboutMe.ctaCall}
+              link="https://calendly.com/miguelcerne-dev/30min"
+            />
+          </div>
         </div>
       </div>
     </section>

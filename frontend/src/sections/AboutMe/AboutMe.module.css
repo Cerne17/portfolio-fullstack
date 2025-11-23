@@ -83,11 +83,18 @@
 
 .callToAction {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding: var(--space-xl) 0;
   flex-wrap: wrap;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
 }
 
 .experienceDetails {
