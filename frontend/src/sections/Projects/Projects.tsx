@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Projects.module.css";
-import { projectSkills } from "../../data/projects";
+import { projectSkills } from "../../data/techStack";
 import SkillPill from "../../components/SkillPill/SkillPill";
 import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
 import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";

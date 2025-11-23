@@ -4,7 +4,7 @@ import Projects from "./Projects";
 import { LanguageProvider } from "../../context/LanguageContext";
 
 // Mock the data to avoid dependency on actual data file
-jest.mock("../../data/projects", () => {
+jest.mock("../../data/techStack", () => {
   return {
     __esModule: true,
     projectSkills: {

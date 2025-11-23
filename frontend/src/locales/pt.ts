@@ -31,7 +31,8 @@ export const pt = {
     experiencesTitle: "Experiências",
     educationTitle: "Educação",
     highlightsTitle: "Destaques",
-    impactTitle: "Impacto",
+    impactTitle: "Impact",
+    certificationsTitle: "Certificações & Prêmios",
     techTitle: "Tecnologias Usadas",
     ctaText: "Interessado no meu trabalho ou quer colaborar?",
     ctaProjects: "Meus Projetos",
@@ -243,6 +244,14 @@ export const pt = {
         "Universidade Federal do Rio de Janeiro (UFRJ), Rio de Janeiro, RJ, Brasil",
       location: "Rio de Janeiro, RJ, Brasil",
       graduation: "Dezembro 2027",
+    },
+  ],
+  certifications: [
+    {
+      id: 1,
+      title: "ChatGPT Mastery",
+      issuer: "Adapta org.",
+      year: "2024",
     },
   ],
 };
