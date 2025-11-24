@@ -23,6 +23,7 @@ export const en = {
     projects: "Projects",
     contactMe: "Contact Me",
     blog: "Blog",
+    downloadCV: "Download CV",
   },
   aboutMe: {
     title: "About Me",

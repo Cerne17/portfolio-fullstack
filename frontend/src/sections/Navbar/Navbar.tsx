@@ -8,7 +8,7 @@ import { useLanguage } from "../../context/LanguageContext";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { translations } = useLanguage();
+  const { translations, language } = useLanguage();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -57,6 +57,17 @@ const Navbar: React.FC = () => {
               </a>
             </li>
           ))}
+          <li className={styles.navItem}>
+            <a
+              href={language === "pt" ? "/cv-pt.pdf" : "/cv-en.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.downloadCvBtn}
+              download
+            >
+              {translations.nav.downloadCV}
+            </a>
+          </li>
           <li className={styles.navItem}>
             <ThemeToggle />
           </li>
