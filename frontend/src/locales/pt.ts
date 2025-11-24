@@ -32,7 +32,7 @@ export const pt = {
     experiencesTitle: "Experiências",
     educationTitle: "Educação",
     highlightsTitle: "Destaques",
-    impactTitle: "Impact",
+    impactTitle: "Impacto",
     certificationsTitle: "Certificações & Prêmios",
     techTitle: "Tecnologias Usadas",
     ctaText: "Interessado no meu trabalho ou quer colaborar?",
