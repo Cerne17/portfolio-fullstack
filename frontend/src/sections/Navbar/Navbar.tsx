@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css"; // Import CSS Module
 import navLinks from "../../data/navigation";
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
@@ -9,10 +9,36 @@ import { useLanguage } from "../../context/LanguageContext";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { translations, language } = useLanguage();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        // if scroll down and not at top
+        setIsVisible(false);
+      } else {
+        // if scroll up
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", controlNavbar);
+
+      // cleanup function
+      return () => {
+        window.removeEventListener("scroll", controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
 
   const getLabel = (id: string) => {
     switch (id) {
@@ -30,7 +56,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${!isVisible ? styles.navbarHidden : ""}`}>
       <div className={styles.container}>
         <a href="#hero" className={styles.brand}>
           Miguel Cerne

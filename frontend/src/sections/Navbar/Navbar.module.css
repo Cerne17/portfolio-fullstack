@@ -5,9 +5,15 @@
   padding: var(--space-md) 0;
   color: var(--color-text-primary);
   box-shadow: var(--box-shadow-md);
-  position: sticky;
+  position: fixed;
   top: 0;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
   z-index: 1000;
+}
+
+.navbarHidden {
+  transform: translateY(-100%);
 }
 
 .container {
