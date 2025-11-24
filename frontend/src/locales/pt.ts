@@ -23,7 +23,7 @@ export const pt = {
     projects: "Projetos",
     contactMe: "Entre em Contato",
     blog: "Blog",
-    downloadCV: "Baixar CV",
+    downloadCV: "Baixar Currículo",
   },
   aboutMe: {
     title: "Sobre Mim",
