@@ -47,3 +47,10 @@
 .center {
   text-align: center;
 }
+
+.section-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  width: 100%;
+}

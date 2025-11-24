@@ -8,12 +8,13 @@
 }
 
 .container {
-  max-width: 100%;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--space-md);
   box-shadow: var(--box-shadow-md);
   border-radius: var(--border-radius-xl);
   background-color: var(--color-background-component);
+  width: 100%;
 }
 
 .subsection {
