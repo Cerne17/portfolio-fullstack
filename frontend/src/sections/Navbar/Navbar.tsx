@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./Navbar.module.css"; // Import CSS Module
 import navLinks from "../../data/navigation";
 import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
@@ -10,24 +10,24 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { translations, language } = useLanguage();
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const controlNavbar = () => {
+  const controlNavbar = useCallback(() => {
     if (typeof window !== "undefined") {
-      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      if (window.scrollY > lastScrollY.current && window.scrollY > 100) {
         // if scroll down and not at top
         setIsVisible(false);
       } else {
         // if scroll up
         setIsVisible(true);
       }
-      setLastScrollY(window.scrollY);
+      lastScrollY.current = window.scrollY;
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
         window.removeEventListener("scroll", controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, [controlNavbar]);
 
   const getLabel = (id: string) => {
     switch (id) {
