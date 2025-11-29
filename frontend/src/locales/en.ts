@@ -253,6 +253,10 @@ export const en = {
       title: "ChatGPT Mastery",
       issuer: "Adapta org.",
       year: "2024",
+      downloadUrl: "/certificates/Masterizando_ChatGPT.pdf",
     },
   ],
+  common: {
+    downloadCertificate: "Download Certificate",
+  },
 };

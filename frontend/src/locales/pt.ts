@@ -250,9 +250,13 @@ export const pt = {
   certifications: [
     {
       id: 1,
-      title: "ChatGPT Mastery",
+      title: "Masterizando o Chat GPT",
       issuer: "Adapta org.",
       year: "2024",
+      downloadUrl: "/certificates/Masterizando_ChatGPT.pdf",
     },
   ],
+  common: {
+    downloadCertificate: "Baixar Certificado",
+  },
 };

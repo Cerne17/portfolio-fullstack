@@ -125,6 +125,38 @@
   margin-top: var(--space-md);
 }
 
+.certificationItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.certificateLink {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.certificateLink:hover {
+  color: var(--color-primary);
+}
+
+.certificateLink::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease-in-out;
+}
+
+.certificateLink:hover::after {
+  width: 100%;
+}
+
 /* Responsive Design Considerations  */
 @media (max-width: 768px) {
   .sectionTitle {

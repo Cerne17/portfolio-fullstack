@@ -10,8 +10,22 @@ const Certifications: React.FC = () => {
       <h3 className={`subsectionTitle`}>{translations.aboutMe.certificationsTitle}</h3>
       <ul className={styles.certificationsList}>
         {translations.certifications.map((cert) => (
-          <li key={cert.id}>
-            {cert.title} - {cert.issuer} ({cert.year})
+          <li key={cert.id} className={styles.certificationItem}>
+            {cert.downloadUrl ? (
+              <a
+                href={process.env.PUBLIC_URL + cert.downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.certificateLink}
+                download
+              >
+                {cert.title} - {cert.issuer} ({cert.year})
+              </a>
+            ) : (
+              <span>
+                {cert.title} - {cert.issuer} ({cert.year})
+              </span>
+            )}
           </li>
         ))}
       </ul>
