@@ -255,6 +255,13 @@ export const en = {
       year: "2024",
       downloadUrl: "/certificates/Masterizando_ChatGPT.pdf",
     },
+    {
+      id: 2,
+      title: "Art and Science of Behavioral Interviewing",
+      issuer: "Codecademy",
+      year: "2025",
+      downloadUrl: "/certificates/Behavioral_Interviews.pdf",
+    },
   ],
   common: {
     downloadCertificate: "Download Certificate",
