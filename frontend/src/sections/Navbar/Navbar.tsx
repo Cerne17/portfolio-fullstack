@@ -85,7 +85,11 @@ const Navbar: React.FC = () => {
           ))}
           <li className={styles.navItem}>
             <a
-              href={language === "pt" ? "/Curriculo_MiguelCerne_Engenheiro.pdf" : "/MiguelCerne_Engineer_CV.pdf"}
+              href={
+                language === "pt"
+                  ? `${process.env.PUBLIC_URL}/Curriculo_MiguelCerne_Engenheiro.pdf`
+                  : `${process.env.PUBLIC_URL}/MiguelCerne_Engineer_CV.pdf`
+              }
               target="_blank"
               rel="noopener noreferrer"
               className={styles.downloadCvBtn}
