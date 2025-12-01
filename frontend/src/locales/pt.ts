@@ -1,14 +1,3 @@
-import {
-  SiNestjs,
-  SiPostgresql,
-  SiFigma,
-  SiPython,
-  SiOpencv,
-  SiScikitlearn,
-  SiDavinciresolve,
-  SiJupyter,
-} from "react-icons/si";
-
 export const pt = {
   hero: {
     title: "Miguel Cerne",
@@ -85,6 +74,16 @@ export const pt = {
         demoUrl: "",
         image: "DesignPatternsBanner.png",
       },
+      {
+        id: 4,
+        title: "SnippetVault",
+        description:
+          "O SnippetVault é uma ferramenta focada no desenvolvedor, criada para gerenciar sua biblioteca pessoal de fragmentos de código. Nascido da necessidade de organizar lógica reutilizável entre diferentes projetos, ele serve como uma base de conhecimento segura e de acesso rápido.",
+        techStack: ["React", "NestJS", "Typescript", "Vite", "TailwindCSS", "Axios", "MongoDB", "Mongoose"],
+        repoUrl: "https://github.com/Cerne17/SnippetVault",
+        demoUrl: "https://snippetvault.cerne.pro",
+        image: "SnippetVaultBanner.png",
+      },
     ],
   },
   contact: {
@@ -126,26 +125,7 @@ export const pt = {
         "Melhorei os fluxos de trabalho de projetos da equipe através de documentação clara e estratégias de colaboração.",
         "Fortaleci habilidades interpessoais de consultoria através da interação com clientes e ciclos de desenvolvimento iterativos.",
       ],
-      tech: [
-        {
-          id: 1,
-          title: "NestJS",
-          icon: SiNestjs,
-          stack: "backend",
-        },
-        {
-          id: 2,
-          title: "PostgreSQL",
-          icon: SiPostgresql,
-          stack: "backend",
-        },
-        {
-          id: 3,
-          title: "Figma",
-          icon: SiFigma,
-          stack: "frontend",
-        },
-      ],
+      techStack: ["NestJS", "PostgreSQL", "Figma"],
     },
     {
       id: 2,
@@ -171,26 +151,7 @@ export const pt = {
         "Alcancei alta precisão do modelo enquanto otimizava para desempenho de inferência em tempo real.",
         "Contribuí para uma iniciativa de pesquisa acadêmica dentro de um dos principais laboratórios de engenharia da UFRJ.",
       ],
-      tech: [
-        {
-          id: 4,
-          title: "Python",
-          icon: SiPython,
-          stack: "datascience",
-        },
-        {
-          id: 5,
-          title: "OpenCV",
-          icon: SiOpencv,
-          stack: "datascience",
-        },
-        {
-          id: 6,
-          title: "Scikit-learn",
-          icon: SiScikitlearn,
-          stack: "datascience",
-        },
-      ],
+      techStack: ["Python", "OpenCV", "Scikit-learn"],
     },
     {
       id: 3,
@@ -221,20 +182,7 @@ export const pt = {
         "Criei um processo validado e replicável para publicar conteúdo de áudio imersivo 360° nas principais plataformas de streaming.",
         "Diagnostiquei com sucesso inconsistências de reprodução diferenciando entre erros de codificação em nível de arquivo e problemas de renderização no player.",
       ],
-      tech: [
-        {
-          id: 7,
-          title: "DaVinci Resolve",
-          icon: SiDavinciresolve,
-          stack: "backend",
-        },
-        {
-          id: 8,
-          title: "MATLAB",
-          icon: SiJupyter,
-          stack: "datascience",
-        },
-      ],
+      techStack: ["DaVinci Resolve", "MATLAB"],
     },
   ],
   education: [

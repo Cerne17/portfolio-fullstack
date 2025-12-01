@@ -1,14 +1,3 @@
-import {
-  SiNestjs,
-  SiPostgresql,
-  SiFigma,
-  SiPython,
-  SiOpencv,
-  SiScikitlearn,
-  SiDavinciresolve,
-  SiJupyter,
-} from "react-icons/si";
-
 export const en = {
   hero: {
     title: "Miguel Cerne",
@@ -85,6 +74,16 @@ export const en = {
         demoUrl: "",
         image: "DesignPatternsBanner.png",
       },
+      {
+        id: 4,
+        title: "SnippetVault",
+        description:
+          "SnippetVault is a developer-centric tool built to manage your personal library of code snippets. Born from the need to organize reusable logic across different projects, it serves as a secure and fast-access knowledge base.",
+        techStack: ["React", "NestJS", "Typescript", "Vite", "TailwindCSS", "Axios", "MongoDB", "Mongoose"],
+        repoUrl: "https://github.com/Cerne17/SnippetVault",
+        demoUrl: "https://snippetvault.cerne.pro",
+        image: "SnippetVaultBanner.png",
+      },
     ],
   },
   contact: {
@@ -126,26 +125,7 @@ export const en = {
         "Improved team project workflows through clear documentation and collaboration strategies.",
         "Strengthened consulting soft skills through client interaction and iterative development cycles.",
       ],
-      tech: [
-        {
-          id: 1,
-          title: "NestJS",
-          icon: SiNestjs,
-          stack: "backend",
-        },
-        {
-          id: 2,
-          title: "PostgreSQL",
-          icon: SiPostgresql,
-          stack: "backend",
-        },
-        {
-          id: 3,
-          title: "Figma",
-          icon: SiFigma,
-          stack: "frontend",
-        },
-      ],
+      techStack: ["NestJS", "PostgreSQL", "Figma"],
     },
     {
       id: 2,
@@ -171,26 +151,7 @@ export const en = {
         "Achieved high model accuracy while optimizing for real-time inference performance.",
         "Contributed to an academic research initiative within one of UFRJ's leading engineering laboratories.",
       ],
-      tech: [
-        {
-          id: 4,
-          title: "Python",
-          icon: SiPython,
-          stack: "datascience",
-        },
-        {
-          id: 5,
-          title: "OpenCV",
-          icon: SiOpencv,
-          stack: "datascience",
-        },
-        {
-          id: 6,
-          title: "Scikit-learn",
-          icon: SiScikitlearn,
-          stack: "datascience",
-        },
-      ],
+      techStack: ["Python", "OpenCV", "Scikit-learn"],
     },
     {
       id: 3,
@@ -221,20 +182,7 @@ export const en = {
         "Created a validated, replicable process for publishing immersive 360° audio content on major streaming platforms.",
         "Successfully diagnosed playback inconsistencies by differentiating between file-level encoding errors and player-side rendering issues.",
       ],
-      tech: [
-        {
-          id: 7,
-          title: "DaVinci Resolve",
-          icon: SiDavinciresolve,
-          stack: "backend",
-        },
-        {
-          id: 8,
-          title: "MATLAB",
-          icon: SiJupyter,
-          stack: "datascience",
-        },
-      ],
+      techStack: ["DaVinci Resolve", "MATLAB"],
     },
   ],
   education: [

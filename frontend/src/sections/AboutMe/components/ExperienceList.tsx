@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../AboutMe.module.css";
 import SkillPill from "../../../components/SkillPill/SkillPill";
 import { useLanguage } from "../../../context/LanguageContext";
+import { projectSkills } from "../../../data/techStack";
 
 const ExperienceList: React.FC = () => {
   const { translations } = useLanguage();
@@ -50,15 +51,22 @@ const ExperienceList: React.FC = () => {
                   {translations.aboutMe.techTitle}
                 </h5>
                 <div className={styles.experienceTechStack}>
-                  {experience.tech.map((tech) => (
-                    <SkillPill
-                      key={tech.id}
-                      id={tech.id}
-                      icon={tech.icon}
-                      title={tech.title}
-                      stack={tech.stack as "frontend" | "backend" | "datascience"}
-                    />
-                  ))}
+                  {experience.techStack.map((techName, index) => {
+                    const skillInfo =
+                      projectSkills[techName as keyof typeof projectSkills];
+                    
+                    if (!skillInfo) return null;
+
+                    return (
+                      <SkillPill
+                        key={index}
+                        id={index}
+                        icon={skillInfo.icon}
+                        title={techName}
+                        stack={skillInfo.stack as "frontend" | "backend" | "datascience"}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
