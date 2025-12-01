@@ -3,11 +3,14 @@ import styles from "./Projects.module.css";
 import { projectSkills } from "../../data/techStack";
 import SkillPill from "../../components/SkillPill/SkillPill";
 
+import ProjectModal from "./components/ProjectModal";
 import { useLanguage } from "../../context/LanguageContext";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 const Projects: React.FC = () => {
   const { translations } = useLanguage();
+
+  const [selectedProject, setSelectedProject] = React.useState<any>(null);
 
   return (
     <section id="projects" className={styles.projectsSection}>
@@ -50,7 +53,17 @@ const Projects: React.FC = () => {
                   )}
                 </div>
               </div>
-              <p className={styles.projectDescription}>{project.description}</p>
+              
+              <div className={styles.descriptionContainer}>
+                <p className={styles.projectDescription}>{project.description}</p>
+                <button 
+                  className={styles.learnMoreButton}
+                  onClick={() => setSelectedProject(project)}
+                >
+                  {translations.projects.learnMore}
+                </button>
+              </div>
+
               <div className={styles.projectSkills}>
                 {project.techStack
                   .sort((a, b) => {
@@ -65,6 +78,7 @@ const Projects: React.FC = () => {
                     
                     return orderA - orderB;
                   })
+                  .slice(0, 6) // Show only first 6 pills (approx 2 lines)
                   .map((skillName, index) => {
                   const skillInfo =
                     projectSkills[skillName as keyof typeof projectSkills];
@@ -82,11 +96,21 @@ const Projects: React.FC = () => {
                     />
                   );
                 })}
+                {project.techStack.length > 6 && (
+                  <span className={styles.moreSkills}>+{project.techStack.length - 6}</span>
+                )}
               </div>
             </div>
           </div>
         ))}
       </div>
+      
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+      )}
     </section>
   );
 };

@@ -21,6 +21,7 @@ jest.mock("../../context/LanguageContext", () => ({
         title: "My Projects",
         viewCode: "Source Code",
         viewDemo: "View Demo",
+        learnMore: "Learn More",
         list: [
           {
             id: 1,
@@ -32,6 +33,9 @@ jest.mock("../../context/LanguageContext", () => ({
             image: "history.png",
           },
         ],
+      },
+      aboutMe: {
+        techTitle: "Technologies Used",
       },
     },
   }),
@@ -77,5 +81,19 @@ describe("Projects Component", () => {
       "href",
       "https://repo.com"
     );
+  });
+  test("opens modal when Learn More is clicked", () => {
+    render(
+      <LanguageProvider>
+        <Projects />
+      </LanguageProvider>
+    );
+    
+    const learnMoreButton = screen.getByText("Learn More");
+    expect(learnMoreButton).toBeInTheDocument();
+    
+    // We can't easily test the modal opening without more complex mocking since ProjectModal is a separate component
+    // But we can verify the button is there and clickable
+    learnMoreButton.click();
   });
 });

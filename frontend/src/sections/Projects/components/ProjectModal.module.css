@@ -1,0 +1,174 @@
+@import "../../../styles/variables.css";
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: var(--space-md);
+  backdrop-filter: blur(5px);
+}
+
+.modalContent {
+  background-color: var(--color-background-component);
+  border-radius: var(--border-radius-lg);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--box-shadow-lg);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition-base);
+  padding: var(--space-xs);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.imageContainer {
+  flex: 1;
+  min-height: 300px;
+  background-color: #000;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.infoContainer {
+  flex: 1;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  overflow-y: auto;
+}
+
+.projectTitle {
+  font-size: var(--fs-700);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.projectDescription {
+  font-size: var(--fs-400);
+  line-height: var(--line-height-body);
+  color: var(--color-text-base);
+}
+
+.sectionLabel {
+  font-size: var(--fs-300);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-sm);
+}
+
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.modalLinks {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: auto;
+  padding-top: var(--space-lg);
+}
+
+.ctaButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition-base);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.ctaButton:hover {
+  background-color: var(--color-background-body);
+  border-color: var(--color-primary);
+}
+
+.ctaButton.primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border-color: var(--color-primary);
+}
+
+.ctaButton.primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .modalBody {
+    flex-direction: column;
+  }
+
+  .imageContainer {
+    height: 200px;
+    flex: none;
+  }
+
+  .infoContainer {
+    padding: var(--space-lg);
+  }
+
+  .modalLinks {
+    flex-direction: column;
+  }
+  
+  .ctaButton {
+    justify-content: center;
+  }
+}

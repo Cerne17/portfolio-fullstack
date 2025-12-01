@@ -43,6 +43,7 @@ export const pt = {
     title: "Projetos",
     viewCode: "Ver Código",
     viewDemo: "Ver Demo",
+    learnMore: "Ver Mais",
     list: [
       {
         id: 1,

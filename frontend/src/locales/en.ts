@@ -43,6 +43,7 @@ export const en = {
     title: "Projects",
     viewCode: "View Code",
     viewDemo: "View Demo",
+    learnMore: "Learn More",
     list: [
       {
         id: 1,
