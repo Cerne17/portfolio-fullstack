@@ -44,10 +44,36 @@
   flex-grow: 1;
 }
 
-.projectTitle {
-  font-size: var(--fs-600);
-  color: var(--color-primary-dark);
+.projectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: var(--space-sm);
+}
+
+.projectTitle {
+  font-size: var(--fs-500);
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+
+.projectLinks {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.iconLink {
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconLink:hover {
+  color: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 .projectDescription {
@@ -61,26 +87,12 @@
 .projectSkills {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-top: var(--space-md);
-  margin-bottom: var(--space-lg);
-}
-
-.projectLinks {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-top: auto; /* Pushes buttons to the bottom */
+  gap: var(--space-xs);
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {
   .projectsGrid {
     grid-template-columns: 1fr;
-  }
-
-  .projectLinks {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
   }
 }

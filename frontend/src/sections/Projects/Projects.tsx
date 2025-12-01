@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./Projects.module.css";
 import { projectSkills } from "../../data/techStack";
 import SkillPill from "../../components/SkillPill/SkillPill";
-import CtaBlueButton from "../../components/CtaBlueButton/CtaBlueButton";
-import CtaTransparentButton from "../../components/CtaTransparentButton/CtaTransparentButton";
+
 import { useLanguage } from "../../context/LanguageContext";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 const Projects: React.FC = () => {
   const { translations } = useLanguage();
@@ -23,10 +23,49 @@ const Projects: React.FC = () => {
               />
             )}
             <div className={styles.projectContent}>
-              <h3 className={styles.projectTitle}>{project.title}</h3>
+              <div className={styles.projectHeader}>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <div className={styles.projectLinks}>
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.iconLink}
+                      aria-label={translations.projects.viewCode}
+                    >
+                      <FiGithub />
+                    </a>
+                  )}
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.iconLink}
+                      aria-label={translations.projects.viewDemo}
+                    >
+                      <FiExternalLink />
+                    </a>
+                  )}
+                </div>
+              </div>
               <p className={styles.projectDescription}>{project.description}</p>
               <div className={styles.projectSkills}>
-                {project.techStack.map((skillName, index) => {
+                {project.techStack
+                  .sort((a, b) => {
+                    const stackOrder = { frontend: 1, backend: 2, datascience: 3 };
+                    const skillA = projectSkills[a as keyof typeof projectSkills];
+                    const skillB = projectSkills[b as keyof typeof projectSkills];
+                    
+                    if (!skillA || !skillB) return 0;
+                    
+                    const orderA = stackOrder[skillA.stack as keyof typeof stackOrder] || 99;
+                    const orderB = stackOrder[skillB.stack as keyof typeof stackOrder] || 99;
+                    
+                    return orderA - orderB;
+                  })
+                  .map((skillName, index) => {
                   const skillInfo =
                     projectSkills[skillName as keyof typeof projectSkills];
                   if (!skillInfo) {
@@ -43,20 +82,6 @@ const Projects: React.FC = () => {
                     />
                   );
                 })}
-              </div>
-              <div className={styles.projectLinks}>
-                {project.demoUrl && (
-                  <CtaBlueButton
-                    title={translations.projects.viewDemo}
-                    link={project.demoUrl}
-                  />
-                )}
-                {project.repoUrl && (
-                  <CtaTransparentButton
-                    title={translations.projects.viewCode}
-                    link={project.repoUrl}
-                  />
-                )}
               </div>
             </div>
           </div>

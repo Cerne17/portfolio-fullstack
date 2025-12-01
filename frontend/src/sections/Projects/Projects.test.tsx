@@ -69,11 +69,11 @@ describe("Projects Component", () => {
         <Projects />
       </LanguageProvider>
     );
-    expect(screen.getByText("View Demo").closest("a")).toHaveAttribute(
+    expect(screen.getByLabelText("View Demo")).toHaveAttribute(
       "href",
       "https://demo.com"
     );
-    expect(screen.getByText("Source Code").closest("a")).toHaveAttribute(
+    expect(screen.getByLabelText("Source Code")).toHaveAttribute(
       "href",
       "https://repo.com"
     );
