@@ -1,11 +1,11 @@
 export const pt = {
   hero: {
     title: "Miguel Cerne",
-    subtitle: "Engenheiro Full-Stack & Pesquisador de Machine Learning",
+    subtitle: "Engenheiro de Software & Especialista Back-end",
     intro:
-      "Sou um Engenheiro Full-Stack brasileiro e graduando do terceiro ano de Engenharia Eletrônica e de Computação na Universidade Federal do Rio de Janeiro (UFRJ). Minha paixão é construir sistemas completos do zero, unindo meu amor pela matemática e lógica com a criatividade pura.",
+      "Engenheiro de Software & Especialista Back-end focado em sistemas web de alta performance. Experiência em implantar APIs prontas para produção usando NestJS e TypeScript. Construo arquiteturas escaláveis e resolvo desafios complexos de backend.",
     ctaProjects: "Meus Projetos",
-    ctaCall: "Agendar uma Chamada",
+    ctaCall: "Perfil GitHub",
   },
   nav: {
     aboutMe: "Sobre Mim",
@@ -22,7 +22,6 @@ export const pt = {
     educationTitle: "Educação",
     highlightsTitle: "Destaques",
     impactTitle: "Impacto",
-    certificationsTitle: "Certificações & Prêmios",
     techTitle: "Tecnologias Usadas",
     ctaText: "Interessado no meu trabalho ou quer colaborar?",
     ctaProjects: "Meus Projetos",
@@ -47,6 +46,16 @@ export const pt = {
     list: [
       {
         id: 1,
+        title: "SnippetVault",
+        description:
+          "Uma plataforma de gerenciamento de snippets de código pronta para produção. Projetei um esquema NoSQL flexível (MongoDB) para armazenar metadados de comprimento variável e implementei um sistema de autenticação personalizado com JWT e Controle de Acesso Baseado em Função (RBAC) do zero para proteger os dados do usuário.",
+        techStack: ["NestJS", "React", "MongoDB", "Docker", "JWT"],
+        repoUrl: "https://github.com/Cerne17/SnippetVault",
+        demoUrl: "https://snippetvault.cerne.pro",
+        image: "SnippetVaultBanner.png",
+      },
+      {
+        id: 2,
         title: "Database Population",
         description:
           "Projetado para resolver o desafio de popular esquemas relacionais complexos, este projeto é um pipeline de dados totalmente automatizado construído com Python. Ele gera dados sintéticos realistas orquestrando entradas da biblioteca 'Faker' e consumindo APIs oficiais do governo brasileiro. O sistema cria entidades coerentes e interconectadas (como perfis de usuários, endereços válidos e estruturas corporativas), agilizando o processo de semeadura de bancos de dados para testes e desenvolvimento.",
@@ -56,7 +65,7 @@ export const pt = {
         image: "DatabasePopulationBanner.png",
       },
       {
-        id: 2,
+        id: 3,
         title: "ProjetoNotas",
         description:
           'Desenvolvido durante a "Imersão IA" (uma colaboração entre Alura e Google), este projeto resolve uma dor acadêmica clássica: converter notas manuscritas caóticas em materiais de estudo estruturados. Indo além do Reconhecimento Óptico de Caracteres (OCR) tradicional, o ProjetoNotas aproveita as capacidades multimodais da API Gemini do Google. O sistema não apenas "lê" o texto; ele interpreta a estrutura semântica das páginas manuscritas para sintetizar um PDF limpo e logicamente formatado. Representa uma mudança do caos analógico para a ordem digital, demonstrando senso prático de produto e engenharia de prompt avançada.',
@@ -64,26 +73,6 @@ export const pt = {
         repoUrl: "https://github.com/Cerne17/ProjetoNotas",
         demoUrl: "",
         image: "ProjetoNotasBanner.png",
-      },
-      {
-        id: 3,
-        title: "Design-Patterns",
-        description:
-          "Uma exploração técnica da arquitetura de software clássica aplicada ao ecossistema web moderno. Este projeto preenche a lacuna entre a POO teórica e o desenvolvimento prático em TypeScript. Ele aborda os desafios específicos de implementar contratos estritos e comportamento polimórfico em um ambiente baseado em JavaScript. Ao ir além de scripts simples para soluções arquitetadas, este repositório serve como referência para bases de código mais limpas, modulares e testáveis.",
-        techStack: ["Typescript", "Uml"],
-        repoUrl: "https://github.com/Cerne17/Design-Patterns",
-        demoUrl: "",
-        image: "DesignPatternsBanner.png",
-      },
-      {
-        id: 4,
-        title: "SnippetVault",
-        description:
-          "O SnippetVault é uma ferramenta focada no desenvolvedor, criada para gerenciar sua biblioteca pessoal de fragmentos de código. Nascido da necessidade de organizar lógica reutilizável entre diferentes projetos, ele serve como uma base de conhecimento segura e de acesso rápido.",
-        techStack: ["React", "NestJS", "Typescript", "Vite", "TailwindCSS", "Axios", "MongoDB", "Mongoose"],
-        repoUrl: "https://github.com/Cerne17/SnippetVault",
-        demoUrl: "https://snippetvault.cerne.pro",
-        image: "SnippetVaultBanner.png",
       },
     ],
   },
@@ -111,9 +100,9 @@ export const pt = {
       city: "Rio de Janeiro",
       country: "Brasil",
       responsibilities: [
-        "Colaborei diretamente com clientes para entender as necessidades de negócios e transformar suas ideias em sistemas totalmente funcionais.",
-        "Trabalhei com uma equipe multidisciplinar de estudantes de engenharia para projetar arquiteturas de sistemas, definir requisitos técnicos e desenvolver aplicativos amigáveis do zero.",
-        "Participei de todo o ciclo de vida do produto—desde o levantamento inicial de requisitos e modelagem de banco de dados até o design de identidade visual e implementação de backend.",
+        "Arquitetura de API: Liderou o desenvolvimento backend de um sistema de gerenciamento de clientes usando NestJS, garantindo modularidade e escalabilidade.",
+        "Eficiência de Banco de Dados: Modelou estruturas de dados relacionais complexas no PostgreSQL, utilizando Prisma ORM para impor segurança de tipo estrita.",
+        "Entrega Ágil: Traduziu requisitos de negócios em especificações técnicas (UML), entregando recursos antes do prazo em sprints SCRUM.",
       ],
       highlights: [
         "Engenharia de requisitos",
@@ -138,9 +127,9 @@ export const pt = {
       city: "Rio de Janeiro",
       country: "Brasil",
       responsibilities: [
-        "Pesquisei e desenvolvi um módulo de visão computacional para um sistema de monitoramento de segurança em tempo real, capaz de detectar e classificar interferências ou tentativas de obstrução de câmeras.",
-        "Projetei um dataset personalizado e treinei modelos de machine learning usando OpenCV e Scikit-learn, alcançando aproximadamente 96% de precisão na classificação de obstruções.",
-        "Integrei o módulo de ML em um sistema backend legado desenvolvido em Python puro, garantindo comunicação perfeita com a infraestrutura mais ampla da aplicação.",
+        "Propriedade de Ponta a Ponta: Treinou e calibrou independentemente modelos de análise de segurança usando Scikit-Learn (95% de precisão).",
+        "Performance: Reduziu custos de treinamento de modelos otimizando pipelines de dados para Unidades de Processamento de Tensores (TPUs).",
+        "Engenharia de Dados: Construiu scripts de processamento automatizados em Pandas para limpar e normalizar conjuntos de dados em larga escala.",
       ],
       highlights: [
         "Visão computacional para sistemas de segurança",
@@ -164,11 +153,8 @@ export const pt = {
       city: "Rio de Janeiro",
       country: "Brasil",
       responsibilities: [
-        "Investigando os princípios de Ambisonics (Primeira Ordem e Ordem Superior) e harmônicos esféricos para aprimorar a precisão de áudio para simulações imersivas.",
-        "Pesquisando a viabilidade de desenvolver um player de vídeo 360° personalizado otimizado para renderização de áudio espacial de alta precisão (HOA).",
-        "Desenvolvi e validei um pipeline de software de ponta a ponta para multiplexar áudio Ambisonics de Primeira Ordem (FOA) de 4 canais com vídeo 360° para a plataforma YouTube.",
-        "Engenhei o fluxo de trabalho FOA usando DaVinci Resolve para configuração de áudio multitrack e o Spatial Media Metadata Injector para 'sinalizar' arquivos para renderização binaural.",
-        "Conduzindo testes de validação para solucionar inconsistências de reprodução, diferenciando entre codificação em nível de arquivo e problemas de renderização no player.",
+        "Engenharia de Simulação: Desenvolvendo ferramentas de software para simular ambientes de áudio 3D usando Ambisonics de Primeira e Alta Ordem.",
+        "Implementação de Algoritmos: Traduzindo modelos matemáticos acústicos complexos em código computacional para renderização de áudio espacial em tempo real.",
       ],
       highlights: [
         "Pesquisa em acústica arquitetônica e psicoacústica",
@@ -189,27 +175,10 @@ export const pt = {
   education: [
     {
       id: 1,
-      degree: "Bacharelado em Engenharia de Computação e Informação (GPA 3.3 - 8.2/10)",
-      institution:
-        "Universidade Federal do Rio de Janeiro (UFRJ), Rio de Janeiro, RJ, Brasil",
-      location: "Rio de Janeiro, RJ, Brasil",
-      graduation: "Dezembro 2027",
-    },
-  ],
-  certifications: [
-    {
-      id: 1,
-      title: "Masterizando o Chat GPT",
-      issuer: "Adapta org.",
-      year: "2024",
-      downloadUrl: "/certificates/Masterizando_ChatGPT.pdf",
-    },
-    {
-      id: 2,
-      title: "Arte e Ciência de Entrevistas Comportamentais",
-      issuer: "Codecademy",
-      year: "2025",
-      downloadUrl: "/certificates/Behavioral_Interviews.pdf",
+      degree: "Bacharelado em Engenharia Eletrônica e de Computação",
+      institution: "UFRJ",
+      location: "Rio de Janeiro, Brasil",
+      graduation: "Exp. Dez 2027",
     },
   ],
   common: {

@@ -19,7 +19,7 @@ describe('Hero Component', () => {
         <Hero />
       </LanguageProvider>
     );
-    const subtitleElement = screen.getByRole('heading', { level: 2, name: /Full-Stack Engineer & Machine Learning Researcher/i });
+    const subtitleElement = screen.getByRole('heading', { level: 2, name: /Software Engineer & Back-end Specialist/i });
     expect(subtitleElement).toBeInTheDocument();
   });
 
@@ -30,8 +30,8 @@ describe('Hero Component', () => {
       </LanguageProvider>
     );
     const projectsButton = screen.getByText(/My Projects/i);
-    const bookCallButton = screen.getByText(/Book a Call/i);
+    const githubButton = screen.getByText(/GitHub Profile/i);
     expect(projectsButton).toBeInTheDocument();
-    expect(bookCallButton).toBeInTheDocument();
+    expect(githubButton).toBeInTheDocument();
   });
 });

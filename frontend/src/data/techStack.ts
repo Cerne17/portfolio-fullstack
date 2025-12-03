@@ -25,6 +25,8 @@ import {
   SiMongoose,
   SiOpencv,
   SiDavinciresolve,
+  SiDocker,
+  SiJsonwebtokens,
 } from "react-icons/si";
 
 export const frontendSkills = [
@@ -148,4 +150,6 @@ export const projectSkills = {
   "Mongoose": { icon: SiMongoose, stack: "backend" },
   "OpenCV": { icon: SiOpencv, stack: "datascience" },
   "DaVinci Resolve": { icon: SiDavinciresolve, stack: "backend" },
+  "Docker": { icon: SiDocker, stack: "backend" },
+  "JWT": { icon: SiJsonwebtokens, stack: "backend" },
 };

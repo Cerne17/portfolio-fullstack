@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
           />
           <CtaTransparentButton
             title={translations.hero.ctaCall}
-            link="https://calendly.com/miguelcerne-dev/30min"
+            link="https://github.com/Cerne17"
             isDark={true}
           />
         </div>

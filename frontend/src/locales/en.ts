@@ -1,11 +1,11 @@
 export const en = {
   hero: {
     title: "Miguel Cerne",
-    subtitle: "Full-Stack Engineer & Machine Learning Researcher",
+    subtitle: "Software Engineer & Back-end Specialist",
     intro:
-      "I am a Brazilian Full-Stack Engineer and a third-year Electrical and Computer Engineering undergraduate at the Federal University of Rio de Janeiro (UFRJ). My passion is to build entire systems from the ground up, blending my lifelong love for math and logic with pure creativity.",
+      "Software Engineer & Back-end Specialist focused on high-performance web systems. Experienced in deploying production-ready APIs using NestJS and TypeScript. I build scalable architectures and solve complex backend challenges.",
     ctaProjects: "My Projects",
-    ctaCall: "Book a Call",
+    ctaCall: "GitHub Profile",
   },
   nav: {
     aboutMe: "About Me",
@@ -22,7 +22,6 @@ export const en = {
     educationTitle: "Education",
     highlightsTitle: "Highlights",
     impactTitle: "Impact",
-    certificationsTitle: "Certifications & Awards",
     techTitle: "Technologies Used",
     ctaText: "Interested in my work or want to collaborate?",
     ctaProjects: "My Projects",
@@ -47,6 +46,16 @@ export const en = {
     list: [
       {
         id: 1,
+        title: "SnippetVault",
+        description:
+          "A production-ready code snippet management platform. Designed a flexible NoSQL schema (MongoDB) to store variable-length metadata and implemented a custom authentication system with JWT and Role-Based Access Control (RBAC) from scratch to secure user data.",
+        techStack: ["NestJS", "React", "MongoDB", "Docker", "JWT"],
+        repoUrl: "https://github.com/Cerne17/SnippetVault",
+        demoUrl: "https://snippetvault.cerne.pro",
+        image: "SnippetVaultBanner.png",
+      },
+      {
+        id: 2,
         title: "Database Population",
         description:
           "Designed to solve the challenge of populating complex relational schemas, this project is a fully automated data pipeline built with Python. It generates realistic synthetic data by orchestrating inputs from the 'Faker' library and consuming official Brazilian government APIs. The system creates coherent, interconnected entities (such as user profiles, valid addresses, and corporate structures) streamlining the process of seeding databases for testing and development.",
@@ -56,7 +65,7 @@ export const en = {
         image: "DatabasePopulationBanner.png",
       },
       {
-        id: 2,
+        id: 3,
         title: "ProjetoNotas",
         description:
           'Developed during the "Imersão IA" (a collaboration between Alura and Google), this project solves a classic academic pain point: converting chaotic handwritten notes into structured study materials. Moving beyond traditional Optical Character Recognition (OCR), ProjetoNotas leverages the multimodal capabilities of Google\'s Gemini API. The system doesn\'t just "read" text; it interprets the semantic structure of handwritten pages to synthesize a clean, logically formatted PDF. It represents a shift from analog chaos to digital order, demonstrating practical product sense and advanced prompt engineering.',
@@ -64,26 +73,6 @@ export const en = {
         repoUrl: "https://github.com/Cerne17/ProjetoNotas",
         demoUrl: "",
         image: "ProjetoNotasBanner.png",
-      },
-      {
-        id: 3,
-        title: "Design-Patterns",
-        description:
-          "A technical exploration of classical software architecture applied to the modern web ecosystem. This project bridges the gap between theoretical OOP and practical TypeScript development. It addresses the specific challenges of implementing strict contracts and polymorphic behavior in a JavaScript-based environment. By moving beyond simple scripting to architected solutions, this repository serves as a reference for cleaner, modular, and testable codebases.",
-        techStack: ["Typescript", "Uml"],
-        repoUrl: "https://github.com/Cerne17/Design-Patterns",
-        demoUrl: "",
-        image: "DesignPatternsBanner.png",
-      },
-      {
-        id: 4,
-        title: "SnippetVault",
-        description:
-          "SnippetVault is a developer-centric tool built to manage your personal library of code snippets. Born from the need to organize reusable logic across different projects, it serves as a secure and fast-access knowledge base.",
-        techStack: ["React", "NestJS", "Typescript", "Vite", "TailwindCSS", "Axios", "MongoDB", "Mongoose"],
-        repoUrl: "https://github.com/Cerne17/SnippetVault",
-        demoUrl: "https://snippetvault.cerne.pro",
-        image: "SnippetVaultBanner.png",
       },
     ],
   },
@@ -111,9 +100,9 @@ export const en = {
       city: "Rio de Janeiro",
       country: "Brazil",
       responsibilities: [
-        "Collaborated directly with clients to understand business needs and transform their ideas into fully functional systems.",
-        "Worked with a multidisciplinary team of undergraduate engineers to design system architectures, define technical requirements, and develop user-friendly applications from scratch.",
-        "Participated in the entire product lifecycle—from initial requirements gathering and database modeling to visual identity design and backend implementation.",
+        "API Architecture: Led the backend development of a client management system using NestJS, ensuring modularity and scalability.",
+        "Database Efficiency: Modeled complex relational data structures in PostgreSQL, utilizing Prisma ORM to enforce strict type safety.",
+        "Agile Delivery: Translated business requirements into technical specifications (UML), delivering features ahead of schedule in SCRUM sprints.",
       ],
       highlights: [
         "Requirements engineering",
@@ -138,9 +127,9 @@ export const en = {
       city: "Rio de Janeiro",
       country: "Brazil",
       responsibilities: [
-        "Researched and developed a computer vision module for a real-time security monitoring system, capable of detecting and classifying camera interference or obstruction attempts.",
-        "Designed a custom dataset and trained machine learning models using OpenCV and Scikit-learn, achieving approximately 96% accuracy in obstruction classification.",
-        "Integrated the ML module into a legacy backend system developed in pure Python, ensuring seamless communication with the broader application infrastructure.",
+        "End-to-End Ownership: Independently trained and calibrated security analysis models using Scikit-Learn (95% accuracy).",
+        "Performance: Reduced model training costs by optimizing data pipelines for Tensor Processing Units (TPUs).",
+        "Data Engineering: Built automated processing scripts in Pandas to clean and normalize large-scale datasets.",
       ],
       highlights: [
         "Computer vision for security systems",
@@ -164,11 +153,8 @@ export const en = {
       city: "Rio de Janeiro",
       country: "Brazil",
       responsibilities: [
-        "Investigating the principles of Ambisonics (First-Order and Higher-Order) and spherical harmonics to enhance audio precision for immersive simulations.",
-        "Researching the feasibility of developing a custom 360° video player optimized for high-precision spatial audio rendering (HOA).",
-        "Developed and validated an end-to-end software pipeline for multiplexing 4-channel First-Order Ambisonics (FOA) audio with 360° video for the YouTube platform.",
-        "Engineered the FOA workflow using DaVinci Resolve for multitrack audio configuration and the Spatial Media Metadata Injector to 'flag' files for binaural rendering.",
-        "Conducting validation tests to troubleshoot playback inconsistencies, differentiating between file-level encoding and player-side rendering issues.",
+        "Simulation Engineering: Developing software tools to simulate 3D audio environments using First-Order and Higher-Order Ambisonics.",
+        "Algorithm Implementation: Translating complex acoustic mathematical models into computational code for real-time spatial audio rendering.",
       ],
       highlights: [
         "Architectural acoustics & psychoacoustics research",
@@ -189,27 +175,10 @@ export const en = {
   education: [
     {
       id: 1,
-      degree: "Bachelor of Electrical & Computer Engineering (GPA 3.3 - 8.2/10)",
-      institution:
-        "Federal University of Rio de Janeiro (UFRJ), Rio de Janeiro, RJ, Brazil",
-      location: "Rio de Janeiro, RJ, Brazil",
-      graduation: "December 2027",
-    },
-  ],
-  certifications: [
-    {
-      id: 1,
-      title: "ChatGPT Mastery",
-      issuer: "Adapta org.",
-      year: "2024",
-      downloadUrl: "/certificates/Masterizando_ChatGPT.pdf",
-    },
-    {
-      id: 2,
-      title: "Art and Science of Behavioral Interviewing",
-      issuer: "Codecademy",
-      year: "2025",
-      downloadUrl: "/certificates/Behavioral_Interviews.pdf",
+      degree: "B.S. Electronic and Computer Engineering",
+      institution: "UFRJ",
+      location: "Rio de Janeiro, Brazil",
+      graduation: "Exp. Dec 2027",
     },
   ],
   common: {
