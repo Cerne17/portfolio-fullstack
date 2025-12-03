@@ -87,8 +87,8 @@ const Navbar: React.FC = () => {
             <a
               href={
                 language === "pt"
-                  ? `${process.env.PUBLIC_URL}/Curriculo_MiguelCerne_Engenheiro.pdf`
-                  : `${process.env.PUBLIC_URL}/MiguelCerne_Engineer_CV.pdf`
+                  ? `${process.env.PUBLIC_URL}/Miguel_Cerne_Engenheiro_de_Software_CV.pdf`
+                  : `${process.env.PUBLIC_URL}/Miguel_Cerne_Software_Engineer_CV.pdf`
               }
               target="_blank"
               rel="noopener noreferrer"
