@@ -29,9 +29,9 @@ describe('Hero Component', () => {
         <Hero />
       </LanguageProvider>
     );
-    const projectsButton = screen.getByText(/My Projects/i);
     const githubButton = screen.getByText(/GitHub Profile/i);
-    expect(projectsButton).toBeInTheDocument();
+    const bookCallButton = screen.getByText(/Book a Call/i);
     expect(githubButton).toBeInTheDocument();
+    expect(bookCallButton).toBeInTheDocument();
   });
 });

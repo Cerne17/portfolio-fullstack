@@ -4,8 +4,8 @@ export const pt = {
     subtitle: "Engenheiro de Software & Especialista Back-end",
     intro:
       "Engenheiro de Software & Especialista Back-end focado em sistemas web de alta performance. Experiência em implantar APIs prontas para produção usando NestJS e TypeScript. Construo arquiteturas escaláveis e resolvo desafios complexos de backend.",
-    ctaProjects: "Meus Projetos",
-    ctaCall: "Perfil GitHub",
+    ctaProjects: "Perfil GitHub",
+    ctaCall: "Agendar uma Chamada",
   },
   nav: {
     aboutMe: "Sobre Mim",
