@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { getLocale } from "next-intl/server";
 import { meta } from "@/lib/dictionary";
 import "./globals.css";
@@ -33,7 +34,10 @@ export default async function RootLayout({
           href="https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@latest/index.css"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
