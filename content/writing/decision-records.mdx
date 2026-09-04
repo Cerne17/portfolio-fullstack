@@ -1,0 +1,14 @@
+---
+date: "2025-10"
+lang: "EN"
+title: 'Decision records: writing down the "why," not just the "what"'
+dek: "A lightweight format for logging non-obvious calls, and why it paid off on NeuraTrade."
+---
+
+Six months after shipping something, nobody remembers why a threshold was set to 0.35 instead of 0.5, or why a model architecture that looked reasonable got dropped. Git history shows what changed; it rarely shows what was tried and rejected, or the reasoning that made one option win over another.
+
+The fix doesn't need to be heavyweight. On NeuraTrade, every non-obvious call gets a short decision record: the context that forced the decision, the options actually considered, which one was picked, and why. Rejections are logged with the same care as the thing that shipped — when a Transformer architecture and Optuna-based hyperparameter search were tried and dropped, both got a record explaining exactly what went wrong and what evidence supported walking away.
+
+That discipline paid off directly. Eighteen decision records accumulated over the project, and more than once a question that would normally trigger a re-investigation — "why not just use a Transformer here?" — was answered by pointing at the record instead of re-running the experiment. One record even caught an inconsistency between two earlier decisions before it became a bug.
+
+The format scales down fine to solo work. Writing four sentences when a decision is fresh is cheaper than reconstructing the reasoning from memory later — and the record outlives whoever wrote it.

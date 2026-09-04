@@ -1,0 +1,14 @@
+---
+date: "2026-06"
+lang: "EN"
+title: "Walk-forward validation, or why your backtest is lying to you"
+dek: "Why standard cross-validation leaks time, and what the NeuraTrade methodology does about it."
+---
+
+Most backtests fail for a boring reason: the validation split doesn't respect time. A random k-fold shuffle lets a model trained on next week peek at last week's price move — and it will happily learn to "predict" it.
+
+For NeuraTrade, that meant rebuilding the split around a strict walk-forward scheme: train on a rolling window, test on the period immediately after it, then slide forward. No fold ever sees data from its own future.
+
+The harder part wasn't the split logic — it was proving the leakage was actually gone. That took 32 tests and 18 logged decision records, each one tying a modeling choice back to why it doesn't reintroduce foresight.
+
+The result holds up under scrutiny, which is the only bar that matters when the thing being validated touches real capital.

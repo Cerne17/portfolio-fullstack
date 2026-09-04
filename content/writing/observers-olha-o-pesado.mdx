@@ -1,0 +1,14 @@
+---
+date: "2026-02"
+lang: "PT"
+title: "Observers em vez de if/else: o núcleo do Olha o Pesado"
+dek: "Como sinais tipados (Frame/Control/Result) deixam o robô extensível sem reescrever o núcleo."
+---
+
+Robôs autônomos têm um problema estrutural: visão, controle e atuação mudam em ritmos diferentes, mas costumam ser escritos como se fossem uma única cadeia de decisão. O resultado de sempre é um bloco de if/else que cresce a cada novo comportamento, até que ninguém confia em mexer nele sem quebrar algo que já funcionava.
+
+No Olha o Pesado, resolvemos isso separando o núcleo em três sinais tipados — Frame, Control e Result — que circulam por um único backbone de eventos. O módulo de visão publica um Frame quando processa uma imagem; ele não sabe, e não precisa saber, quem está ouvindo. O controle assina os Frames que importam e publica Control quando decide uma ação. O resultado da execução vira um Result, consumido por quem estiver interessado — um logger, um monitor de segurança, o que for.
+
+Na prática, isso significa que adicionar um comportamento novo — por exemplo, um freio de emergência que reage a um Frame específico — é escrever um observer novo, não editar o laço principal. O núcleo nunca precisa saber que esse observer existe. Testamos isso adicionando três comportamentos ao longo do projeto sem tocar no código de visão ou controle já validado.
+
+É o mesmo instinto por trás do trabalho com finanças: isolar as partes difíceis para que possam ser testadas e trocadas sem arrastar o resto do sistema junto. Arquitetura como parte do resultado, não só código para fazer o robô andar — trabalho com João Victor e Umberto.
