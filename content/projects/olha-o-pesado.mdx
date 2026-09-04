@@ -1,0 +1,26 @@
+---
+title: "Olha o Pesado"
+pillar: "system-design"
+pillarLabel:
+  en: "system design"
+  pt: "design de sistemas"
+year: "2026"
+role:
+  en: "Co-author (with João Victor, Umberto)"
+  pt: "Coautor (com João Victor, Umberto)"
+stack: ["Python", "Observer pattern", "computer vision"]
+hero: true
+order: 2
+repo: "https://github.com/Cerne17/oop-olha-o-pesado"
+thesis:
+  en: "An autonomous-robot MVP built on a clean observer-pattern core, so vision, control, and results stay decoupled."
+  pt: "Um MVP de robô autônomo sobre um núcleo em observer pattern, mantendo visão, controle e resultado desacoplados."
+keyDecision:
+  en: "Signals are typed — Frame, Control, Result — so each subsystem reacts to events without knowing about the others. Architecture as the feature."
+  pt: "Os sinais são tipados — Frame, Control, Result — então cada subsistema reage a eventos sem conhecer os demais. A arquitetura como o diferencial."
+lede:
+  en: |
+    Robots are where sloppy coupling goes to die: vision, control, and actuation change at different rates and can't afford to block each other. Olha o Pesado is an autonomous-robot MVP whose core is an observer architecture — typed Frame, Control, and Result signals flow through a single event backbone, and each subsystem subscribes to what it needs. Adding a behavior means adding an observer, not rewiring the robot. It's the same instinct behind the finance work: design the system so the hard parts stay isolated and testable.
+  pt: |
+    Robôs são onde acoplamento mal feito morre: visão, controle e atuação mudam em ritmos diferentes e não podem travar uns aos outros. O Olha o Pesado é um MVP de robô autônomo cujo núcleo é uma arquitetura de observadores — sinais tipados de Frame, Control e Result circulam por um único backbone de eventos, e cada subsistema assina o que precisa. Adicionar um comportamento é adicionar um observador, não recablear o robô. É o mesmo instinto do trabalho com finanças: projetar o sistema para as partes difíceis ficarem isoladas e testáveis.
+---

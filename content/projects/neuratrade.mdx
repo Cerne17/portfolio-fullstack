@@ -1,0 +1,30 @@
+---
+title: "NeuraTrade"
+pillar: "data-finance"
+pillarLabel:
+  en: "data · finance"
+  pt: "dados · finanças"
+year: "2026"
+role:
+  en: "Co-author (with Ana Beatriz)"
+  pt: "Coautor (com Ana Beatriz)"
+stack: ["Python", "TensorFlow/Keras", "pandas", "scikit-learn", "pytest"]
+hero: true
+order: 1
+repo: "https://github.com/Cerne17/NeuraTrade"
+thesis:
+  en: "Unsupervised anomaly detection over 14 years of B3 equities with an LSTM-autoencoder, built so the methodology actually holds up."
+  pt: "Detecção não supervisionada de anomalias em 14 anos de ações da B3 com um LSTM-autoencoder, construído para a metodologia se sustentar de verdade."
+keyDecision:
+  en: "Every decision is a logged ADR (18 of them, including ideas rejected with proof — Transformers, Optuna, weight decay), guarded by 32 tests and walk-forward validation against temporal leakage."
+  pt: "Cada decisão é um ADR registrado (18 deles, incluindo ideias rejeitadas com evidência — Transformers, Optuna, weight decay), com 32 testes e validação walk-forward contra vazamento temporal."
+lede:
+  en: |
+    Most deep-learning anomaly-detection work targets US markets and crypto. NeuraTrade aims it at Brazilian equities — PETR4, VALE3, AMER3, ITUB4 — training only on 2010–2019 "normality" and flagging the years after by reconstruction error, then cross-checking each hit against a timeline of real Brazilian market events.
+
+    The point wasn't a bigger model; it was a defensible one. Switching the error aggregation to max doubled recall (0.16 → 0.35) and raised precision (0.55 → 0.84). A conditional autoencoder conditioned on USD/BRL and the VIX separates systemic shocks (COVID-2020) from idiosyncratic ones (the Americanas collapse, 2023). And where ROC-AUC flattered the model at 0.84, PR-AUC exposed the real 0.15 on a rare class — so PR-AUC became the reported metric. Reproducible offline, fixed seed, one command.
+  pt: |
+    A maior parte da literatura de detecção de anomalias com deep learning mira mercados dos EUA e cripto. O NeuraTrade aponta para ações brasileiras — PETR4, VALE3, AMER3, ITUB4 — treinando só na "normalidade" de 2010–2019 e sinalizando os anos seguintes pelo erro de reconstrução, cruzando cada anomalia com uma linha do tempo de eventos reais do mercado brasileiro.
+
+    O objetivo não era um modelo maior, e sim um modelo defensável. Trocar a agregação do erro para max dobrou o recall (0,16 → 0,35) e elevou a precisão (0,55 → 0,84). Um autoencoder condicional em USD/BRL e VIX separa choques sistêmicos (COVID-2020) dos idiossincráticos (o caso Americanas, 2023). E onde a ROC-AUC agradava com 0,84, a PR-AUC expôs o 0,15 real numa classe rara — por isso a PR-AUC virou a métrica reportada. Reprodutível offline, seed fixa, um comando.
+---
