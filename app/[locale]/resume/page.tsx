@@ -1,6 +1,7 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { Button } from "@/components/Button";
 
@@ -19,7 +20,7 @@ const copy = {
 };
 
 export default function ResumePage() {
-  const { language: lang } = useLanguage();
+  const lang = useLocale() as Language;
 
   return (
     <section style={{ maxWidth: 640, margin: "0 auto", padding: "clamp(56px,9vw,96px) clamp(20px,5vw,48px) clamp(56px,9vw,112px)" }}>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { ContactBand } from "@/components/ContactBand";
 import { NowEntry } from "@/lib/content";
@@ -15,7 +16,7 @@ const copy = {
 };
 
 export function NowPageContent({ entries }: { entries: NowEntry[] }) {
-  const { language: lang } = useLanguage();
+  const lang = useLocale() as Language;
 
   return (
     <>

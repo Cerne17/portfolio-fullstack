@@ -1,6 +1,7 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { links, ui } from "@/lib/dictionary";
 import { Project } from "@/lib/content";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
@@ -78,7 +79,7 @@ export function HomePageContent({
   heroProjects: Project[];
   supportingProjects: Project[];
 }) {
-  const { language: lang } = useLanguage();
+  const lang = useLocale() as Language;
 
   return (
     <>

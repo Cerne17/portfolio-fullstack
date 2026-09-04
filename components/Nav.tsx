@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useTheme } from "next-themes";
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { links, ui } from "@/lib/dictionary";
+import { Language } from "@/lib/types";
 import { Logomark } from "./Logomark";
 
 const NAV_LINKS = [
@@ -16,7 +17,8 @@ const NAV_LINKS = [
 
 export function Nav() {
   const { resolvedTheme, setTheme } = useTheme();
-  const { language, setLanguage } = useLanguage();
+  const language = useLocale() as Language;
+  const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -131,19 +133,21 @@ export function Nav() {
           </button>
 
           <div style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "var(--font-mono)", fontSize: "0.8rem" }}>
-            <button
-              onClick={() => setLanguage("en")}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 4, color: language === "en" ? "var(--heartwood)" : "var(--text-muted)", fontWeight: language === "en" ? 600 : 400, fontFamily: "inherit" }}
+            <Link
+              href={pathname}
+              locale="en"
+              style={{ padding: 4, color: language === "en" ? "var(--heartwood)" : "var(--text-muted)", fontWeight: language === "en" ? 600 : 400, fontFamily: "inherit" }}
             >
               EN
-            </button>
+            </Link>
             <span style={{ color: "var(--surface-2)" }}>·</span>
-            <button
-              onClick={() => setLanguage("pt")}
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 4, color: language === "pt" ? "var(--heartwood)" : "var(--text-muted)", fontWeight: language === "pt" ? 600 : 400, fontFamily: "inherit" }}
+            <Link
+              href={pathname}
+              locale="pt"
+              style={{ padding: 4, color: language === "pt" ? "var(--heartwood)" : "var(--text-muted)", fontWeight: language === "pt" ? 600 : 400, fontFamily: "inherit" }}
             >
               PT
-            </button>
+            </Link>
           </div>
 
           {isMobile && (

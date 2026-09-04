@@ -1,6 +1,7 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { Headshot } from "@/components/Headshot";
 import { ContactBand } from "@/components/ContactBand";
@@ -58,7 +59,7 @@ const copy = {
 const STACK = ["TypeScript", "Python", "Node / NestJS", "React", "PostgreSQL", "Docker", "PyTorch", "Pandas"];
 
 export default function AboutPage() {
-  const { language: lang } = useLanguage();
+  const lang = useLocale() as Language;
 
   return (
     <>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { links, footerBio } from "@/lib/dictionary";
 
 export function Footer() {
-  const { language } = useLanguage();
+  const language = useLocale() as Language;
 
   return (
     <footer style={{ borderTop: "1px solid var(--surface-2)" }}>

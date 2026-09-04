@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
-import { LanguageProvider } from "@/lib/language-context";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
+import { getLocale } from "next-intl/server";
 import { meta } from "@/lib/dictionary";
 import "./globals.css";
 
@@ -11,13 +8,15 @@ export const metadata: Metadata = {
   description: meta.home.description.en,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link
@@ -33,15 +32,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@latest/index.css"
         />
       </head>
-      <body>
-        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false}>
-          <LanguageProvider>
-            <Nav />
-            {children}
-            <Footer />
-          </LanguageProvider>
-        </ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

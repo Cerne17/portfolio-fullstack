@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { useLanguage } from "@/lib/language-context";
+import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { ContactBand } from "@/components/ContactBand";
 import { Post } from "@/lib/content";
@@ -16,7 +17,7 @@ const copy = {
 };
 
 export function WritingPageContent({ posts }: { posts: Post[] }) {
-  const { language: lang } = useLanguage();
+  const lang = useLocale() as Language;
 
   return (
     <>

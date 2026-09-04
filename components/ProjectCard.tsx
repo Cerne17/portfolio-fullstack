@@ -1,6 +1,6 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Project } from "@/lib/content";
-import { Language } from "@/lib/language-context";
+import { Language } from "@/lib/types";
 import { ui } from "@/lib/dictionary";
 import { Tag } from "./Tag";
 import { Button } from "./Button";

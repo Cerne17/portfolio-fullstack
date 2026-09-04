@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { useLanguage } from "@/lib/language-context";
+import { Link } from "@/i18n/navigation";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { Project } from "@/lib/content";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { Tag } from "@/components/Tag";
@@ -10,7 +11,7 @@ import { ContactBand } from "@/components/ContactBand";
 import { ui } from "@/lib/dictionary";
 
 export function ProjectPageContent({ project }: { project: Project }) {
-  const { language: lang } = useLanguage();
+  const lang = useLocale() as Language;
 
   return (
     <>

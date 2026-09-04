@@ -1,12 +1,13 @@
 "use client";
 
-import { useLanguage } from "@/lib/language-context";
+import { useLocale } from "next-intl";
+import { Language } from "@/lib/types";
 import { links, contactBand, ui } from "@/lib/dictionary";
 import { Button } from "./Button";
 import { EyebrowLabel } from "./EyebrowLabel";
 
 export function ContactBand() {
-  const { language } = useLanguage();
+  const language = useLocale() as Language;
 
   return (
     <section style={{ borderTop: "1px solid var(--surface-2)", background: "var(--surface)" }}>
