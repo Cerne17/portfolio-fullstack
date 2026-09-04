@@ -59,7 +59,7 @@ export default function WritingPage() {
                 <p style={{ margin: 0, fontSize: "0.98rem", lineHeight: 1.6, color: "var(--text-muted)", maxWidth: "64ch" }}>{post.dek}</p>
               </>
             );
-            const isClickable = i === 0 && Boolean(post.slug);
+            const isClickable = Boolean(post.slug);
             return isClickable ? (
               <Link key={post.title} href={`/writing/${post.slug}`} className="writing-row" style={{ ...rowStyle, cursor: "pointer" }}>
                 {inner}
