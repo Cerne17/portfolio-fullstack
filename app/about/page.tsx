@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { Headshot } from "@/components/Headshot";
 import { ContactBand } from "@/components/ContactBand";
 
 const copy = {
@@ -73,7 +73,7 @@ export default function AboutPage() {
           alignItems: "flex-start",
         }}
       >
-        <ImagePlaceholder size={140} />
+        <Headshot size={140} />
         <div style={{ flex: "1 1 420px", minWidth: 280 }}>
           <EyebrowLabel style={{ marginBottom: 20 }}>{copy.eyebrow[lang]}</EyebrowLabel>
           <h1

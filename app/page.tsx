@@ -6,7 +6,7 @@ import { heroProjects, supportingProjects } from "@/content/projects";
 import { EyebrowLabel } from "@/components/EyebrowLabel";
 import { Button } from "@/components/Button";
 import { RingGraphic } from "@/components/RingGraphic";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { Headshot } from "@/components/Headshot";
 import { ProjectCardHero, ProjectCardSupporting } from "@/components/ProjectCard";
 import { ContactBand } from "@/components/ContactBand";
 
@@ -90,7 +90,7 @@ export default function HomePage() {
       >
         <div className="hero-anim" style={{ flex: "1 1 380px", minWidth: 280, animation: "heroUp .7s cubic-bezier(.16,1,.3,1) both" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 22 }}>
-            <ImagePlaceholder size={60} />
+            <Headshot size={60} />
             <div>
               <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: "1rem", color: "var(--text)" }}>
                 Miguel Cerne
