@@ -1,0 +1,59 @@
+/* Design tokens — ported verbatim from the Claude Design project (tokens/colors.css, spacing.css, typography.css) */
+
+:root {
+  /* dark theme (default) — "heartwood core" */
+  --ink: #0C0D10;
+  --surface: #14161B;
+  --surface-2: #1F2229;
+  --text: #E8E4DB;
+  --text-muted: #9A968C;
+  --heartwood: #E89A3C;
+  --heartwood-glow: #F6B65A;
+  --oxblood: #8C3B24;
+  --sapwood: #4E8F6B;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  --content-max: 1152px;
+  --border-hairline: 1px solid var(--surface-2);
+
+  --font-display: 'Clash Display', 'Space Grotesk', sans-serif;
+  --font-body: 'Geist Sans', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+
+  --text-display: clamp(2.3rem, 4.6vw, 4.1rem);
+  --text-h1: 3.05rem;
+  --text-h2: 2.44rem;
+  --text-h3: 1.95rem;
+  --text-lead: 1.35rem;
+  --text-body: 1rem;
+  --text-small: 0.8rem;
+
+  --tracking-display: -0.02em;
+  --tracking-mono-eyebrow: 0.08em;
+}
+
+[data-theme="light"] {
+  /* light theme — "sapwood" */
+  --ink: #ECEBE6;
+  --surface: #F5F4F0;
+  --surface-2: #D8D5CC;
+  --text: #1A1B1E;
+  --text-muted: #5A5852;
+  --heartwood: #8C3B24;
+  --heartwood-glow: #8C3B24;
+  --oxblood: #8C3B24;
+  --sapwood: #3A6E52;
+}

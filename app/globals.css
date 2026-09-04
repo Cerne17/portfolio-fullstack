@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-heartwood: var(--heartwood);
+  --color-heartwood-glow: var(--heartwood-glow);
+  --color-oxblood: var(--oxblood);
+  --color-sapwood: var(--sapwood);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: #e89a3c;
+  color: #0c0d10;
+}
+
+@keyframes ringDraw {
+  from {
+    stroke-dashoffset: var(--circ);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes coreFade {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--heartwood);
+  outline-offset: 2px;
+}
+
+.cta-primary:hover {
+  background: var(--heartwood-glow);
+  box-shadow:
+    0 0 0 1px var(--heartwood-glow),
+    0 10px 28px -10px rgba(232, 154, 60, 0.65);
+}
+
+.cta-secondary:hover {
+  background: rgba(232, 154, 60, 0.08);
+}
+
+.cta-tertiary:hover {
+  color: var(--heartwood) !important;
+}
+
+.nav-link {
+  border-bottom: 1px solid transparent;
+}
+.nav-link:hover {
+  color: var(--heartwood);
+  border-bottom: 1px solid var(--heartwood);
+}
+
+.icon-toggle:hover {
+  border-color: var(--heartwood);
+}
+
+.project-card:hover .project-link {
+  border-bottom: 1px solid var(--heartwood);
+}
+
+.writing-row:hover {
+  background: var(--surface);
+}
+
+.logomark:hover .easter-egg {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-path {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .core-glow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-anim {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
