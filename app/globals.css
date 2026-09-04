@@ -123,6 +123,15 @@ button:focus-visible {
   background: var(--surface);
 }
 
+.ring-graphic {
+  display: none;
+}
+@media (min-width: 700px), (orientation: landscape) {
+  .ring-graphic {
+    display: flex;
+  }
+}
+
 .logomark:hover .easter-egg {
   opacity: 1;
 }

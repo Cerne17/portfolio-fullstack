@@ -12,12 +12,12 @@ const RINGS = [
 export function RingGraphic() {
   return (
     <div
+      className="ring-graphic"
       style={{
         flex: "0 1 340px",
         minWidth: 220,
         position: "relative",
         aspectRatio: "1 / 1",
-        display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
