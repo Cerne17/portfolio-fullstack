@@ -4,6 +4,7 @@ import { meta } from "@/lib/dictionary";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cerne.pro"),
   title: meta.home.title.en,
   description: meta.home.description.en,
 };
