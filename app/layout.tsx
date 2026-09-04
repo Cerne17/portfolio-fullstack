@@ -34,7 +34,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider attribute="data-theme" defaultTheme="light" enableSystem={false}>
           <LanguageProvider>
             <Nav />
             {children}
