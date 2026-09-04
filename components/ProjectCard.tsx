@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Project } from "@/content/projects";
+import { Project } from "@/lib/content";
 import { Language } from "@/lib/language-context";
 import { ui } from "@/lib/dictionary";
 import { Tag } from "./Tag";
