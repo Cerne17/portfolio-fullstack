@@ -18,7 +18,8 @@ const copy = {
   submit: { en: "Send message", pt: "Enviar mensagem" },
 };
 
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "https://formspree.io/f/YOUR_FORM_ID";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -63,7 +64,7 @@ export default function ContactPage() {
       <p style={{ fontSize: "1.1rem", lineHeight: 1.65, color: "var(--text-muted)", margin: "0 0 48px" }}>{copy.sub[lang]}</p>
 
       <form
-        action={`https://formspree.io/f/${FORMSPREE_ID}`}
+        action={FORMSPREE_ENDPOINT}
         method="POST"
         style={{ display: "flex", flexDirection: "column", gap: 24 }}
       >
