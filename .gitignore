@@ -1,16 +1,17 @@
-# Node.js
-backend/node_modules/
-backend/dist/
-backend/.env*
-backend/.DS_Store
+# Next.js
+/.next/
+/out/
+node_modules/
+.env*.local
+next-env.d.ts
 
-# React
-frontend/build/
-frontend/node_modules/
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
-frontend/.env.production.local
+# frontend-legacy (old CRA app)
+frontend-legacy/build/
+frontend-legacy/node_modules/
+frontend-legacy/.env.local
+frontend-legacy/.env.development.local
+frontend-legacy/.env.test.local
+frontend-legacy/.env.production.local
 
 # VS Code
 .vscode/
