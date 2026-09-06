@@ -1,0 +1,95 @@
+backend:
+  name: github
+  repo: Cerne17/portfolio-fullstack
+  branch: main
+  base_url: https://cerne.pro
+  auth_endpoint: api/decap/auth
+
+publish_mode: simple
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "now"
+    label: "Now"
+    label_singular: "Now entry"
+    folder: "content/now"
+    create: true
+    format: "frontmatter"
+    slug: "{{fields.date}}"
+    summary: "{{date}} — {{en}}"
+    sortable_fields: ["date"]
+    fields:
+      - { label: "Date", name: "date", widget: "string", pattern: ["^\\d{4}-\\d{2}$", "Must be YYYY-MM, e.g. 2026-09"], hint: "Format: YYYY-MM" }
+      - { label: "English", name: "en", widget: "text" }
+      - { label: "Portuguese", name: "pt", widget: "text" }
+
+  - name: "writing"
+    label: "Writing"
+    label_singular: "Article"
+    folder: "content/writing"
+    create: true
+    extension: "mdx"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}} ({{lang}})"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Date", name: "date", widget: "string", pattern: ["^\\d{4}-\\d{2}$", "Must be YYYY-MM, e.g. 2026-09"], hint: "Format: YYYY-MM" }
+      - { label: "Language", name: "lang", widget: "select", options: ["EN", "PT"] }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Dek (one-line summary)", name: "dek", widget: "text" }
+      - { label: "Draft (hide from the writing list)", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "content/projects"
+    create: true
+    extension: "mdx"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["order", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Pillar", name: "pillar", widget: "select", options: ["data-finance", "system-design", "full-stack", "algorithms"] }
+      - label: "Pillar label"
+        name: "pillarLabel"
+        widget: "object"
+        fields:
+          - { label: "English", name: "en", widget: "string" }
+          - { label: "Portuguese", name: "pt", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - label: "Role"
+        name: "role"
+        widget: "object"
+        fields:
+          - { label: "English", name: "en", widget: "string" }
+          - { label: "Portuguese", name: "pt", widget: "string" }
+      - { label: "Stack", name: "stack", widget: "list" }
+      - { label: "Hero project (show large on Home/Work)", name: "hero", widget: "boolean", default: false }
+      - { label: "Order (lower shows first)", name: "order", widget: "number" }
+      - { label: "Repo URL", name: "repo", widget: "string" }
+      - { label: "Demo URL", name: "demo", widget: "string", required: false }
+      - label: "Thesis (one-line summary)"
+        name: "thesis"
+        widget: "object"
+        fields:
+          - { label: "English", name: "en", widget: "text" }
+          - { label: "Portuguese", name: "pt", widget: "text" }
+      - label: "Key decision"
+        name: "keyDecision"
+        widget: "object"
+        fields:
+          - { label: "English", name: "en", widget: "text" }
+          - { label: "Portuguese", name: "pt", widget: "text" }
+      - label: "Lede (full write-up, optional — projects without one show the key decision instead)"
+        name: "lede"
+        widget: "object"
+        required: false
+        fields:
+          - { label: "English", name: "en", widget: "text", required: false }
+          - { label: "Portuguese", name: "pt", widget: "text", required: false }
