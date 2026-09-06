@@ -1,13 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+// Must exactly match the GitHub OAuth App's registered callback URL,
+// regardless of which domain (apex or www) the /admin page was loaded from.
+const CANONICAL_ORIGIN = "https://cerne.pro";
+
+export async function GET() {
   const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
   if (!clientId) {
     return new NextResponse("GITHUB_OAUTH_CLIENT_ID is not configured.", { status: 500 });
   }
 
   const state = crypto.randomUUID();
-  const redirectUri = `${request.nextUrl.origin}/api/decap/callback`;
+  const redirectUri = `${CANONICAL_ORIGIN}/api/decap/callback`;
 
   const authorizeUrl = new URL("https://github.com/login/oauth/authorize");
   authorizeUrl.searchParams.set("client_id", clientId);
