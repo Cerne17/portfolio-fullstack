@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Cerne17/portfolio-fullstack
   branch: main
-  base_url: https://cerne.pro
+  base_url: https://www.cerne.pro
   auth_endpoint: api/decap/auth
 
 publish_mode: simple

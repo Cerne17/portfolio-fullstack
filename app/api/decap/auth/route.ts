@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
-// Must exactly match the GitHub OAuth App's registered callback URL,
-// regardless of which domain (apex or www) the /admin page was loaded from.
-const CANONICAL_ORIGIN = "https://cerne.pro";
+// Must exactly match the GitHub OAuth App's registered callback URL.
+// www, not apex — Vercel redirects cerne.pro -> www.cerne.pro, so www is
+// the domain requests actually land on.
+const CANONICAL_ORIGIN = "https://www.cerne.pro";
 
 export async function GET() {
   const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
