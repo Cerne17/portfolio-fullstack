@@ -1,29 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
 
-function handshakeHtml(status: "success" | "error", payload: unknown) {
+function handshakeHtml(status: "success" | "error", payload: { message?: string; token?: string; provider?: string }) {
   const message = `authorization:github:${status}:${JSON.stringify(payload)}`;
+  const visibleMessage =
+    status === "success"
+      ? "Signed in — you can close this window."
+      : `Sign-in failed: ${payload.message ?? "unknown error"}`;
+
   return `<!doctype html>
 <html>
-<body>
+<body style="font-family: system-ui, sans-serif; padding: 40px; color: ${status === "success" ? "#1a1b1e" : "#8c3b24"};">
+<p id="status">${visibleMessage}</p>
 <script>
 (function () {
-  function receiveMessage(e) {
-    window.opener.postMessage(${JSON.stringify(message)}, e.origin);
-    window.removeEventListener("message", receiveMessage, false);
+  var done = false;
+  function send() {
+    if (!window.opener) {
+      document.getElementById("status").textContent =
+        "No opener window found — this page was likely opened directly. Close it and try Login with GitHub again from /admin.";
+      return;
+    }
+    function receiveMessage(e) {
+      window.opener.postMessage(${JSON.stringify(message)}, e.origin);
+      window.removeEventListener("message", receiveMessage, false);
+      done = true;
+      ${status === "success" ? "setTimeout(function () { window.close(); }, 300);" : ""}
+    }
+    window.addEventListener("message", receiveMessage, false);
+    window.opener.postMessage("authorizing:github", "*");
+    // Some Decap versions don't reply to the ping above — fall back to a direct send.
+    setTimeout(function () {
+      if (!done) window.opener.postMessage(${JSON.stringify(message)}, "*");
+    }, 500);
   }
-  window.addEventListener("message", receiveMessage, false);
-  window.opener.postMessage("authorizing:github", "*");
+  send();
 })();
 </script>
 </body>
 </html>`;
 }
 
-function respond(status: "success" | "error", payload: unknown) {
+function respond(status: "success" | "error", payload: { message?: string; token?: string; provider?: string }) {
   const response = new NextResponse(handshakeHtml(status, payload), {
     headers: { "Content-Type": "text/html" },
   });
-  response.cookies.delete("decap_oauth_state");
+  response.cookies.set("decap_oauth_state", "", { maxAge: 0, path: "/api/decap", domain: ".cerne.pro" });
   return response;
 }
 
