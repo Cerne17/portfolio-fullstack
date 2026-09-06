@@ -5,14 +5,6 @@ node_modules/
 .env*.local
 next-env.d.ts
 
-# frontend-legacy (old CRA app)
-frontend-legacy/build/
-frontend-legacy/node_modules/
-frontend-legacy/.env.local
-frontend-legacy/.env.development.local
-frontend-legacy/.env.test.local
-frontend-legacy/.env.production.local
-
 # VS Code
 .vscode/
 
