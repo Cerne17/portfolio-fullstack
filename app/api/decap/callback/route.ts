@@ -7,6 +7,7 @@ function handshakeHtml(status: "success" | "error", payload: { message?: string;
 
   return `<!doctype html>
 <html>
+<head><link rel="icon" href="/icon.svg" type="image/svg+xml" /></head>
 <body style="font-family: system-ui, sans-serif; padding: 40px; color: #1a1b1e;">
 <p><strong>${serverMessage}</strong></p>
 <p id="status">Talking to the admin tab…</p>
