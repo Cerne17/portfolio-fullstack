@@ -2,38 +2,44 @@ import { NextRequest, NextResponse } from "next/server";
 
 function handshakeHtml(status: "success" | "error", payload: { message?: string; token?: string; provider?: string }) {
   const message = `authorization:github:${status}:${JSON.stringify(payload)}`;
-  const visibleMessage =
-    status === "success"
-      ? "Signed in — you can close this window."
-      : `Sign-in failed: ${payload.message ?? "unknown error"}`;
+  const serverMessage =
+    status === "success" ? "Token exchange succeeded." : `Sign-in failed: ${payload.message ?? "unknown error"}`;
 
   return `<!doctype html>
 <html>
-<body style="font-family: system-ui, sans-serif; padding: 40px; color: ${status === "success" ? "#1a1b1e" : "#8c3b24"};">
-<p id="status">${visibleMessage}</p>
+<body style="font-family: system-ui, sans-serif; padding: 40px; color: #1a1b1e;">
+<p><strong>${serverMessage}</strong></p>
+<p id="status">Talking to the admin tab…</p>
+<p style="color: #5a5852; font-size: 0.85rem;">Running at: <code id="loc"></code></p>
 <script>
 (function () {
+  document.getElementById("loc").textContent = window.location.href;
   var done = false;
-  function send() {
-    if (!window.opener) {
-      document.getElementById("status").textContent =
-        "No opener window found — this page was likely opened directly. Close it and try Login with GitHub again from /admin.";
-      return;
-    }
-    function receiveMessage(e) {
-      window.opener.postMessage(${JSON.stringify(message)}, e.origin);
-      window.removeEventListener("message", receiveMessage, false);
-      done = true;
-      ${status === "success" ? "setTimeout(function () { window.close(); }, 300);" : ""}
-    }
-    window.addEventListener("message", receiveMessage, false);
-    window.opener.postMessage("authorizing:github", "*");
-    // Some Decap versions don't reply to the ping above — fall back to a direct send.
-    setTimeout(function () {
-      if (!done) window.opener.postMessage(${JSON.stringify(message)}, "*");
-    }, 500);
+  var statusEl = document.getElementById("status");
+
+  if (!window.opener) {
+    statusEl.textContent =
+      "No opener window found — this page was opened directly, not as a popup from /admin. Close it and retry from /admin.";
+    return;
   }
-  send();
+
+  function receiveMessage(e) {
+    window.opener.postMessage(${JSON.stringify(message)}, e.origin);
+    window.removeEventListener("message", receiveMessage, false);
+    done = true;
+    statusEl.textContent = "Sent to admin tab (replied from " + e.origin + "). ${status === "success" ? "Closing…" : "You can close this window."}";
+    ${status === "success" ? "setTimeout(function () { window.close(); }, 1500);" : ""}
+  }
+  window.addEventListener("message", receiveMessage, false);
+  window.opener.postMessage("authorizing:github", "*");
+
+  // Some Decap versions don't reply to the ping above — fall back to a broadcast send.
+  setTimeout(function () {
+    if (!done) {
+      window.opener.postMessage(${JSON.stringify(message)}, "*");
+      statusEl.textContent = "No reply from admin tab — sent anyway as a broadcast. If /admin is still showing the login screen, tell your dev the 'Running at' URL above.";
+    }
+  }, 800);
 })();
 </script>
 </body>
@@ -42,7 +48,7 @@ function handshakeHtml(status: "success" | "error", payload: { message?: string;
 
 function respond(status: "success" | "error", payload: { message?: string; token?: string; provider?: string }) {
   const response = new NextResponse(handshakeHtml(status, payload), {
-    headers: { "Content-Type": "text/html" },
+    headers: { "Content-Type": "text/html; charset=utf-8" },
   });
   response.cookies.set("decap_oauth_state", "", { maxAge: 0, path: "/api/decap", domain: ".cerne.pro" });
   return response;
