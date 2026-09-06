@@ -41,7 +41,19 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Dek (one-line summary)", name: "dek", widget: "text" }
       - { label: "Draft (hide from the writing list)", name: "draft", widget: "boolean", default: false, required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Cover image (shown at the top of the article)", name: "cover", widget: "image", required: false }
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+        hint: "Drag images/GIFs/video files straight in. Code fences (```) get syntax highlighting. Inline math: $x^2$ — block math: $$x^2$$"
+      - label: "References (shown at the end of the article)"
+        name: "citations"
+        widget: "list"
+        required: false
+        summary: "{{fields.label}}"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
 
   - name: "projects"
     label: "Projects"
