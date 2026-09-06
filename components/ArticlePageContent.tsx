@@ -6,7 +6,9 @@ import { Language } from "@/lib/types";
 import { ContactBand } from "@/components/ContactBand";
 import { Post } from "@/lib/content";
 
-export function ArticlePageContent({ post }: { post: Post }) {
+const referencesCopy = { en: "References", pt: "Referências" };
+
+export function ArticlePageContent({ post, children }: { post: Post; children: React.ReactNode }) {
   const lang = useLocale() as Language;
 
   return (
@@ -38,15 +40,46 @@ export function ArticlePageContent({ post }: { post: Post }) {
 
         <p style={{ fontSize: "1.2rem", lineHeight: 1.6, color: "var(--text-muted)", margin: "0 0 40px", maxWidth: "64ch" }}>{post.dek}</p>
 
+        {post.cover && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={post.cover}
+            alt=""
+            style={{ width: "100%", borderRadius: "var(--radius-md)", marginBottom: 40, display: "block" }}
+          />
+        )}
+
         <div style={{ height: 1, background: "var(--surface-2)", marginBottom: 40 }} />
 
         <div style={{ fontSize: "1.08rem", lineHeight: 1.75, color: "var(--text)", maxWidth: "66ch" }}>
-          {post.body.map((para, i) => (
-            <p key={i} style={{ margin: i === post.body.length - 1 ? 0 : "0 0 24px" }}>
-              {para}
-            </p>
-          ))}
+          {children}
         </div>
+
+        {post.citations.length > 0 && (
+          <div style={{ marginTop: 56, paddingTop: 32, borderTop: "1px solid var(--surface-2)" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.78rem",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--heartwood)",
+                marginBottom: 16,
+              }}
+            >
+              {referencesCopy[lang]}
+            </div>
+            <ol style={{ margin: 0, paddingLeft: 20, color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.8 }}>
+              {post.citations.map((c) => (
+                <li key={c.url}>
+                  <a href={c.url} target="_blank" rel="noreferrer" style={{ color: "var(--heartwood)" }}>
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </article>
 
       <ContactBand />

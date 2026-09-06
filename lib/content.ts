@@ -39,6 +39,11 @@ export function getNowEntries(): NowEntry[] {
 
 export type PostLang = "EN" | "PT";
 
+export interface Citation {
+  label: string;
+  url: string;
+}
+
 export interface Post {
   slug: string;
   iso: string;
@@ -47,7 +52,9 @@ export interface Post {
   title: string;
   dek: string;
   draft: boolean;
-  body: string[];
+  cover?: string;
+  body: string;
+  citations: Citation[];
 }
 
 function readAllPosts(): Post[] {
@@ -57,11 +64,6 @@ function readAllPosts(): Post[] {
     .map((file) => {
       const raw = fs.readFileSync(path.join(WRITING_DIR, file), "utf8");
       const { data, content } = matter(raw);
-      const body = content
-        .trim()
-        .split(/\n\s*\n/)
-        .map((p) => p.trim())
-        .filter(Boolean);
 
       return {
         slug: file.replace(/\.mdx$/, ""),
@@ -71,7 +73,9 @@ function readAllPosts(): Post[] {
         title: data.title as string,
         dek: data.dek as string,
         draft: Boolean(data.draft),
-        body,
+        cover: data.cover as string | undefined,
+        body: content.trim(),
+        citations: (data.citations as Citation[] | undefined) ?? [],
       };
     })
     .sort((a, b) => b.iso.localeCompare(a.iso));
