@@ -26,6 +26,9 @@ export async function GET() {
     sameSite: "lax",
     maxAge: 600,
     path: "/api/decap",
+    // Shared across apex/www so the cookie survives a redirect between them
+    // between here and /callback.
+    domain: ".cerne.pro",
   });
   return response;
 }
