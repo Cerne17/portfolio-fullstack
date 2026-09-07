@@ -5,15 +5,19 @@ import { useLocale } from "next-intl";
 import { Language } from "@/lib/types";
 import { ContactBand } from "@/components/ContactBand";
 import { Post } from "@/lib/content";
+import { extractHeadings } from "@/components/MarkdownBody";
 
 const referencesCopy = { en: "References", pt: "Referências" };
+const onThisPageCopy = { en: "On this page", pt: "Nesta página" };
 
 export function ArticlePageContent({ post, children }: { post: Post; children: React.ReactNode }) {
   const lang = useLocale() as Language;
+  const tocHeadings = extractHeadings(post.body).filter((h) => h.level === 2 || h.level === 3);
 
   return (
     <>
-      <article style={{ maxWidth: 720, margin: "0 auto", padding: "clamp(56px,9vw,96px) clamp(20px,5vw,48px) clamp(40px,6vw,56px)" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "clamp(56px,9vw,96px) clamp(20px,5vw,48px) clamp(40px,6vw,56px)", display: "flex", gap: 48, alignItems: "flex-start" }}>
+      <article style={{ maxWidth: 720, flex: "1 1 720px", minWidth: 0 }}>
         <Link href="/writing" className="cta-tertiary" style={{ fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--text-muted)", display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32 }}>
           {lang === "en" ? "← Writing" : "← Textos"}
         </Link>
@@ -81,6 +85,31 @@ export function ArticlePageContent({ post, children }: { post: Post; children: R
           </div>
         )}
       </article>
+
+      {tocHeadings.length > 0 && (
+        <aside className="toc-rail" style={{ flex: "0 0 200px", position: "sticky", top: 96 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--heartwood)",
+              marginBottom: 12,
+            }}
+          >
+            {onThisPageCopy[lang]}
+          </div>
+          <nav>
+            {tocHeadings.map((h) => (
+              <a key={h.id} href={`#${h.id}`} className={`toc-link${h.level === 3 ? " toc-link--h3" : ""}`}>
+                {h.text}
+              </a>
+            ))}
+          </nav>
+        </aside>
+      )}
+      </div>
 
       <ContactBand />
     </>

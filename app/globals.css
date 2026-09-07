@@ -132,6 +132,35 @@ button:focus-visible {
   }
 }
 
+.toc-rail {
+  display: none;
+}
+@media (min-width: 1080px) {
+  .toc-rail {
+    display: block;
+  }
+}
+
+.toc-link {
+  display: block;
+  padding: 4px 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+}
+.toc-link:hover {
+  color: var(--heartwood);
+  border-left-color: var(--heartwood);
+}
+.toc-link--h3 {
+  padding-left: 24px;
+  font-size: 0.76rem;
+}
+
 .logomark:hover .easter-egg {
   opacity: 1;
 }
