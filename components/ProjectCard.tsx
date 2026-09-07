@@ -113,9 +113,22 @@ export function ProjectCardSupporting({
       <p style={{ margin: "0 0 14px", fontSize: "0.92rem", lineHeight: 1.55, color: "var(--text-muted)" }}>
         {project.thesis[lang]}
       </p>
-      <Button variant="tertiary" href={project.repo} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem" }}>
-        Code ↗
-      </Button>
+      <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+        {project.demo && (
+          <Button
+            variant="tertiary"
+            href={project.demo}
+            target="_blank"
+            rel="noreferrer"
+            style={{ fontSize: "0.85rem", color: "var(--heartwood)", fontWeight: 600 }}
+          >
+            {lang === "en" ? "Live" : "Ao vivo"} ↗
+          </Button>
+        )}
+        <Button variant="tertiary" href={project.repo} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem" }}>
+          Code ↗
+        </Button>
+      </div>
     </div>
   );
 }
