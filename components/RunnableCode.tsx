@@ -56,11 +56,11 @@ const buttonBaseStyle: React.CSSProperties = {
 };
 
 export function RunnableCode({ code }: { code: string }) {
-  const [running, setRunning] = useState(false);
+  const [running, setRunning] = useState(true);
   const [runId, setRunId] = useState(0);
 
   return (
-    <div style={{ margin: "-12px 0 24px" }}>
+    <div style={{ margin: "0 0 24px" }}>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <button
           onClick={() => {

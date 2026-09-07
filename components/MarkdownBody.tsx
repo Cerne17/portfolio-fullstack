@@ -92,12 +92,10 @@ export function MarkdownBody({ content }: { content: string }) {
           },
           pre({ children, ...props }) {
             const block = codeBlocks[codeBlockIndex++];
-            return (
-              <>
-                <pre {...props}>{children}</pre>
-                {block?.isLive && <RunnableCode code={block.raw} />}
-              </>
-            );
+            if (block?.isLive) {
+              return <RunnableCode code={block.raw} />;
+            }
+            return <pre {...props}>{children}</pre>;
           },
           blockquote({ children }) {
             return (
