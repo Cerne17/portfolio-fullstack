@@ -1,0 +1,129 @@
+---
+date: "2026-09"
+lang: "EN"
+title: "Writing feature showcase"
+dek: "One article exercising every rendering feature the writing section supports."
+draft: true
+cover: "/headshot.jpeg"
+citations:
+  - label: "NeuraTrade repository"
+    url: "https://github.com/Cerne17/NeuraTrade"
+  - label: "p5.js reference"
+    url: "https://p5js.org/reference/"
+  - label: "KaTeX supported functions"
+    url: "https://katex.org/docs/supported"
+---
+
+This article is a living reference for what the writing pipeline can render. Keep it around, edit it as new features get added, or delete it — your call.
+
+## Headings
+
+### This is an H3
+
+#### This is an H4
+
+Everything from H1 to H6 (picked from Decap's toolbar) gets a distinct, styled size — see the H1 example further down for one used inline in a body, not as the page title.
+
+## Text formatting
+
+Plain text, **bold**, *italic*, ***bold italic***, ~~strikethrough~~, and `inline code`. Links: a [relative link home](/) and an [external link](https://github.com/Cerne17) (opens in a new tab).
+
+## Lists
+
+- Unordered item
+- Another item
+  - Nested item
+- Third item
+
+1. Ordered step one
+2. Ordered step two
+3. Ordered step three
+
+## Math (KaTeX)
+
+Inline: the classic $E = mc^2$, or a walk-forward window size $w$.
+
+Block:
+
+$$
+\text{PR-AUC} = \int_0^1 \text{Precision}(r)\, dr
+$$
+
+$$
+\hat{y} = \sigma\left(\sum_{i=1}^{n} w_i x_i + b\right) \quad \text{where } \sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+## Code blocks
+
+```python
+def walk_forward_split(data, window, step):
+    for start in range(0, len(data) - window, step):
+        yield data[start:start + window]
+```
+
+```typescript
+interface Post {
+  slug: string;
+  title: string;
+  draft: boolean;
+}
+
+const isPublished = (post: Post): boolean => !post.draft;
+```
+
+# A level-1 heading, used mid-body
+
+Decap's H1 toolbar button renders here as a large subsection heading — smaller than the actual page title above, since that one is the page's real `<h1>`.
+
+## Runnable code
+
+A live p5.js sketch — start a ```js block with `// live` as its first line:
+
+```js
+// live
+function setup() {
+  createCanvas(300, 200);
+}
+function draw() {
+  background(20);
+  fill(232, 154, 60);
+  noStroke();
+  ellipse(150 + 80 * sin(frameCount * 0.05), 100, 40, 40);
+}
+```
+
+The same, but broken on purpose — checks that an error inside `setup()` still surfaces (this exercises an `unhandledrejection` handler, since p5's global-mode init runs inside a promise chain):
+
+```js
+// live
+function setup() {
+  createCanvas(300, 100);
+  thisFunctionDoesNotExist();
+}
+```
+
+## Embedded image
+
+A second image, inside the body (not the cover field), with a caption from its alt text:
+
+![The cerne.pro brand ring mark](/icon.svg)
+
+## Video
+
+Not demonstrated here — no video file has been uploaded yet. Drop an `.mp4`/`.webm`/`.mov` into this article through Decap's media picker the same way you'd add an image; the body auto-detects the file extension and renders a `<video>` player instead of an `<img>`.
+
+## Blockquote
+
+> The point wasn't a bigger model; it was a defensible one.
+
+## Table (GFM)
+
+| Metric | Before | After |
+| --- | --- | --- |
+| Recall | 0.16 | 0.35 |
+| Precision | 0.55 | 0.84 |
+| PR-AUC | 0.15 | 0.42 |
+
+## Citations
+
+Check the References section at the bottom of this page.
