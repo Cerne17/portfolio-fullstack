@@ -196,8 +196,20 @@ button:focus-visible {
   margin: 0 0 24px;
   padding-left: 22px;
 }
+.article-body ul {
+  list-style: disc;
+}
+.article-body ol {
+  list-style: decimal;
+}
+.article-body ul ul {
+  list-style: circle;
+}
 .article-body li {
   margin-bottom: 8px;
+}
+.article-body li::marker {
+  color: var(--text-muted);
 }
 
 .article-body table {
@@ -276,6 +288,7 @@ button:focus-visible {
 
 .article-body .katex-display {
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
+  padding: 8px 2px;
   margin: 24px 0;
 }
