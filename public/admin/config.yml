@@ -49,7 +49,7 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
-        hint: "Drag images/GIFs/video files straight in. Code fences (```) get syntax highlighting. Inline math: $x^2$ — block math: $$x^2$$"
+        hint: "Drag images/GIFs/video files straight in. Code fences (```) get syntax highlighting. Inline math: $x^2$ — block math: $$x^2$$. Runnable sketch: start a ```js block with // live as the first line — adds a Run button (p5.js is preloaded)."
       - label: "References (shown at the end of the article)"
         name: "citations"
         widget: "list"
