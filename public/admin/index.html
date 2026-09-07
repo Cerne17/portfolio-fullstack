@@ -25,6 +25,11 @@
       table { border-collapse: collapse; width: 100%; margin: 0 0 16px; }
       th, td { border: 1px solid #d8d5cc; padding: 6px 10px; text-align: left; }
     `, { raw: true });
+    // Real design tokens + .article-body rules, generated from the same
+    // source the live site uses — see scripts/build-admin-preview.mjs.
+    CMS.registerPreviewStyle("/admin/site.css");
+    CMS.registerPreviewStyle("/admin/markdown-preview.bundle.css");
   </script>
+  <script src="/admin/markdown-preview.bundle.js"></script>
 </body>
 </html>
