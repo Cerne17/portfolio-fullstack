@@ -23,13 +23,21 @@ function buildSrcDoc(code: string) {
 <body>
 <div id="error"></div>
 <script>
-  // p5's friendly-error-system otherwise swallows exceptions before they
-  // reach window.onerror, leaving a blank frame with no feedback.
-  if (window.p5) window.p5.disableFriendlyErrors = true;
+  function showError(text) {
+    document.getElementById("error").textContent = text;
+  }
   window.onerror = function (message) {
-    document.getElementById("error").textContent = String(message);
+    showError(String(message));
     return true;
   };
+  // p5's global-mode auto-init (setup()/draw() on window) runs inside a
+  // Promise chain (Promise.all([...]).then(_globalInit)) — an error thrown
+  // in the user's setup() surfaces as an unhandled rejection, not a normal
+  // uncaught error, so window.onerror alone never sees it.
+  window.addEventListener("unhandledrejection", function (event) {
+    var reason = event.reason;
+    showError((reason && reason.message) || String(reason));
+  });
 <\/script>
 <script>
 ${code}
