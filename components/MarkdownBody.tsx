@@ -5,6 +5,7 @@ import rehypeKatex from "rehype-katex";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
 import "katex/dist/katex.min.css";
+import { RunnableCode } from "./RunnableCode";
 
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".ogg"];
 
@@ -13,7 +14,31 @@ function isVideo(src?: string) {
   return VIDEO_EXTENSIONS.some((ext) => src.toLowerCase().endsWith(ext));
 }
 
+interface CodeBlockInfo {
+  isLive: boolean;
+  raw: string;
+}
+
+// A plain ```js fenced block whose first line is exactly `// live` gets a
+// Run button + sandboxed iframe below it. Detected on the raw markdown
+// (not the highlighted tree, which no longer has the source as plain
+// text) and correlated to <pre> elements by document order.
+function findCodeBlocks(markdown: string): CodeBlockInfo[] {
+  const blocks: CodeBlockInfo[] = [];
+  const regex = /```(\w+)?\n([\s\S]*?)```/g;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(markdown))) {
+    const lang = match[1] ?? "";
+    const body = match[2].replace(/\n$/, "");
+    blocks.push({ isLive: lang === "js" && body.startsWith("// live"), raw: body });
+  }
+  return blocks;
+}
+
 export function MarkdownBody({ content }: { content: string }) {
+  const codeBlocks = findCodeBlocks(content);
+  let codeBlockIndex = 0;
+
   return (
     <div className="article-body">
       <ReactMarkdown
@@ -63,6 +88,15 @@ export function MarkdownBody({ content }: { content: string }) {
               >
                 {children}
               </a>
+            );
+          },
+          pre({ children, ...props }) {
+            const block = codeBlocks[codeBlockIndex++];
+            return (
+              <>
+                <pre {...props}>{children}</pre>
+                {block?.isLive && <RunnableCode code={block.raw} />}
+              </>
             );
           },
           blockquote({ children }) {
