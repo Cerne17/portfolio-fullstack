@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:admin-preview": "node scripts/build-admin-preview.mjs",
+    "predev": "npm run build:admin-preview",
+    "prebuild": "npm run build:admin-preview",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -31,6 +34,7 @@
     "@types/node": "^22.10.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "esbuild": "^0.28.2",
     "eslint": "^9.18.0",
     "eslint-config-next": "^15.5.0",
     "tailwindcss": "^4.1.0",
