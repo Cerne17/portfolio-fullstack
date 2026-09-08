@@ -14,10 +14,12 @@
 
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
+import katex from "katex";
 import { MarkdownBody } from "../components/MarkdownBody";
 
 declare const CMS: {
   registerPreviewTemplate: (name: string, component: unknown) => void;
+  registerEditorComponent: (component: Record<string, unknown>) => void;
 };
 declare const createClass: (spec: Record<string, unknown>) => unknown;
 declare const h: (
@@ -129,3 +131,31 @@ const WritingPreview = createClass({
 });
 
 CMS.registerPreviewTemplate("writing", WritingPreview);
+
+// Decap's markdown widget has no math node type — display equations are
+// just inline text to it, so its Slate<->markdown round-trip (remark's
+// CommonMark emphasis rules) can misparse underscores/brackets inside
+// $$...$$ and re-serialize them escaped, corrupting the LaTeX. Registering
+// the whole $$...$$ block as an atomic editor component makes Decap treat
+// its body as an opaque string: fromBlock/toBlock read and write it
+// verbatim, so it's never handed to the inline emphasis/link tokenizer.
+// This only covers display (block) math on its own paragraph — inline
+// $...$ mixed into prose is still a plain text run and isn't protected;
+// switch that field to raw Markdown mode for inline-math-heavy edits.
+CMS.registerEditorComponent({
+  id: "math-block",
+  label: "Math (display)",
+  fields: [{ name: "body", label: "LaTeX", widget: "string", default: "" }],
+  pattern: /^\s*\$\$\s*\n?([\s\S]*?)\n?\s*\$\$\s*$/,
+  fromBlock: (match: RegExpMatchArray) => ({ body: match[1].trim() }),
+  toBlock: (obj: { body: string }) => `$$\n${obj.body}\n$$`,
+  toPreview: (obj: { body: string }) => {
+    let html: string;
+    try {
+      html = katex.renderToString(obj.body, { displayMode: true, throwOnError: false });
+    } catch {
+      html = `$$${obj.body}$$`;
+    }
+    return h("div", { style: { padding: "8px 0" }, dangerouslySetInnerHTML: { __html: html } });
+  },
+});
