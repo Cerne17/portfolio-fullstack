@@ -15,6 +15,44 @@ interface TocHeading {
   html: string;
 }
 
+// Matches the .article-body heading scroll-margin-top in globals.css, so a
+// TOC jump stops with the heading's title clear of the sticky nav instead
+// of landing flush underneath it.
+const TOC_SCROLL_OFFSET = 90;
+
+function easeInCubic(t: number): number {
+  return t * t * t;
+}
+
+function scrollToHeading(id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    el.scrollIntoView();
+    history.replaceState(null, "", `#${id}`);
+    return;
+  }
+
+  const startY = window.scrollY;
+  const targetY = el.getBoundingClientRect().top + window.scrollY - TOC_SCROLL_OFFSET;
+  const distance = targetY - startY;
+  const duration = 500;
+  let startTime: number | null = null;
+
+  function step(timestamp: number) {
+    if (startTime === null) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    window.scrollTo(0, startY + distance * easeInCubic(progress));
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      history.replaceState(null, "", `#${id}`);
+    }
+  }
+  requestAnimationFrame(step);
+}
+
 export function ArticlePageContent({
   post,
   children,
@@ -118,6 +156,10 @@ export function ArticlePageContent({
                 key={h.id}
                 href={`#${h.id}`}
                 className={`toc-link${h.level === 3 ? " toc-link--h3" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToHeading(h.id);
+                }}
                 dangerouslySetInnerHTML={{ __html: h.html }}
               />
             ))}

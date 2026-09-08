@@ -202,6 +202,9 @@ button:focus-visible {
   color: var(--text);
   letter-spacing: -0.01em;
   margin: 40px 0 16px;
+  /* Room for the sticky nav so a TOC jump doesn't land the heading flush
+     under it, hiding the title it was supposed to reveal. */
+  scroll-margin-top: 90px;
 }
 /* Body h1 stays subordinate to the page's actual <h1> (the post title) —
    the largest a heading picked inside the article body should read. */
