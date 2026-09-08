@@ -1,0 +1,147 @@
+---
+date: 2026-09
+lang: EN
+title: Modern Portfolio Theory — Prerequisites
+dek: The math, the finance, and the code you need before the Markowitz deep-dive.
+draft: true
+cover: /uploads/modern_portfolio_theory_prereq_cover_image.jpeg
+citations:
+  - label: Stanford — Boyd & Vandenberghe, Convex Optimization (free PDF)
+    url: https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf
+  - label: NumPy Documentation
+    url: https://numpy.org/doc/stable/
+  - label: SciPy — scipy.optimize
+    url: https://docs.scipy.org/doc/scipy/reference/optimize.html
+  - label: CVXPY Documentation
+    url: https://www.cvxpy.org/
+  - label: p5.js Reference
+    url: https://p5js.org/reference/
+---
+The Markowitz deep-dive opens with a single disclaimer, tucked into one sentence: basic probability and linear algebra, and the rest builds on that. It's a fair warning, but a compressed one — it flattens three genuinely different skill sets into a clause. This is the uncompressed version: the math the theory is actually built from, the finance vocabulary it assumes you already have, and the code — two very different kinds of it — that turn the whole thing from something you read into something you can run, or at least drag a mouse across.
+
+## The Math
+
+This mathematical backbone isn't exotic — it's three well-worn tools, each doing one specific job: probability describes what a return actually is, linear algebra describes what a *portfolio* of returns is, and optimization finds the best one. It shows up first as a single number — the expected value and variance of a return. It shows up again as a matrix — the covariance structure across every asset in the portfolio, all at once. It shows up a final time as a search — a constrained optimization problem whose solution is the specific set of weights $w$ that minimizes risk for a given expected return.
+
+* **Probability & statistics** — random variables, expectation, variance, covariance, correlation, and ideally a working sense of the normal distribution. A return is modeled as a random variable; risk, in this theory, *is* its standard deviation.
+* **Linear algebra** — vectors, matrices, matrix multiplication, quadratic forms. Every equation in the deep-dive collapses into $w$, $\Sigma$, and a handful of matrix products once you stop writing out the summation signs: $\sigma_p^2 = \sum_i \sum_j w_i w_j \sigma_{ij}$ is just $w^T \Sigma w$.
+* **Optimization & calculus** — constrained optimization and Lagrange multipliers, at minimum. Finding the efficient frontier means minimizing $w^T \Sigma w$ subject to a fixed expected return and $\sum_i w_i = 1$ — a textbook quadratic program.
+
+## The Finance
+
+A return seems like a simple concept until it has to be defined precisely — a *simple* return, $P_1/P_0 - 1$, or a *log* return, $\ln(P_1/P_0)$, and the two aren't interchangeable once returns start getting summed across time. That precision matters most once a risk-free rate enters the picture, the $R_f$ inside the Sharpe Ratio — a rate that has to be measured on the same convention and over the same horizon as every other return in the model, or the ratio stops meaning what it claims to. Getting the risk-free rate right is what makes diversification measurable in the first place: the idea that combining imperfectly correlated assets can lower risk without giving up expected return. And that idea, in the end, is just a claim about how individual returns co-move with each other — which is exactly where this paragraph started.
+
+* **Returns** — simple vs. log returns, and why the difference compounds (literally) over multi-period calculations.
+* **The risk-free rate** — the return on a theoretically riskless asset (a short-term government bond in most textbooks; in Brazil, often proxied by the CDI or Selic rate). Every excess-return metric in the theory is anchored to it.
+* **Diversification** — the qualitative intuition behind $\sigma_p \le \sum_i w_i \sigma_i$: correlation, not just variance, is what determines whether adding an asset actually helps.
+* **CAPM & the market portfolio** — enough of the Capital Asset Pricing Model to make sense of beta: what "the market portfolio" means, and why it's the benchmark every asset's systematic risk gets measured against.
+
+## Two Kinds of Code
+
+None of the math above strictly requires a computer — for two or three assets, it's compact enough to work through by hand. A computer becomes necessary the moment that number grows: real portfolios span dozens or hundreds of tickers, and the covariance matrix scales quadratically with them. It splits, in practice, into two different toolkits doing two different jobs. It is Python — `numpy`, `pandas`, `scipy.optimize` or `cvxpy`, `matplotlib` — whenever the goal is an actual number: real prices in, an actual minimum-variance portfolio out. It is p5.js whenever the goal is intuition instead of a number — the sketch further down runs live in the browser, right where you're reading it, no local environment required.
+
+### Computing a real portfolio
+
+The default toolkit here is Python: `pandas` to turn raw prices into returns, `numpy` for the vectors and matrices ($\mu$, $\Sigma$, $w$), and `scipy.optimize` (or `cvxpy`, for a proper convex solver) to run the constrained optimization from the Math section above.
+
+```python
+import numpy as np
+import pandas as pd
+from scipy.optimize import minimize
+
+# prices: a DataFrame with one column per asset, one row per date
+returns = prices.pct_change().dropna()
+
+mu = returns.mean().to_numpy()          # E[R_i], per asset
+sigma = returns.cov().to_numpy()        # covariance matrix, Σ
+n = len(mu)
+
+def portfolio_variance(w):
+    return w @ sigma @ w
+
+w0 = np.repeat(1 / n, n)
+bounds = [(0, 1)] * n                              # no short-selling
+budget = {"type": "eq", "fun": lambda w: np.sum(w) - 1}
+
+result = minimize(portfolio_variance, w0, method="SLSQP",
+                   bounds=bounds, constraints=[budget])
+weights = result.x                                  # the minimum-variance portfolio
+```
+
+Sweeping a target return through the same constraint and re-solving at each step is the loop that actually traces the efficient frontier — everything above is a single point on it:
+
+```python
+import matplotlib.pyplot as plt
+
+target_returns = np.linspace(mu.min(), mu.max(), 50)
+frontier_risk = []
+
+for target in target_returns:
+    constraints = [
+        budget,
+        {"type": "eq", "fun": lambda w, target=target: w @ mu - target},
+    ]
+    result = minimize(portfolio_variance, w0, method="SLSQP",
+                       bounds=bounds, constraints=constraints)
+    frontier_risk.append(np.sqrt(result.fun))
+
+plt.plot(frontier_risk, target_returns)
+plt.xlabel("σ_p"); plt.ylabel("E[R_p]"); plt.title("Efficient Frontier")
+plt.show()
+```
+
+### Feeling the diversification effect
+
+Python is for producing a number. p5.js is for feeling why the number moves. Drag your mouse vertically to change the correlation, $\rho$, between two hypothetical assets, and watch the frontier bow away from the straight line that would connect them if $\rho = 1$ — the exact inequality from the Math section, made visible.
+
+```js
+// live
+let sigma1 = 0.20, sigma2 = 0.35;
+let mu1 = 0.08, mu2 = 0.14;
+
+function setup() {
+  createCanvas(400, 300);
+}
+
+function draw() {
+  background(20);
+  let rho = map(constrain(mouseY, 0, height), 0, height, 1, -1);
+
+  stroke(80);
+  line(50, 20, 50, 260);
+  line(50, 260, 380, 260);
+
+  noFill();
+  stroke(232, 154, 60);
+  strokeWeight(2);
+  beginShape();
+  for (let w1 = 0; w1 <= 1.001; w1 += 0.02) {
+    let w2 = 1 - w1;
+    let mu = w1 * mu1 + w2 * mu2;
+    let variance = w1 * w1 * sigma1 * sigma1 + w2 * w2 * sigma2 * sigma2
+                 + 2 * w1 * w2 * rho * sigma1 * sigma2;
+    let sigma = sqrt(max(variance, 0));
+    vertex(map(sigma, 0, 0.40, 50, 380), map(mu, 0.06, 0.16, 260, 20));
+  }
+  endShape();
+
+  stroke(120);
+  strokeWeight(1);
+  let x1 = map(sigma1, 0, 0.40, 50, 380), y1 = map(mu1, 0.06, 0.16, 260, 20);
+  let x2 = map(sigma2, 0, 0.40, 50, 380), y2 = map(mu2, 0.06, 0.16, 260, 20);
+  line(x1, y1, x2, y2);
+
+  noStroke();
+  fill(255);
+  ellipse(x1, y1, 6, 6);
+  ellipse(x2, y2, 6, 6);
+
+  fill(232, 154, 60);
+  textSize(12);
+  text('ρ = ' + rho.toFixed(2) + '  (drag mouse up/down)', 55, 285);
+}
+```
+
+## The Payoff
+
+The math makes the equations legible. That legibility is worth little without the finance to interpret what comes out the other end — is an 8% expected return good, is a beta of 1.2 high. That interpretation, in turn, only becomes something you can actually see with code — not one language, but two: Python to compute the real number, p5.js to feel why it moves. And what that combination produces is exactly what Markowitz set out to compute back in 1952 — a portfolio, and for a moment, a curve bowing live under your own mouse.
