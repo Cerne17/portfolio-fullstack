@@ -48,8 +48,8 @@ collections:
       - { label: "Cover image (shown at the top of the article)", name: "cover", widget: "image", required: false }
       - label: "Body"
         name: "body"
-        widget: "text"
-        hint: "Raw markdown — edits the exact source, no rich-text round-trip (avoids Decap's Slate editor mangling math/crashing on lists). Images/video: upload via the Cover field above or push to public/uploads directly, then reference with ![alt](/uploads/filename.ext). Code fences (```) get syntax highlighting. Inline math: $x^2$ — block math: $$x^2$$. Runnable sketch: start a ```js block with // live as the first line — it plays automatically (source hidden, p5.js preloaded); a Stop/Run button toggles it."
+        widget: "markdown"
+        hint: "Drag images/GIFs/video files straight in. Code fences (```) get syntax highlighting. Inline math: $x^2$ — block math: $$x^2$$. Runnable sketch: start a ```js block with // live as the first line — it plays automatically (source hidden, p5.js preloaded); a Stop/Run button toggles it. Editing math or a list with an empty trailing item? Switch this field to raw Markdown mode first (toolbar toggle) — rich-text mode round-trips through Slate and can mangle both."
       - label: "References (shown at the end of the article)"
         name: "citations"
         widget: "list"
