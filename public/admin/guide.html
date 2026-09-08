@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>cerne.pro — Editor Guide</title>
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://api.fontshare.com" />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-sans@latest/index.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@latest/index.css" />
+<style>
+  :root {
+    --ink: #F2F1ED;
+    --surface: #FFFFFF;
+    --surface-2: #E2E0DA;
+    --text: #1A1B1E;
+    --text-muted: #5A5852;
+    --heartwood: #8C3B24;
+    --heartwood-soft: #F6E9E3;
+    --sapwood: #3A6E52;
+    --sapwood-soft: #E8F0EA;
+    --font-display: 'Clash Display', 'Space Grotesk', sans-serif;
+    --font-body: 'Geist Sans', sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, monospace;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: var(--heartwood); }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px clamp(20px, 4vw, 40px);
+    background: var(--surface);
+    border-bottom: 1px solid var(--surface-2);
+  }
+  .topbar .brand {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .topbar .brand strong { color: var(--text); font-weight: 600; }
+  .topbar a.back {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .topbar a.back:hover { color: var(--heartwood); }
+
+  header.hero {
+    padding: clamp(32px, 6vw, 56px) clamp(20px, 4vw, 40px) 28px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  header.hero .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--heartwood);
+    margin-bottom: 12px;
+  }
+  header.hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+    margin: 0 0 12px;
+    text-wrap: balance;
+  }
+  header.hero p {
+    color: var(--text-muted);
+    font-size: 1.08rem;
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px) 80px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  nav.rail {
+    flex: 0 0 210px;
+    position: sticky;
+    top: 74px;
+  }
+  nav.rail .rail-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--heartwood);
+    margin-bottom: 10px;
+  }
+  nav.rail a {
+    display: block;
+    padding: 5px 0 5px 12px;
+    border-left: 2px solid var(--surface-2);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+  nav.rail a:hover { color: var(--heartwood); border-left-color: var(--heartwood); }
+
+  main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+
+  section.feature {
+    background: var(--surface);
+    border: 1px solid var(--surface-2);
+    border-radius: var(--radius);
+    padding: clamp(22px, 3vw, 32px);
+    scroll-margin-top: 74px;
+  }
+  section.feature .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  section.feature h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0 0 10px;
+  }
+  section.feature > p.desc {
+    color: var(--text-muted);
+    margin: 0 0 18px;
+    max-width: 68ch;
+  }
+
+  .demo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 780px) {
+    .demo-row { grid-template-columns: 1fr; }
+    .layout { flex-direction: column; }
+    nav.rail { position: static; width: 100%; }
+    nav.rail .links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+    nav.rail a { border-left: none; border-bottom: 2px solid var(--surface-2); padding: 4px 2px; }
+  }
+
+  .pane-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  pre.src {
+    margin: 0;
+    background: #14161B;
+    color: #E8E4DB;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: var(--font-mono);
+    font-size: 0.84rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  .render {
+    border: 1px solid var(--surface-2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+  .render h1, .render h2, .render h3 { font-family: var(--font-display); font-weight: 600; margin: 0 0 8px; }
+  .render h1 { font-size: 1.5rem; }
+  .render h2 { font-size: 1.25rem; }
+  .render h3 { font-size: 1.05rem; }
+  .render p { margin: 0 0 8px; }
+  .render ul, .render ol { margin: 0 0 8px; padding-left: 22px; }
+  .render blockquote { margin: 0; padding-left: 12px; border-left: 2px solid var(--heartwood); color: var(--text-muted); }
+  .render code { font-family: var(--font-mono); background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-size: 0.88em; }
+  .render img { max-width: 100%; border-radius: 6px; display: block; }
+  .render .math { font-style: italic; font-family: Georgia, serif; }
+  .render s { color: var(--text-muted); }
+
+  .callout {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .callout.warn { background: var(--heartwood-soft); color: #6b2c19; }
+  .callout.tip { background: var(--sapwood-soft); color: #204634; }
+  .callout .mark { font-family: var(--font-mono); font-weight: 700; flex: 0 0 auto; }
+
+  table.ref {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  table.ref th, table.ref td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--surface-2);
+    vertical-align: top;
+  }
+  table.ref th {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  table.ref code { font-family: var(--font-mono); background: var(--ink); padding: 2px 6px; border-radius: 4px; font-size: 0.88em; }
+
+  footer.end {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px) 60px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><strong>cerne.pro</strong> / editor guide</div>
+  <a class="back" href="/admin/#/collections/writing">← Back to Writing</a>
+</div>
+
+<header class="hero">
+  <div class="eyebrow">// writing · body field reference</div>
+  <h1>What every button and bracket does</h1>
+  <p>Every component the article editor understands, its exact markdown syntax, how it renders on the live site, and where it's known to bite. Bookmark this tab — the CMS never links here on its own.</p>
+</header>
+
+<div class="layout">
+  <nav class="rail">
+    <div class="rail-label">On this page</div>
+    <div class="links">
+      <a href="#headings">Headings</a>
+      <a href="#emphasis">Emphasis</a>
+      <a href="#lists">Lists</a>
+      <a href="#quote">Blockquotes</a>
+      <a href="#links">Links</a>
+      <a href="#media">Images, GIFs, video</a>
+      <a href="#code">Code blocks</a>
+      <a href="#runnable">Runnable sketches</a>
+      <a href="#math">Math</a>
+      <a href="#raw-mode">Raw-Markdown mode</a>
+      <a href="#citations">Citations</a>
+      <a href="#preview">The preview pane</a>
+      <a href="#troubleshoot">If something breaks</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="feature" id="headings">
+      <div class="kicker">Structure</div>
+      <h2>Headings</h2>
+      <p class="desc"><code>#</code> through <code>######</code> for H1–H6, or the toolbar's heading buttons. H2 and H3 are also picked up automatically as entries in the sidebar table of contents shown next to the published article on wide screens — H1 and H4–H6 are not.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">## The Sharpe Ratio
+
+### Why it beats raw variance</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <h2>The Sharpe Ratio</h2>
+            <h3>Why it beats raw variance</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="emphasis">
+      <div class="kicker">Structure</div>
+      <h2>Emphasis</h2>
+      <p class="desc">Bold, italic, strikethrough, and inline code — type the markers directly or use the toolbar's <strong>B</strong> / <em>i</em> / code buttons.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">**bold**, *italic*, ~~cut~~, and `inline code`</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <p><strong>bold</strong>, <em>italic</em>, <s>cut</s>, and <code>inline code</code></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="lists">
+      <div class="kicker">Structure</div>
+      <h2>Lists</h2>
+      <p class="desc"><code>*</code>/<code>-</code> for bulleted, <code>1.</code> for numbered — or the toolbar's list buttons.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">* Expected Return
+* Standard Deviation
+* Beta
+
+1. Fit the model
+2. Validate walk-forward</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <ul><li>Expected Return</li><li>Standard Deviation</li><li>Beta</li></ul>
+            <ol><li>Fit the model</li><li>Validate walk-forward</li></ol>
+          </div>
+        </div>
+      </div>
+      <div class="callout warn">
+        <span class="mark">⚠</span>
+        <span>Don't leave an empty bullet at the end of a list. Hitting Enter into a blank last item (especially with a soft line-break, Shift+Enter, inside it) is a known crash in the editor — you'll see a red "Cannot find a descendant at path…" screen. Press Backspace to exit the list instead of Enter, and if it does crash, your last <em>saved</em> version is safe — only the unsaved draft in the browser is lost.</span>
+      </div>
+    </section>
+
+    <section class="feature" id="quote">
+      <div class="kicker">Structure</div>
+      <h2>Blockquotes</h2>
+      <p class="desc">A line starting with <code>&gt;</code>, or the toolbar's quote button.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">> The point wasn't a bigger model —
+> it was a defensible one.</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <blockquote>The point wasn't a bigger model — it was a defensible one.</blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="links">
+      <div class="kicker">Structure</div>
+      <h2>Links</h2>
+      <p class="desc"><code>[text](url)</code>, or select text and use the toolbar's link button. External links (anything starting <code>http</code>) automatically open in a new tab on the live site.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">See the [NeuraTrade repo](https://github.com/Cerne17/NeuraTrade).</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <p>See the <a href="#">NeuraTrade repo</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="media">
+      <div class="kicker">Media</div>
+      <h2>Images, GIFs, video</h2>
+      <p class="desc">Drag a file straight into the editor to upload it and insert the reference — or write <code>![alt text](/uploads/filename.ext)</code> by hand if it's already uploaded. Files ending <code>.mp4</code>, <code>.webm</code>, <code>.mov</code> or <code>.ogg</code> are automatically rendered as a native video player instead of an image — same exact syntax either way, the extension is what decides it.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">![Efficient frontier plot](/uploads/frontier.png)
+
+![Walk-forward demo](/uploads/backtest.mp4)</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <p style="color:var(--text-muted); font-size:0.85rem;">→ an &lt;img&gt; for the .png, a full &lt;video controls&gt; player for the .mp4 — captioned with the alt text underneath.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="code">
+      <div class="kicker">Code</div>
+      <h2>Code blocks</h2>
+      <p class="desc">Triple backticks with a language tag, or the toolbar's code-block button. Gets full syntax highlighting on the live site. Fenced code is one of the editor's native block types — its content is always kept byte-for-byte, immune to the escaping issue covered under <a href="#math">Math</a>.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">```python
+def sharpe(returns, rf):
+    excess = returns - rf
+    return excess.mean() / excess.std()
+```</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <pre class="src" style="background:var(--ink); color:var(--text);">def sharpe(returns, rf):
+    excess = returns - rf
+    return excess.mean() / excess.std()</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="runnable">
+      <div class="kicker">Code</div>
+      <h2>Runnable sketches</h2>
+      <p class="desc">A <code>js</code> code block whose very first line is exactly <code>// live</code>. It ships as a playable p5.js sketch instead of a static snippet — plays automatically on page load, source hidden, with a Stop / Run toggle underneath. Runs sandboxed, so it's safe even mid-draft.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">```js
+// live
+function setup() {
+  createCanvas(400, 200);
+}
+function draw() {
+  background(20);
+  circle(mouseX, mouseY, 40);
+}
+```</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <p style="color:var(--text-muted); font-size:0.85rem;">→ a live canvas the reader can move their mouse over, right in the article, with a small <strong>■ Stop</strong> button above it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature" id="math">
+      <div class="kicker">Math</div>
+      <h2>Math</h2>
+      <p class="desc">Inline with single <code>$</code>, display (its own centered line) with double <code>$$</code>. Both use standard LaTeX inside the delimiters.</p>
+      <div class="demo-row">
+        <div>
+          <div class="pane-label">You type</div>
+          <pre class="src">The Sharpe Ratio is $\text{SR}(w)$, defined as:
+
+$$SR(\omega) = \frac{R_p - R_f}{\sigma_p}$$</pre>
+        </div>
+        <div>
+          <div class="pane-label">Renders as</div>
+          <div class="render">
+            <p>The Sharpe Ratio is <span class="math">SR(w)</span>, defined as:</p>
+            <p style="text-align:center; font-size:1.1rem;" class="math">SR(ω) = (R<sub>p</sub> − R<sub>f</sub>) / σ<sub>p</sub></p>
+          </div>
+        </div>
+      </div>
+      <div class="callout tip">
+        <span class="mark">✓ protected</span>
+        <span><strong>Display math</strong> (<code>$$…$$</code> on its own line) is a dedicated "Math (display)" block — insert one fresh from the toolbar's <strong>+</strong> menu. It renders live with real KaTeX right in the editor, and its LaTeX is stored untouched, so it can't be corrupted by a save.</span>
+      </div>
+      <div class="callout warn">
+        <span class="mark">⚠ not protected</span>
+        <span><strong>Inline math</strong> (<code>$…$</code> mixed into a sentence, a list item, a heading) is still ordinary text to the editor. If it contains <code>_</code> or <code>[</code> <code>]</code> — subscripts and vector notation, mostly — a save in rich-text mode can quietly inject stray backslashes and break it (this is exactly what happened to the Markowitz article). See <a href="#raw-mode">Raw-Markdown mode</a> for the workaround.</span>
+      </div>
+    </section>
+
+    <section class="feature" id="raw-mode">
+      <div class="kicker">Editor</div>
+      <h2>Raw-Markdown mode</h2>
+      <p class="desc">The body field's toolbar has a Rich Text / Markdown toggle. Markdown mode is a plain textarea bound to the exact source string — no round-trip, so nothing in it can get silently rewritten. Switch to it before typing or editing inline math, or before touching the last item of a list.</p>
+      <div class="callout tip">
+        <span class="mark">Rule of thumb</span>
+        <span>Prose, headings, lists, images, code — rich-text mode is fine and faster. The moment you're placing a subscript or bracket inside a <code>$…$</code> span mid-sentence, flip to Markdown mode for that edit, then flip back.</span>
+      </div>
+    </section>
+
+    <section class="feature" id="citations">
+      <div class="kicker">Fields</div>
+      <h2>Citations</h2>
+      <p class="desc">Not part of the body — a separate repeating field below it on the entry form. Add one row per source with a Label and a URL; they render as a numbered "References" list at the bottom of the published article, in the order you add them.</p>
+      <table class="ref">
+        <tr><th>Field</th><th>Example</th></tr>
+        <tr><td>Label</td><td>NeuraTrade repository</td></tr>
+        <tr><td>URL</td><td><code>https://github.com/Cerne17/NeuraTrade</code></td></tr>
+      </table>
+    </section>
+
+    <section class="feature" id="preview">
+      <div class="kicker">Editor</div>
+      <h2>The preview pane</h2>
+      <p class="desc">The pane on the right of the entry screen isn't Decap's generic markdown preview — it's the site's actual <code>MarkdownBody</code> component, the same code that renders the published page, reused verbatim. What you see there is what ships, math, code highlighting, runnable sketches and all. If something looks wrong there, it'll look wrong live — worth trusting it before you publish.</p>
+    </section>
+
+    <section class="feature" id="troubleshoot">
+      <div class="kicker">Reference</div>
+      <h2>If something breaks</h2>
+      <table class="ref">
+        <tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr>
+        <tr>
+          <td>Red screen, "Cannot find a descendant at path…"</td>
+          <td>Slate crash from a trailing empty list item</td>
+          <td>Refresh the tab — your last save is intact. Re-add the lost bit in Markdown mode, don't leave the list open on a blank line.</td>
+        </tr>
+        <tr>
+          <td>An equation shows literal <code>\_</code> or <code>\[</code> after saving</td>
+          <td>Inline math round-trip escaping (see <a href="#math">Math</a>)</td>
+          <td>Fix the equation directly in the file or in Markdown mode; redo the edit there next time.</td>
+        </tr>
+        <tr>
+          <td>Preview pane is blank</td>
+          <td>Empty body, or a malformed <code>$$</code>/code fence missing its closing marker</td>
+          <td>Check every opening delimiter has a matching close.</td>
+        </tr>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<footer class="end">cerne.pro admin — this page is a static reference, not part of the CMS build. Editing it: <code>public/admin/guide.html</code>.</footer>
+
+</body>
+</html>
