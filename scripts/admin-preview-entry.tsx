@@ -148,7 +148,11 @@ CMS.registerEditorComponent({
   fields: [{ name: "body", label: "LaTeX", widget: "string", default: "" }],
   pattern: /^\s*\$\$\s*\n?([\s\S]*?)\n?\s*\$\$\s*$/,
   fromBlock: (match: RegExpMatchArray) => ({ body: match[1].trim() }),
-  toBlock: (obj: { body: string }) => `$$\n${obj.body}\n$$`,
+  // Decap's stringifier only auto-inserts a blank-line separator for
+  // native node types (paragraph, heading, code...); a generic shortcode
+  // node gets none, so without this trailing "\n\n" the block glues
+  // directly onto whatever markdown follows it on save.
+  toBlock: (obj: { body: string }) => `$$\n${obj.body}\n$$\n\n`,
   toPreview: (obj: { body: string }) => {
     let html: string;
     try {
