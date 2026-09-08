@@ -38,7 +38,7 @@ export function extractHeadings(markdown: string): HeadingInfo[] {
   while ((match = regex.exec(withoutCode))) {
     const level = match[1].length;
     const text = match[2]
-      .replace(/[*_`]/g, "")
+      .replace(/[*`]/g, "")
       .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
       .trim();
     let slug = text
