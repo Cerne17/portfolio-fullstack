@@ -6,10 +6,17 @@ dek: A deep-dive on the Portfolio Selection Theory — what I learned so far.
 draft: true
 cover: /uploads/markowitz_portfolio_selection_cover_image.jpeg
 ---
-# Introduction
+## Introduction
 
-The Markowitz Portfolio Selection Theory is a part of the Modern Portfolio Theory, formulated in 1952 by Harry Markowitz, published in The Journal of Finance. It states that it is possible to find the most optimal proportions for a specific set of stocks to compose a portfolio. The proportions can be found by modeling the stocks' risk/return relation. Markowitz's work is the exact method that allows one to effectively compute how risk/return interact to find the best composition.
+Markowitz Portfolio Selection is a part of the Modern Portfolio Theory, formulated in 1952 by Harry Markowitz, published in The Journal of Finance. It states that it is possible to find the most optimal combination, for a specific set of stocks, to compose a portfolio. The proportions can be found by modeling the stocks' risk/return relation. Markowitz's work is the exact method that allows one to effectively compute how risk/return interact to find the best composition.
 
-# The Sharpe Ratio
+The main pillars, explained in details later, that — together — obtain the optimal portfolio are:
+
+* Expected Return ($E[R_p]$)
+* Standard Deviation / Risk / Volatility ($\sigma_p$)
+* Beta ($\beta$)
+* The Sharpe Ratio ($\text{SR}(w)$)
+
+## The Sharpe Ratio
 
 $$SR(\omega)=\frac{R_p - R_f}{\sigma_p}$$
