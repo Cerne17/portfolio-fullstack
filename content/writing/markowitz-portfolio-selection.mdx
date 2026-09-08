@@ -8,7 +8,7 @@ cover: /uploads/markowitz_portfolio_selection_cover_image.jpeg
 ---
 ## Introduction
 
-Markowitz Portfolio Selection is a part of the Modern Portfolio Theory, formulated in 1952 by Harry Markowitz, published in The Journal of Finance. It states that it is possible to find the most optimal combination, for a specific set of stocks, to compose a portfolio. The proportions can be found by modeling the stocks' risk/return relation. Markowitz's work is the exact method that allows one to effectively compute how risk/return interact to find the best composition.
+Markowitz Portfolio Selection is a part of the Modern Portfolio Theory, formulated in 1952 by Harry Markowitz, published in The Journal of Finance. It states that it is possible to find the most optimal combination, for a specific set of stocks, to compose a portfolio. The proportions can be found by modeling the stocks' risk/return relation. Markowitz's work is the exact method that allows one to effectively compute how risk/return interact to find the best composition — maximizing return for a specific risk.
 
 The main pillars, explained in details later, that — together — obtain the optimal portfolio are:
 
@@ -17,11 +17,17 @@ The main pillars, explained in details later, that — together — obtain the o
 * Beta ($\beta$)
 * The Sharpe Ratio ($\text{SR}(w)$)
 
-
+The requirements to understand this theory properly are basic knowledge on probability and linear algebra, anything else can be built on this foundation.
 
 ## Expected Return ($E\lbrack R_p \rbrack$)
 
+Just like as the naming already suggests, it's the **anticipated average profit** (either positive — effectively a profit —, or negative — effectively a loss).
 
+For a single asset, this metric is commonly estimated using the **historical average** returns or **forward-looking financial models**. 
+
+For an entire portfolio, it is the weighted average of the expected return of all individuals assets inside of it:
+
+$$E \lbrack R\_p \rbrack = \sum\_{i=1}^{n}w_i E \lbrack R_i \rbrack $$
 
 ## Standard Deviation / Risk / Volatility ($\sigma_p$)
 
