@@ -32,14 +32,36 @@ $$
 E \lbrack R_p \rbrack = \sum_{i=1}^n w_i E \lbrack R_i \rbrack
 $$
 
-
-
 ## Standard Deviation / Risk / Volatility ($\sigma_p$)
 
+As the name suggests, standard deviation quantifies **how far a portfolio's returns typically stray from their expected value** — it is Markowitz's chosen proxy for risk. It is not computed as a simple weighted average of each asset's own volatility, but through the full covariance structure between every pair of assets in the portfolio:
+
+$$
+\sigma_p^2 = \sum_{i=1}^n \sum_{j=1}^n w_i w_j \sigma_{ij}, \qquad \sigma_p = \sqrt{\sigma_p^2}
+$$
+
+where $\sigma_{ij}$ is the covariance between the returns of assets $i$ and $j$ ($\sigma_{ii} = \sigma_i^2$, the variance of asset $i$ on its own). It is, for exactly this reason, the equation where diversification actually earns its keep: whenever two assets are not perfectly correlated ($\rho_{ij} < 1$), combining them produces a portfolio variance strictly lower than the weighted average of their individual variances — risk removed without giving up any expected return.
+
 ## Beta ($\beta$)
+
+Beta doesn't come from Markowitz's original 1952 paper — it was formalized a decade later within the Capital Asset Pricing Model, built directly on his mean-variance framework — but it answers a question that framework leaves open on its own: how much of an asset's risk is unique to it, and how much is simply the price of being in the market at all.
+
+Beta measures how sensitive an asset's — or a portfolio's — returns are to movements in the broader market. That sensitivity is formalized as a ratio: the covariance between the asset's returns and the market's returns, divided by the market's own variance.
+
+$$
+\beta_i = \frac{\text{Cov}(R_i, R_m)}{\text{Var}(R_m)} = \frac{\sigma_{im}}{\sigma_m^2}
+$$
+
+This ratio splits an asset's total risk into two very different components: the diversifiable, asset-specific noise that a well-built portfolio washes out, and the market-wide risk that no amount of diversification can touch. That undiversifiable remainder is precisely what beta is built to price — a single number for the risk an investor cannot escape simply by holding more stocks. A portfolio's beta, in turn, is just the weighted average of its constituents' betas: $\beta_p = \sum_{i=1}^n w_i \beta_i$.
 
 ## The Sharpe Ratio
 
 $$
 SR(\omega)=\frac{R_p - R_f}{\sigma_p}
 $$
+
+Introduced by William Sharpe in 1966, the Sharpe Ratio is the natural synthesis of the first three pillars — a single number for **risk-adjusted performance**. It measures how much return a portfolio earns above the risk-free rate, $R_f$, for every unit of volatility, $\sigma_p$, an investor has to tolerate to earn it. It rewards efficiency rather than raw magnitude: two portfolios with identical expected return are not equally desirable if one gets there with far less risk. It is, for this same reason, the objective function Markowitz optimization actually maximizes — sweeping across every feasible set of weights $w$ and keeping the one that maximizes $SR(w)$ is what identifies the *tangency portfolio*, the single point on the efficient frontier where the risk/return trade-off is most favorable.
+
+## Conclusion
+
+That tangency portfolio is not an accident of geometry. It is the concrete answer to the question Markowitz posed in 1952: for a given universe of assets, which single combination maximizes return for the risk one is willing to bear? That answer only exists because expected return, standard deviation, and beta are computed jointly rather than independently — each pillar constraining, and constrained by, the other two. That interdependence is, in the end, exactly what Markowitz Portfolio Selection formalizes: not a checklist of four numbers, but one mutually consistent optimization problem.
