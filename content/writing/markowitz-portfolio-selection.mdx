@@ -1,9 +1,8 @@
 ---
 date: 2026-09
 lang: EN
-title: Modern Portfolio Theory
-dek: A deep-dive on the Markowitz Portfolio Selection Theory — what I learned so
-  far.
+title: Markowitz Portfolio Selection
+dek: A deep-dive on the Portfolio Selection Theory — what I learned so far.
 draft: true
 cover: /uploads/markowitz_portfolio_selection_cover_image.jpeg
 ---
@@ -32,8 +31,8 @@ $$
 E \lbrack R_p \rbrack = \sum_{i=1}^n w_i E \lbrack R_i \rbrack
 $$
 
-## Standard Deviation / Risk / Volatility ($\sigma_p$)
 
+## Standard Deviation / Risk / Volatility ($\sigma_p$)
 As the name suggests, standard deviation quantifies **how far a portfolio's returns typically stray from their expected value** — it is Markowitz's chosen proxy for risk. It is not computed as a simple weighted average of each asset's own volatility, but through the full covariance structure between every pair of assets in the portfolio:
 
 $$
@@ -43,7 +42,6 @@ $$
 where $\sigma_{ij}$ is the covariance between the returns of assets $i$ and $j$ ($\sigma_{ii} = \sigma_i^2$, the variance of asset $i$ on its own). It is, for exactly this reason, the equation where diversification actually earns its keep: whenever two assets are not perfectly correlated ($\rho_{ij} < 1$), combining them produces a portfolio variance strictly lower than the weighted average of their individual variances — risk removed without giving up any expected return.
 
 ## Beta ($\beta$)
-
 Beta doesn't come from Markowitz's original 1952 paper — it was formalized a decade later within the Capital Asset Pricing Model, built directly on his mean-variance framework — but it answers a question that framework leaves open on its own: how much of an asset's risk is unique to it, and how much is simply the price of being in the market at all.
 
 Beta measures how sensitive an asset's — or a portfolio's — returns are to movements in the broader market. That sensitivity is formalized as a ratio: the covariance between the asset's returns and the market's returns, divided by the market's own variance.
@@ -57,7 +55,7 @@ This ratio splits an asset's total risk into two very different components: the 
 ## The Sharpe Ratio
 
 $$
-SR(\omega)=\frac{R_p - R_f}{\sigma_p}
+SR(w)=\frac{R_p - R_f}{\sigma_p}
 $$
 
 Introduced by William Sharpe in 1966, the Sharpe Ratio is the natural synthesis of the first three pillars — a single number for **risk-adjusted performance**. It measures how much return a portfolio earns above the risk-free rate, $R_f$, for every unit of volatility, $\sigma_p$, an investor has to tolerate to earn it. It rewards efficiency rather than raw magnitude: two portfolios with identical expected return are not equally desirable if one gets there with far less risk. It is, for this same reason, the objective function Markowitz optimization actually maximizes — sweeping across every feasible set of weights $w$ and keeping the one that maximizes $SR(w)$ is what identifies the *tangency portfolio*, the single point on the efficient frontier where the risk/return trade-off is most favorable.
