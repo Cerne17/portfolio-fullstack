@@ -5,14 +5,26 @@ import { useLocale } from "next-intl";
 import { Language } from "@/lib/types";
 import { ContactBand } from "@/components/ContactBand";
 import { Post } from "@/lib/content";
-import { extractHeadings } from "@/components/MarkdownBody";
 
 const referencesCopy = { en: "References", pt: "Referências" };
 const onThisPageCopy = { en: "On this page", pt: "Nesta página" };
 
-export function ArticlePageContent({ post, children }: { post: Post; children: React.ReactNode }) {
+interface TocHeading {
+  id: string;
+  level: number;
+  html: string;
+}
+
+export function ArticlePageContent({
+  post,
+  children,
+  headings,
+}: {
+  post: Post;
+  children: React.ReactNode;
+  headings: TocHeading[];
+}) {
   const lang = useLocale() as Language;
-  const tocHeadings = extractHeadings(post.body).filter((h) => h.level === 2 || h.level === 3);
 
   return (
     <>
@@ -86,7 +98,7 @@ export function ArticlePageContent({ post, children }: { post: Post; children: R
         )}
       </article>
 
-      {tocHeadings.length > 0 && (
+      {headings.length > 0 && (
         <aside className="toc-rail" style={{ flex: "0 0 200px", position: "sticky", top: 96 }}>
           <div
             style={{
@@ -101,10 +113,13 @@ export function ArticlePageContent({ post, children }: { post: Post; children: R
             {onThisPageCopy[lang]}
           </div>
           <nav>
-            {tocHeadings.map((h) => (
-              <a key={h.id} href={`#${h.id}`} className={`toc-link${h.level === 3 ? " toc-link--h3" : ""}`}>
-                {h.text}
-              </a>
+            {headings.map((h) => (
+              <a
+                key={h.id}
+                href={`#${h.id}`}
+                className={`toc-link${h.level === 3 ? " toc-link--h3" : ""}`}
+                dangerouslySetInnerHTML={{ __html: h.html }}
+              />
             ))}
           </nav>
         </aside>

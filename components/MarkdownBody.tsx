@@ -4,6 +4,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
+import katex from "katex";
 import "katex/dist/katex.min.css";
 import { RunnableCode } from "./RunnableCode";
 
@@ -68,6 +69,30 @@ function findCodeBlocks(markdown: string): CodeBlockInfo[] {
     blocks.push({ isLive: lang === "js" && body.startsWith("// live"), raw: body });
   }
   return blocks;
+}
+
+function escapeHtml(text: string): string {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// The TOC renders heading text outside react-markdown's own pipeline (it's
+// a plain string extracted by extractHeadings), so inline $math$ inside a
+// heading needs its own KaTeX pass here -- otherwise it shows as literal
+// LaTeX source in the sidebar instead of a rendered symbol.
+export function renderHeadingHtml(text: string): string {
+  return text
+    .split(/(\$[^$]+\$)/g)
+    .map((part) => {
+      if (part.length > 2 && part.startsWith("$") && part.endsWith("$")) {
+        try {
+          return katex.renderToString(part.slice(1, -1), { throwOnError: false });
+        } catch {
+          return escapeHtml(part);
+        }
+      }
+      return escapeHtml(part);
+    })
+    .join("");
 }
 
 function makeHeadingComponent(level: number, headings: HeadingInfo[], indexRef: { current: number }) {
