@@ -146,7 +146,12 @@ CMS.registerEditorComponent({
   id: "math-block",
   label: "Math (display)",
   fields: [{ name: "body", label: "LaTeX", widget: "string", default: "" }],
-  pattern: /^\s*\$\$\s*\n?([\s\S]*?)\n?\s*\$\$\s*$/,
+  // No trailing $ anchor: Decap's shortcode tokenizer tests this pattern
+  // against the whole remaining document from this point on, not a single
+  // pre-chunked block -- an end anchor forces the (already non-greedy)
+  // body to extend all the way to the document's actual end instead of
+  // stopping at the first closing $$, swallowing every block after it.
+  pattern: /^\s*\$\$\s*\n?([\s\S]*?)\n?\s*\$\$/,
   fromBlock: (match: RegExpMatchArray) => ({ body: match[1].trim() }),
   // Decap's stringifier only auto-inserts a blank-line separator for
   // native node types (paragraph, heading, code...); a generic shortcode
