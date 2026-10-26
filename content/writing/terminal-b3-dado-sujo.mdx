@@ -1,0 +1,82 @@
+---
+date: "2026-10"
+title: "Um terminal para a B3, e o dado sujo que ninguém mostra"
+dek: "Como montei uma base de 1.103 ações, FIIs e ETFs a partir da CVM e do Yahoo, e por que limpar o dado deu mais trabalho do que o código."
+lang: "PT"
+cover: "/uploads/b3-terminal-cover.png"
+citations:
+  - label: "B3 · cerne.pro (aplicação)"
+    url: "https://b3.cerne.pro"
+  - label: "Repositório no GitHub"
+    url: "https://github.com/Cerne17/b3-investimentos"
+  - label: "CVM — Formulário Cadastral de companhias abertas"
+    url: "https://dados.cvm.gov.br/dataset/cia_aberta-doc-fca"
+  - label: "CVM — Informe mensal de FIIs"
+    url: "https://dados.cvm.gov.br/dataset/fii-doc-inf_mensal"
+  - label: "yfinance"
+    url: "https://github.com/ranaroussi/yfinance"
+draft: false
+---
+
+Quem investe em renda variável no Brasil acaba pulando entre meia dúzia de sites para responder perguntas simples: quais FIIs de logística negociam abaixo do patrimônio, quais bancos têm P/L abaixo de 10 com ROE acima de 15%, como seria uma carteira de R$ 400 com esses quatro ativos. Eu queria responder isso com SQL, numa base que eu controlasse. O resultado é o [B3 · cerne.pro](https://b3.cerne.pro): um banco SQLite com 1.103 ativos, uma API documentada, um servidor MCP para IA consultar os mesmos dados e um dashboard em React. O código é aberto, em [github.com/Cerne17/b3-investimentos](https://github.com/Cerne17/b3-investimentos).
+
+O que mais ensinou, porém, não foi a parte de software. Foi descobrir quanto do trabalho é limpar o dado antes de confiar em qualquer número.
+
+## De onde vêm os dados
+
+Para ETFs e FIIs, a B3 publica a lista de ativos listados. Para ações, não existe um CSV equivalente. A fonte mais confiável que encontrei foi o **Formulário Cadastral da CVM**, que lista cada valor mobiliário de cada companhia aberta com o código de negociação, o segmento de listagem (Novo Mercado, Nível 1, Nível 2…) e, no caso das units, a composição em ações ordinárias e preferenciais. Cruzado com o cadastro de companhias abertas, que traz o setor e o controle acionário, isso dá 440 ações e units negociadas.
+
+Os FIIs ganham uma segunda fonte oficial: o **informe mensal da CVM**, com valor patrimonial por cota, patrimônio líquido, número de cotistas, alavancagem, taxa de administração e a composição do ativo (imóveis, CRI, cotas de outros FIIs, caixa). É de lá que sai um P/VP confiável, porque o Yahoo Finance simplesmente não tem valor patrimonial para boa parte dos fundos.
+
+Preço, histórico, proventos e os fundamentos das ações (margens, endividamento, consenso de analistas) vêm do Yahoo Finance. Todo o resto é calculado: retornos de 1 a 24 meses, retorno total com proventos reinvestidos, volatilidade, drawdown, Sharpe, beta e correlação com o Ibovespa.
+
+## Dado sujo é o trabalho de verdade
+
+A primeira coleta completa produziu números que não podiam estar certos.
+
+**Desdobramentos não ajustados.** Um ETF aparecia com retorno de −85% em doze meses: o preço tinha ido de R$ 421 para R$ 57 de um pregão para o outro. Não era um colapso, era um desdobramento de 8 para 1 que o Yahoo não ajustou no histórico. A correção foi tratar qualquer variação diária acima de +60% ou abaixo de −37,5% como evento corporativo e reescalar preços e proventos anteriores. Com isso, o mesmo ETF passou a mostrar +14,5% e uma volatilidade plausível.
+
+**Proventos impossíveis.** Um FII ilíquido aparecia com dividend yield de 2.800%. Em vez de esconder esses casos, cada ativo carrega uma coluna de alerta: DY do Yahoo muito diferente do DY informado à CVM, P/VP fora do usual, liquidez abaixo de R$ 10 mil por dia. O dado continua lá, mas ninguém o usa sem ver o aviso.
+
+**Units com bases misturadas.** Para TAEE11, o Yahoo informava um P/L de 36,9. O LPA vinha por ação, enquanto o preço é da unit, que contém três ações. A primeira ideia foi multiplicar pelo número de ações da unit, mas o valor patrimonial e o valor de mercado também vêm em bases inconsistentes, e o fator de correção mudava de um papel para outro. O que fechou em todos os casos testados foi uma identidade contábil, usando o P/VP da unit, que é o dado mais estável:
+
+$$
+\frac{P}{L} = \frac{P/VP}{ROE}
+$$
+
+Para TAEE11 isso dá P/L ≈ 8,2; para SANB11, ≈ 7,0. A partir daí o LPA e o VPA por unit saem dos próprios múltiplos, e o valor de Graham, $\sqrt{22{,}5 \cdot LPA \cdot VPA}$, volta a fazer sentido. Esses ativos também recebem um alerta dizendo que o múltiplo é estimado.
+
+## Da teoria à cota inteira
+
+Escrevi há pouco sobre [a teoria de carteiras de Markowitz](/en/writing/markowitz-portfolio-selection). Aqui ela vira ferramenta: o otimizador recebe os ativos, o valor a investir e os limites de peso, e resolve a carteira para até onze objetivos diferentes — Sharpe, Sortino, Calmar, CVaR, paridade de risco, renda por risco, entre outros. Para não exigir que o usuário escolha entre onze siglas, há "filosofias" que configuram os indicadores sozinhas: value conservador, renda, preservação de capital, equilibrado e crescimento. Os retornos usados são totais, com proventos reinvestidos, o que muda bastante o resultado quando a carteira tem FIIs.
+
+O detalhe que mais importa para quem aporta pouco aparece depois da otimização. Com R$ 400 e uma cota de AUVP11 custando R$ 128, um peso ótimo de 10% simplesmente não é comprável. A conversão para cotas inteiras é um pequeno problema de busca: partindo do arredondamento para baixo, o algoritmo testa comprar uma cota ou trocar uma cota de um ativo por outra, minimizando o desvio em reais entre o alocado e o alvo, com o dinheiro parado contando como desvio:
+
+$$
+\min_{q \in \mathbb{N}^n} \sum_{i=1}^{n} \left(q_i p_i - w_i V\right)^2 + \left(V - \sum_{i=1}^{n} q_i p_i\right)^2
+$$
+
+sujeito a não gastar mais que $V$ nem passar do peso máximo por ativo. Sem o segundo termo, a solução ótima deixava até 15% do valor em caixa, o que é o oposto do objetivo de construir patrimônio.
+
+## Uma linguagem de fórmulas, sem eval
+
+A tela de tempo real permite criar views que calculam indicadores sobre um ativo — médias móveis, Bollinger, RSI, MACD, estocástico, drawdown — ou comparam vários ativos no mesmo gráfico. Além das fórmulas prontas, dá para escrever as próprias:
+
+```
+(close / sma(close, 200) - 1) * 100
+(close - min(low, 14)) / (max(high, 14) - min(low, 14)) * 100
+```
+
+Executar texto do usuário com `eval` estava fora de questão. Escrevi um tokenizador e um parser descendente recursivo que transformam a fórmula numa árvore, avaliada sobre séries com operações ponto a ponto. Uma função desconhecida ou um período inválido produz uma mensagem clara, e uma fórmula com erro não derruba as outras da mesma view. A mesma árvore é reaproveitada para cada ativo quando a view é de comparação.
+
+## Uma base, três consumidores
+
+A API em FastAPI é a única porta para os dados. O dashboard a consome; o Swagger documenta cada endpoint, e o arquivo OpenAPI importa direto no Postman; e um servidor MCP expõe as mesmas consultas como ferramentas para um modelo de linguagem, de modo que dá para pedir a uma IA "bancos com P/L abaixo de 10 e ROE acima de 15%" e receber a resposta da mesma base. Toda coluna numérica aceita filtros `min_` e `max_`, e existe um endpoint de SQL somente leitura para o que os filtros não cobrem.
+
+Em produção, a aplicação roda como uma única função Python na Vercel. O disco lá é somente leitura, então o banco vai empacotado como um snapshot imutável e os endpoints de escrita respondem 403; para atualizar, a coleta roda localmente e o novo banco é publicado. Cotações em tempo real e a otimização de carteira continuam consultando o Yahoo na hora.
+
+## O que fica
+
+A arquitetura deu menos trabalho do que esperava. O que consumiu tempo foi a desconfiança sistemática: cada métrica nova vinha acompanhada da pergunta "quando esse número está errado?", e a resposta quase nunca era "nunca". Tratar qualidade de dado como parte do produto — com alertas visíveis em vez de filtros silenciosos — foi a decisão que mais mudou a confiança no resultado.
+
+Os dados são do Yahoo Finance e da CVM, e o projeto é educacional: não é recomendação de investimento.
