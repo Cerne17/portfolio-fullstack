@@ -34,6 +34,7 @@ const fail = (message: string) => ({ ...reply(message), isError: true });
 
 const collectionArg = z.enum(COLLECTIONS);
 const slugArg = z.string().regex(SLUG_RE, "kebab-case slug, e.g. walk-forward-validation");
+const existingSlugArg = z.string().min(1).describe("Slug of an existing entry (file name without extension).");
 const monthArg = z.string().regex(/^\d{4}-\d{2}$/, "YYYY-MM");
 const bilingual = z.object({ en: z.string(), pt: z.string() });
 const citation = z.object({ label: z.string(), url: z.string().url() });
@@ -94,7 +95,7 @@ server.registerTool(
   "get_content",
   {
     description: "Read one entry: frontmatter plus full markdown body.",
-    inputSchema: { collection: collectionArg, slug: slugArg },
+    inputSchema: { collection: collectionArg, slug: existingSlugArg },
   },
   async ({ collection, slug }) => {
     const e = readEntry(collection, slug);
@@ -109,7 +110,7 @@ server.registerTool(
       "Validate entries against the Decap schema (public/admin/config.yml) and check article math with KaTeX " +
       "(unbalanced $$, Decap-escaped \\_ \\[ \\], unparseable LaTeX). Omit slug to check a whole collection, " +
       "omit collection to check everything.",
-    inputSchema: { collection: collectionArg.optional(), slug: slugArg.optional() },
+    inputSchema: { collection: collectionArg.optional(), slug: existingSlugArg.optional() },
   },
   async ({ collection, slug }) => {
     const names: CollectionName[] = collection ? [collection] : [...COLLECTIONS];
@@ -157,7 +158,7 @@ server.registerTool(
       "Edit an existing article. Only the fields you pass change. Pass `body` to replace the whole body. " +
       "Does not change draft status — use set_post_draft.",
     inputSchema: {
-      slug: slugArg,
+      slug: existingSlugArg,
       title: z.string().optional(),
       dek: z.string().optional(),
       lang: z.enum(["EN", "PT"]).optional(),
@@ -185,7 +186,7 @@ server.registerTool(
     description:
       "Publish (draft: false) or unpublish (draft: true) an article. Only changes the file — nothing goes live " +
       "until ship pushes it.",
-    inputSchema: { slug: slugArg, draft: z.boolean() },
+    inputSchema: { slug: existingSlugArg, draft: z.boolean() },
   },
   async ({ slug, draft }) => {
     const e = readEntry("writing", slug);

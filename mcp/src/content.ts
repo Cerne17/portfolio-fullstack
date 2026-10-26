@@ -58,8 +58,11 @@ function collection(name: CollectionName): Collection {
   return c;
 }
 
+// Only guards against path traversal: Decap derives slugs from titles and can
+// produce non-kebab ones (e.g. with "—"), which must stay readable and editable.
+// New entries get the stricter SLUG_RE check at the tool boundary.
 function fileFor(name: CollectionName, slug: string): string {
-  if (!SLUG_RE.test(slug)) throw new Error(`Invalid slug "${slug}" — use kebab-case (a-z, 0-9, -)`);
+  if (!slug || /[/\\]|^\.\.?$/.test(slug)) throw new Error(`Invalid slug "${slug}"`);
   const c = collection(name);
   return path.join(ROOT, c.folder, `${slug}.${c.extension ?? "md"}`);
 }
@@ -128,6 +131,8 @@ export function validateEntry(name: CollectionName, entry: Entry): Issue[] {
   // Decap names Now files after the date at creation; editing the date later leaves them out of sync.
   if (name === "now" && entry.data.date !== entry.slug)
     issues.push({ severity: "warning", where: "date", message: `file is named ${entry.slug} but date is ${entry.data.date}` });
+  if (name !== "now" && !SLUG_RE.test(entry.slug))
+    issues.push({ severity: "warning", where: "slug", message: "not kebab-case — the URL will carry encoded characters" });
   return issues.map((i) => ({ ...i, where: `${entry.slug}: ${i.where}` }));
 }
 
