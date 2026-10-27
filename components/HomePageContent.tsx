@@ -19,7 +19,7 @@ const copy = {
       pt: "Construo sistemas de dados para finanças — daqueles em que errar sai caro.",
     },
     sub: {
-      en: "Software engineer working where software, data, and quantitative finance meet. Currently at JGP Crédito, on the infrastructure behind financial-markets data.",
+      en: "Software engineer working where software, data, and quantitative finance meet. Currently at JGP, on the infrastructure behind financial-markets data.",
       pt: "Engenheiro de software atuando onde software, dados e finanças quantitativas se encontram. Hoje na JGP Crédito, na infraestrutura por trás dos dados de mercado.",
     },
   },
