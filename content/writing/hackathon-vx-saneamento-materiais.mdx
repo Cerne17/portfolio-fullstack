@@ -1,10 +1,12 @@
 ---
 date: "2026-11"
-title: "Quatro dias, 23.554 materiais e a regra de não unir o que é diferente"
-dek: "O que aprendi construindo em time, no Hackathon VX, uma plataforma de saneamento de dados mestres em que nenhuma mudança acontece sem aprovação humana."
+title: "Do Fundo do Poço: você sabe o que tem no seu próprio estoque?"
+dek: "Como cinco pessoas construíram em quatro dias, no Hackathon VX, o Toró D'Extoques: IA dentro do fluxo de cadastro, em que a IA sugere, a regra confirma e uma pessoa aprova."
 lang: "PT"
 cover: "/uploads/hackathon-vx-2026.png"
 citations:
+  - label: "Pitch — Toró D'Extoques (vx.pitch.cerne.pro)"
+    url: "https://vx.pitch.cerne.pro"
   - label: "Repositório no GitHub"
     url: "https://github.com/fernandobruzzi/Hackathon-VX-Grupo-3"
   - label: "Model Context Protocol"
@@ -14,9 +16,17 @@ citations:
 draft: false
 ---
 
-Uma peça pode estar no almoxarifado e continuar invisível para quem precisa dela. Basta que alguém a tenha cadastrado como `PARAF SEXT M12X50 8.8` e outra pessoa como `PARAFUSO CABECA SEXTAVADA M12 X 50 CLASSE 8.8`: são dois códigos, dois saldos, e a próxima compra acontece mesmo com o item na prateleira. Esse foi o ponto de partida do Desafio 01 do Hackathon VX, organizado pela Visagio entre 5 e 8 de novembro de 2026.
+"Você sabe o que tem no seu próprio estoque?" Foi com essa pergunta que abrimos o pitch do nosso time, o **Do Fundo do Poço**, no Hackathon VX da Visagio, no Rio, em 8 de novembro de 2026. A pergunta parece retórica até você abrir uma base de materiais de verdade.
 
-O kit trazia uma base mestre sintética com 23.554 materiais industriais, uma planilha com o padrão de cadastro (o PDM, que define para cada classe quais atributos são obrigatórios e quais valores são admitidos) e 520 pedidos de cadastro pendentes. A tarefa: sanear a base, padronizar novos cadastros e completar dados faltantes com fonte registrada. Em cinco pessoas, entregamos um MVP funcional, uma análise de mercado e um pitch de cinco minutos. O código é aberto, em [github.com/fernandobruzzi/Hackathon-VX-Grupo-3](https://github.com/fernandobruzzi/Hackathon-VX-Grupo-3).
+Em mineração, óleo e gás ou logística, o almoxarifado guarda milhares de itens, e cada um entrou no cadastro pela mão de alguém, sem padrão. Basta uma pessoa escrever `PARAF SEXT M12X50 8.8` e outra `PARAFUSO CABECA SEXTAVADA M12 X 50 CLASSE 8.8` para o mesmo parafuso virar dois códigos e dois saldos. A peça está na prateleira, mas continua invisível para quem precisa dela, e a próxima compra acontece mesmo assim. O resultado é compra repetida, gente presa em conferência manual e, no fim, uma empresa que não confia nos próprios dados.
+
+O Desafio 01 trazia exatamente isso: uma base sintética com 23.554 materiais industriais, a planilha do padrão de cadastro (o PDM, que define para cada classe os atributos obrigatórios e os valores admitidos) e 520 pedidos de cadastro pendentes. Em quatro dias, Bernardo Pozzato, Enzo Sampaio, Fernando Bruzzi, Hugo Antunes e eu entregamos um MVP funcional, uma análise de mercado e um pitch de cinco minutos. O [pitch está no ar](https://vx.pitch.cerne.pro) e o código é aberto, em [github.com/fernandobruzzi/Hackathon-VX-Grupo-3](https://github.com/fernandobruzzi/Hackathon-VX-Grupo-3).
+
+## O Toró D'Extoques
+
+Chamamos o produto de **Toró D'Extoques**: inteligência artificial dentro do fluxo de cadastro que a empresa já tem. Ninguém troca de sistema nem aprende um processo novo. Um pedido passa por quatro etapas — cadastro, padronização, validação e decisão — e a conferência manual deixa de ser a regra para virar a exceção.
+
+O slide de que mais gosto resume a arquitetura numa frase: **a IA propõe, a regra confere**. A IA escreve a descrição e a unidade no padrão, completa dados faltantes com a fonte registrada e aponta quando duas fichas são o mesmo item. Mas nenhuma mudança entra sem regra, evidência e aprovação.
 
 ## A assimetria que guiou tudo
 
@@ -24,27 +34,29 @@ Em saneamento de cadastro existem dois erros possíveis. Deixar de unir duas fic
 
 Escrevemos essa assimetria como regra antes de escrever código, e ela decidiu quase todas as discussões seguintes. Mesma classe, mesmo nome de item e mesmos atributos obrigatórios; ou a mesma referência genuína de fabricante, sem evidência contraditória. Sem isso, o caso vai para revisão humana. Fabricantes diferentes de produtos equivalentes ficam separados, com a equivalência registrada. E nenhuma pontuação de similaridade autoriza uma unificação: o `ranking_score` só ordena o que uma pessoa vai olhar.
 
-## Um motor de regras, dois caminhos
+## Uma regra, dois caminhos
 
-O sistema tem duas portas de entrada. O lote percorre a base inteira e gera propostas. O chat recebe um pedido em linguagem natural ("preciso de 20 parafusos sextavados M12") e conduz uma entrevista até o cadastro ficar completo no padrão PDM.
+O sistema tem duas portas de entrada. O lote percorre a base inteira e gera propostas. O chat recebe um pedido em linguagem natural ("preciso de 20 parafusos sextavados M12") e conduz uma entrevista até o cadastro ficar completo no padrão, buscando itens semelhantes antes de deixar nascer um código novo.
 
-A tentação num hackathon é escrever a lógica duas vezes, uma em cada lugar. Fizemos o contrário: identidade, normalização, PDM e NCM vivem num único pacote de domínio, importado pelo lote, pelo servidor MCP que o agente de chat usa e pela própria transação de aprovação na API. O modelo de linguagem escolhe perguntas e redação; quem decide se o dado é válido é o domínio. Quando o chat diz que um cadastro está pronto, é a mesma função que o lote usaria para dizer o mesmo.
+A tentação num hackathon é escrever a lógica duas vezes, uma em cada lugar. Fizemos o contrário: identidade, normalização, PDM e NCM vivem num único pacote de domínio, importado pelo lote, pelo servidor MCP que o agente usa e pela própria transação de aprovação na API. O modelo de linguagem — Claude Sonnet 5 no Amazon Bedrock, com um planejador por regras quando o modelo está fora — escolhe perguntas e redação; quem decide se o dado é válido é o domínio. É isso que o pitch chamava de dupla verificação.
 
 ## Propostas, nunca edições
 
 Nada escreve direto na base mestre. O lote e o chat produzem propostas; só a API aplica uma mudança, numa transação que grava a auditoria, confere a versão de cada material envolvido e é idempotente, para que um clique repetido não duplique efeito. Mudança de NCM exige aprovação fiscal, além da técnica. Saldos originais de estoque são imutáveis: uma unificação liga os snapshots ao material principal, com fator de conversão e fonte explícitos, e o valor total é conservado.
 
-Essa rigidez parece cara para quatro dias, mas simplificou o resto. Como toda mudança é um objeto com antes, depois e regra aplicada, o dashboard consegue mostrar o funil de propostas e um snapshot antes/depois sem inventar economia, e a demo pode ser zerada e reconstruída sempre no mesmo estado.
+Essa rigidez parece cara para quatro dias, mas simplificou o resto. Como toda mudança é um objeto com antes, depois e regra aplicada, o dashboard mostra o funil de propostas e um snapshot antes/depois sem inventar economia, e a demo pode ser zerada e reconstruída sempre no mesmo estado.
 
 ## O que o lote encontrou
 
-Na rodada integral sobre o kit, o lote analisou os 23.554 materiais em cerca de 13 minutos, sem nenhuma chamada a modelo de linguagem, e gerou 16.721 propostas:
+Na rodada integral sobre o kit, o lote analisou os 23.554 materiais em cerca de 13 minutos, sem nenhuma chamada a modelo de linguagem. Desses, 13.348 — 57% da base — receberam ao menos uma proposta, num total de 16.721:
 
 - 1.124 unificações, cobrindo 2.536 materiais;
 - 6.083 correções de NCM, das quais 680 preenchem um código ausente, 884 trocam um código e 4.519 só corrigem o formato;
 - 8.277 descrições reescritas no padrão PDM e 887 unidades normalizadas (`PCA` e `UN` viram `PC`).
 
 O número que mais me orgulha, porém, é outro: 9.237 materiais ficaram como pendência, com o motivo registrado. Uma unidade de embalagem sem fator conhecido não é convertida. `INOX 316` não vira `ACO INOX FORJADO A182 F316`, porque o texto não diz se a peça é forjada ou fundida. Preferimos deixar o campo vazio a adivinhar, porque um valor errado pode causar uma unificação errada.
+
+No pitch, o impacto financeiro entrou como cenário, não como resultado: estoque, taxa de duplicidade e economia dependem de cada cliente, e o próximo passo que propusemos foi um piloto para medir isso com dados reais.
 
 ## Onde eu trabalhei
 
@@ -56,8 +68,10 @@ A busca rendeu a lição mais concreta. Medimos sobre os 202 pares que a própri
 
 Cinco pessoas integraram mais de 170 PRs em quatro dias, com histórico linear. O que tornou isso possível foi combinar o fluxo antes de começar: cada trabalho nasce de uma issue atribuída, cada branch vem de `homologacao` e é rebaseada antes do PR, commits são atômicos, e o contrato OpenAPI é a fonte dos tipos do front. Algoritmos que podiam decepcionar (classificação, extração, matching, embeddings) ficaram atrás de repositórios trocáveis, de modo que testar uma abordagem nova era adicionar um módulo e medir, sem apagar o anterior.
 
-Também fomos honestos sobre o que não sabíamos. As medições de qualidade são de coortes revisadas durante o desenvolvimento, não de especialistas independentes, e o pitch dizia isso. O dashboard deixa precisão e recall como indisponíveis enquanto não houver essa revisão.
+Também fomos honestos sobre o que não sabíamos. As medições de qualidade são de coortes revisadas durante o desenvolvimento, não de especialistas independentes. O dashboard deixa precisão e recall como indisponíveis enquanto não houver essa revisão.
 
 ## O que fica
 
-Trabalhar com dado mestre me lembrou do que aprendi limpando dados da B3: o código é a parte fácil, e a parte difícil é saber quando um número está errado. A diferença é que aqui o erro não fica num gráfico; ele vira uma peça errada na mão de quem faz manutenção. Desenhar o sistema em torno dessa assimetria, com dúvida indo para uma pessoa e não para um palpite, foi a decisão que mais valeu os quatro dias.
+Trabalhar com dado mestre me lembrou do que aprendi limpando dados da B3: o código é a parte fácil, e a parte difícil é saber quando um número está errado. A diferença é que aqui o erro não fica num gráfico; ele vira uma peça errada na mão de quem faz manutenção. Desenhar o sistema em torno dessa assimetria, com a dúvida indo para uma pessoa e não para um palpite, foi a decisão que mais valeu os quatro dias.
+
+Fechamos o pitch com uma frase que virou piada interna do time: no final, todo esse toró vira um sol.
