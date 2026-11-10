@@ -1,0 +1,30 @@
+---
+title: "VX · Saneamento de Materiais"
+pillar: "system-design"
+pillarLabel:
+  en: "system design"
+  pt: "design de sistemas"
+year: "2026"
+role:
+  en: "Co-author, team of 5 — Hackathon VX (Visagio)"
+  pt: "Coautor, time de 5 — Hackathon VX (Visagio)"
+stack: ["Python", "FastAPI", "PostgreSQL + pgvector", "MCP", "Amazon Bedrock", "Next.js", "AWS ECS/RDS/Cognito", "Docker"]
+hero: true
+order: 1.5
+repo: "https://github.com/fernandobruzzi/Hackathon-VX-Grupo-3"
+thesis:
+  en: "A materials master-data platform built in four days: a batch that analyzed 23,554 industrial materials and proposed 16,721 fixes (1,124 merges, 6,083 NCM corrections), and a chat agent over MCP that registers new items to the PDM standard — with nothing touching the master base without audited human approval."
+  pt: "Uma plataforma de dados mestres de materiais construída em quatro dias: um lote que analisou 23.554 materiais industriais e propôs 16.721 correções (1.124 unificações, 6.083 correções de NCM), e um agente de chat via MCP que cadastra itens novos no padrão PDM — sem que nada toque a base mestre sem aprovação humana auditada."
+keyDecision:
+  en: "Merging two different items costs more than missing a duplicate. So one shared domain engine decides identity for the batch, the chat search and the approval transaction; a similarity score only ranks, never authorizes a merge; and every change is a proposal applied by the API in one transaction with audit, idempotency and version checks."
+  pt: "Unir dois itens diferentes custa mais do que perder uma duplicidade. Por isso um único motor de domínio decide identidade para o lote, para a busca do chat e para a transação de aprovação; score de similaridade só ordena, nunca autoriza merge; e toda mudança é uma proposta aplicada pela API numa transação com auditoria, idempotência e checagem de versão."
+lede:
+  en: |
+    Challenge 01 of Hackathon VX gave us a synthetic master base of 23,554 industrial materials, a PDM registration standard and 520 pending registration orders: duplicated codes, free-text descriptions, wrong units and inconsistent fiscal codes (NCM). Five of us shipped a working MVP, a market analysis and a five-minute pitch between 5 and 8 November 2026 — 170+ merged PRs on a linear history.
+
+    I worked across the stack: the PDM validator, attribute extraction, identity rules and merge proposals in the batch; the MCP server, its tools and the hybrid similar-material search (full-text plus optional embeddings, measured on 202 declared duplicate pairs); the database schema, migrations and per-service SQL credentials; and the AWS workshop deployment with CloudFormation, Cognito personas, Fargate batch execution and GitHub OIDC deploys. Every algorithm that could disappoint sits behind a swappable, measured repository, and every quality number is labeled as a development measurement, not an independent one.
+  pt: |
+    O Desafio 01 do Hackathon VX entregou uma base mestre sintética de 23.554 materiais industriais, um padrão de cadastro PDM e 520 pedidos de cadastro pendentes: códigos duplicados, descrições em texto livre, unidades erradas e NCM fiscal inconsistente. Em cinco pessoas, entregamos MVP funcional, análise de mercado e pitch de cinco minutos entre 5 e 8 de novembro de 2026 — mais de 170 PRs integrados em histórico linear.
+
+    Trabalhei em toda a stack: validador PDM, extração de atributos, regras de identidade e propostas de unificação no lote; o servidor MCP, suas ferramentas e a busca híbrida de semelhantes (full-text mais embeddings opcionais, medida em 202 pares declarados duplicados); schema, migrações e credenciais SQL por serviço; e o deploy AWS do workshop com CloudFormation, personas no Cognito, lote em Fargate e deploy pelo GitHub via OIDC. Todo algoritmo que podia decepcionar fica atrás de um repositório trocável e medido, e todo número de qualidade é rotulado como medição de desenvolvimento, não independente.
+---
