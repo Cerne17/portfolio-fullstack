@@ -33,7 +33,7 @@ $$
 \text{spread} = \text{melhor venda} - \text{melhor compra}
 $$
 
-Com a melhor compra a R$ 29,98 e a melhor venda a R$ 30,02, quem quer entrar e sair na hora paga R$ 0,04 por ação. O spread é o pedágio da liquidez: livro cheio e concorrido tem spread curto, e livro vazio cobra caro de quem tem pressa.
+Com a melhor compra a R\$ 29,98 e a melhor venda a R\$ 30,02, quem quer entrar e sair na hora paga R\$ 0,04 por ação. O spread é o pedágio da liquidez: livro cheio e concorrido tem spread curto, e livro vazio cobra caro de quem tem pressa.
 
 Toda ordem do simulador é **limitada**: "compro até X" ou "vendo por no mínimo X". O limite é o pior preço aceitável, nunca o preço garantido. E esse detalhe é justamente o que faz o livro funcionar. Quem manda uma limitada que não executa na hora fica esperando no livro e vira liquidez para quem chegar depois.
 
@@ -64,7 +64,7 @@ O `upper_bound` acha a primeira posição em que a ordem nova deixa de ter prior
 
 Há negócio quando uma compra encontra uma venda de preço menor ou igual. Quem já estava no livro é o **maker**, porque deu liquidez. Quem chegou e cruzou é o **taker**, porque tomou liquidez. O negócio sai sempre ao preço do maker, que estava publicado como compromisso firme.
 
-A consequência boa para o taker é a **melhoria de preço**. Uma compra de 10 com limite de R$ 30,20 que encontra uma venda a R$ 29,90 paga R$ 29,90. O dinheiro tinha sido reservado pelo limite, então a diferença volta para o caixa livre:
+A consequência boa para o taker é a **melhoria de preço**. Uma compra de 10 com limite de R\$ 30,20 que encontra uma venda a R\$ 29,90 paga R\$ 29,90. O dinheiro tinha sido reservado pelo limite, então a diferença volta para o caixa livre:
 
 $$
 \text{devolução} = q \cdot (\text{limite} - \text{preço do negócio}) = 10 \cdot (30{,}20 - 29{,}90) = \text{R\$ } 3{,}00
@@ -94,7 +94,7 @@ Uma coisa que o livro **não** faz é mexer em dinheiro. Ele casa ordens e devol
 
 ## Brinque com o livro
 
-O sketch abaixo usa as mesmas regras. Escolha um cenário e avance passo a passo. Em **Fila**, duas vendas a R$ 30,00 disputam uma compra, e vence quem chegou antes. **Preço** mostra a devolução da melhoria de preço. Em **Parcial**, a compra é maior que a oferta, e em **Mesmo dono** a ordem esbarra numa ordem do próprio participante.
+O sketch abaixo usa as mesmas regras. Escolha um cenário e avance passo a passo. Em **Fila**, duas vendas a R\$ 30,00 disputam uma compra, e vence quem chegou antes. **Preço** mostra a devolução da melhoria de preço. Em **Parcial**, a compra é maior que a oferta, e em **Mesmo dono** a ordem esbarra numa ordem do próprio participante.
 
 ```js
 // live
