@@ -163,10 +163,21 @@ function submit(who, side, qty, price) {
   }
 }
 
+// O site roda o sketch num iframe de altura fixa; a largura pode ser 0 no
+// primeiro quadro, então há um mínimo e o canvas acompanha o redimensionamento.
+const H = 436;
+function sketchWidth() {
+  return Math.max(320, Math.min(680, (windowWidth || 680) - 8));
+}
+
 function setup() {
-  createCanvas(Math.min(680, windowWidth - 8), 452);
+  createCanvas(sketchWidth(), H);
   textFont("sans-serif");
   start(0);
+}
+
+function windowResized() {
+  resizeCanvas(sketchWidth(), H);
 }
 
 function button(label, x, y, w, h, active, action) {
@@ -227,26 +238,26 @@ function draw() {
   text(`Melhor compra ${bestBid}  ·  Melhor venda ${bestAsk}  ·  Spread ${spread}`, 12, 252, width - 24, 34);
 
   fill(32);
-  rect(12, 286, width - 24, 112, 6);
+  rect(12, 284, width - 24, 106, 6);
   fill(225);
   textSize(12);
   textAlign(LEFT, TOP);
-  text(lines.join("\n"), 22, 294, width - 44, 100);
+  text(lines.join("\n"), 22, 291, width - 44, 96);
 
   const s = SCENARIOS[scenario];
   const done = step >= s.steps.length;
   const nextW = Math.min(190, (width - 34) * 0.6);
-  button(done ? "Concluído" : `Próximo passo (${step + 1}/${s.steps.length})`, 12, 410, nextW, 30, !done, () => {
+  button(done ? "Concluído" : `Próximo passo (${step + 1}/${s.steps.length})`, 12, 398, nextW, 30, !done, () => {
     // Lê o cenário no momento do clique: a aba pode ter mudado desde o último quadro.
     const current = SCENARIOS[scenario];
     if (step < current.steps.length) submit(...current.steps[step++]);
   });
-  button("Recomeçar", 22 + nextW, 410, Math.min(110, width - 34 - nextW), 30, false, () => start(scenario));
+  button("Recomeçar", 22 + nextW, 398, Math.min(110, width - 34 - nextW), 30, false, () => start(scenario));
   if (width > 520) {
     fill(130);
     textAlign(RIGHT, CENTER);
     textSize(11.5);
-    text(s.title, width - 12, 425);
+    text(s.title, width - 12, 413);
   }
 }
 
