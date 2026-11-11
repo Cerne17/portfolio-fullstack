@@ -1,0 +1,308 @@
+---
+date: "2026-11"
+title: "Quem compra de quem: um livro de ofertas em C++"
+dek: "O que aprendi implementando um livro de ofertas para o trabalho final de Linguagens de Programação: prioridade preço-tempo, preço do maker, reservas e por que ninguém pode comprar de si mesmo."
+lang: "PT"
+citations:
+  - label: "B3 — Manual de Procedimentos Operacionais de Negociação"
+    url: "https://www.b3.com.br/data/files/75/61/AA/8C/0510C8107E854EB8AC094EA8/MPO%20de%20Negociacao%20da%20B3.pdf"
+  - label: "B3 — Ofício Circular 014/2022 (Self Trade Prevention)"
+    url: "https://www.ancord.org.br/wp-content/uploads/2022/02/OC-014-2022-PRE-Alteracoes-no-Manual-de-Procedimentos-Operacionais-de-Negociação-da-B3-P.pdf"
+  - label: "Portal do Investidor — Liquidação e custódia"
+    url: "https://www.gov.br/investidor/pt-br/investir/como-investir/como-funciona-a-bolsa/liquidacao-e-custodia"
+  - label: "B3 Bora Investir — Projeto de liquidação em D+1"
+    url: "https://borainvestir.b3.com.br/noticias/mercado/b3-anuncia-projeto-para-reducao-do-ciclo-de-liquidacao-de-acoes-para-d1/"
+  - label: "Ágora — Manual de liquidação de renda variável"
+    url: "https://agorainvest.com.br/uploads/src/files/manual_liquidacao_renda_variavel.pdf"
+  - label: "B3 Bora Investir — Ação fracionada"
+    url: "https://borainvestir.b3.com.br/glossario/acao-fracionada/"
+  - label: "B3 — Características e regras do mercado de ações"
+    url: "https://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/mercado-de-acoes/caracteristicas-e-regras.htm"
+  - label: "pybind11 — Embedding the interpreter"
+    url: "https://pybind11.readthedocs.io/en/stable/advanced/embedding.html"
+draft: false
+---
+
+Toda vez que alguém compra uma ação, alguém do outro lado vendeu. Parece óbvio, mas quem decide *qual* vendedor, *a que preço* e *em que ordem* é um pedaço de software bem específico: o livro de ofertas. No trabalho final de Linguagens de Programação, eu e o João e Silva Costa estamos escrevendo um simulador de mercado com um livro desses em C++, com agentes automatizados em Python conversando com ele em memória via pybind11. Este texto é sobre o que o livro faz e, principalmente, por que cada regra existe.
+
+## Duas filas e um pedágio
+
+Um livro de ofertas são duas filas para o mesmo ativo. De um lado ficam as **compras** (bids), da maior para a menor. Do outro, as **vendas** (asks), da menor para a maior. O topo de cada fila é a melhor oferta daquele lado, e a distância entre os dois topos é o **spread**:
+
+$$
+\text{spread} = \text{melhor venda} - \text{melhor compra}
+$$
+
+Com a melhor compra a R$ 29,98 e a melhor venda a R$ 30,02, quem quer entrar e sair na hora paga R$ 0,04 por ação. O spread é o pedágio da liquidez: livro cheio e concorrido tem spread curto, e livro vazio cobra caro de quem tem pressa.
+
+Toda ordem do simulador é **limitada**: "compro até X" ou "vendo por no mínimo X". O limite é o pior preço aceitável, nunca o preço garantido. E esse detalhe é justamente o que faz o livro funcionar. Quem manda uma limitada que não executa na hora fica esperando no livro e vira liquidez para quem chegar depois.
+
+## Quem chegou primeiro, no melhor preço
+
+A regra de fila se chama **prioridade preço-tempo**. Primeiro vale o melhor preço. Empatou no preço, vale quem chegou antes. Ela premia duas coisas que o mercado quer incentivar: quem melhora o preço (o que aperta o spread) e, no empate, quem se comprometeu primeiro. E não depende de quem você é, então dá para auditar.
+
+Em C++, cada lado do livro é um `std::vector<Order>` mantido ordenado, e a comparação cabe numa função:
+
+```cpp
+bool OrderBook::hasPriority(const Order& a, const Order& b) {
+    if (a.priceMinor != b.priceMinor) {
+        return a.side == Side::Buy ? a.priceMinor > b.priceMinor : a.priceMinor < b.priceMinor;
+    }
+    return a.sequence < b.sequence;  // mesmo preço: quem chegou antes
+}
+
+void OrderBook::insert(Order order) {
+    std::vector<Order>& book = sideOf(order.side);
+    const auto position = std::upper_bound(book.begin(), book.end(), order, hasPriority);
+    book.insert(position, order);
+}
+```
+
+O `upper_bound` acha a primeira posição em que a ordem nova deixa de ter prioridade. Como a sequência de chegada só cresce, uma ordem nova com o mesmo preço de outras cai depois delas, e o FIFO sai de graça, sem nenhum código extra para desempate.
+
+## O preço é de quem estava esperando
+
+Há negócio quando uma compra encontra uma venda de preço menor ou igual. Quem já estava no livro é o **maker**, porque deu liquidez. Quem chegou e cruzou é o **taker**, porque tomou liquidez. O negócio sai sempre ao preço do maker, que estava publicado como compromisso firme.
+
+A consequência boa para o taker é a **melhoria de preço**. Uma compra de 10 com limite de R$ 30,20 que encontra uma venda a R$ 29,90 paga R$ 29,90. O dinheiro tinha sido reservado pelo limite, então a diferença volta para o caixa livre:
+
+$$
+\text{devolução} = q \cdot (\text{limite} - \text{preço do negócio}) = 10 \cdot (30{,}20 - 29{,}90) = \text{R\$ } 3{,}00
+$$
+
+A ordem também não precisa casar inteira. O laço de casamento executa o que existir do outro lado enquanto houver cruzamento, e o saldo fica no livro:
+
+```cpp
+while (incoming.remainingQty > 0 && !opposite.empty() && crosses(incoming, opposite.front())) {
+    Order& resting = opposite.front();
+    if (resting.participantId == incoming.participantId) {   // mesmo dono: ver abaixo
+        result.selfTradeCancelledQty = incoming.remainingQty;
+        incoming.remainingQty = 0;
+        break;
+    }
+    const Quantity qty = std::min(incoming.remainingQty, resting.remainingQty);
+    result.trades.push_back(makeTrade(incoming, resting, qty, round, nextTradeId++));
+    incoming.remainingQty -= qty;
+    resting.remainingQty -= qty;
+    if (resting.isFilled()) {
+        opposite.erase(opposite.begin());
+    }
+}
+```
+
+Uma coisa que o livro **não** faz é mexer em dinheiro. Ele casa ordens e devolve a lista de negócios. Quem liquida as carteiras é outra classe, e foi essa separação que deixou o livro testável sozinho.
+
+## Brinque com o livro
+
+O sketch abaixo usa as mesmas regras. Escolha um cenário e avance passo a passo. Em **Fila**, duas vendas a R$ 30,00 disputam uma compra, e vence quem chegou antes. **Preço** mostra a devolução da melhoria de preço. Em **Parcial**, a compra é maior que a oferta, e em **Mesmo dono** a ordem esbarra numa ordem do próprio participante.
+
+```js
+// live
+// Livro de ofertas com prioridade preço-tempo, preço do maker,
+// execução parcial e prevenção de autonegociação.
+const SCENARIOS = [
+  { tab: "Fila", title: "Prioridade preço-tempo",
+    steps: [["Ana", "V", 5, 3010], ["Bruno", "V", 5, 3000], ["Ana", "V", 5, 3000], ["Robô", "C", 7, 3010]] },
+  { tab: "Preço", title: "Melhoria de preço",
+    steps: [["Ana", "V", 10, 2990], ["Bruno", "C", 10, 3020]] },
+  { tab: "Parcial", title: "Execução parcial",
+    steps: [["Bruno", "V", 3, 3000], ["Robô", "C", 10, 3000]] },
+  { tab: "Mesmo dono", title: "Autonegociação",
+    steps: [["Bruno", "V", 2, 2995], ["Ana", "V", 5, 3000], ["Ana", "C", 6, 3010]] },
+];
+
+let bids, asks, seq, nextId, lines, scenario, step, buttons;
+
+function brl(c) {
+  return "R$ " + Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0");
+}
+
+function start(index) {
+  scenario = index;
+  step = 0;
+  bids = [];
+  asks = [];
+  seq = 1;
+  nextId = 1;
+  lines = ["Clique em Próximo passo para enviar a primeira ordem."];
+}
+
+function better(a, b) {
+  if (a.price !== b.price) return a.side === "C" ? a.price > b.price : a.price < b.price;
+  return a.seq < b.seq;
+}
+
+function submit(who, side, qty, price) {
+  const order = { id: nextId++, who, side, price, rem: qty, seq: seq++ };
+  const opposite = side === "C" ? asks : bids;
+  lines = [`${who} envia ${side === "C" ? "compra" : "venda"} de ${qty} a ${brl(price)}.`];
+  while (order.rem > 0 && opposite.length > 0) {
+    const top = opposite[0];
+    const crosses = side === "C" ? price >= top.price : price <= top.price;
+    if (!crosses) break;
+    if (top.who === who) {
+      lines.push(`O topo do outro lado também é de ${who}: autonegociação. O saldo de ${order.rem} é cancelado.`);
+      order.rem = 0;
+      break;
+    }
+    const q = Math.min(order.rem, top.rem);
+    lines.push(`Negócio: ${q} a ${brl(top.price)} com ${top.who} (preço de quem já estava no livro).`);
+    if (side === "C" && price > top.price) {
+      lines.push(`${who} recebe de volta ${brl(q * (price - top.price))} da reserva.`);
+    }
+    order.rem -= q;
+    top.rem -= q;
+    if (top.rem === 0) opposite.shift();
+  }
+  if (order.rem > 0) {
+    const book = side === "C" ? bids : asks;
+    let i = 0;
+    while (i < book.length && !better(order, book[i])) i++;
+    book.splice(i, 0, order);
+    lines.push(`${order.rem} ficam no livro, na posição ${i + 1} da fila.`);
+  }
+}
+
+function setup() {
+  createCanvas(Math.min(680, windowWidth - 8), 452);
+  textFont("sans-serif");
+  start(0);
+}
+
+function button(label, x, y, w, h, active, action) {
+  buttons.push({ x, y, w, h, action });
+  stroke(active ? color(232, 154, 60) : 90);
+  fill(active ? color(232, 154, 60, 40) : 30);
+  rect(x, y, w, h, 6);
+  noStroke();
+  fill(active ? color(232, 154, 60) : 220);
+  textAlign(CENTER, CENTER);
+  textSize(12);
+  text(label, x + w / 2, y + h / 2);
+}
+
+function drawSide(title, hint, orders, x, w, tint) {
+  textAlign(LEFT, TOP);
+  textSize(13);
+  fill(tint);
+  text(title, x, 56);
+  textSize(11);
+  fill(140);
+  text(hint, x, 74);
+  if (orders.length === 0) {
+    fill(130);
+    textSize(12);
+    text("vazio", x, 98);
+    return;
+  }
+  orders.slice(0, 5).forEach((o, i) => {
+    const y = 94 + i * 30;
+    fill(i === 0 ? color(red(tint), green(tint), blue(tint), 45) : 32);
+    rect(x, y, w, 26, 5);
+    fill(225);
+    textSize(12);
+    textAlign(LEFT, CENTER);
+    text(`#${o.id} ${o.who}`, x + 8, y + 13);
+    textAlign(RIGHT, CENTER);
+    text(`${o.rem} × ${brl(o.price)}`, x + w - 8, y + 13);
+  });
+}
+
+function draw() {
+  background(20);
+  buttons = [];
+  const tabW = (width - 24 - 3 * 6) / 4;
+  SCENARIOS.forEach((s, i) => button(s.tab, 12 + i * (tabW + 6), 12, tabW, 30, i === scenario, () => start(i)));
+
+  const colW = (width - 36) / 2;
+  drawSide("Compras", "maior preço primeiro", bids, 12, colW, color(111, 207, 151));
+  drawSide("Vendas", "menor preço primeiro", asks, 24 + colW, colW, color(242, 139, 130));
+
+  const bestBid = bids.length ? brl(bids[0].price) : "-";
+  const bestAsk = asks.length ? brl(asks[0].price) : "-";
+  const spread = bids.length && asks.length ? brl(asks[0].price - bids[0].price) : "-";
+  fill(160);
+  textSize(12);
+  textAlign(LEFT, TOP);
+  text(`Melhor compra ${bestBid}  ·  Melhor venda ${bestAsk}  ·  Spread ${spread}`, 12, 252, width - 24, 34);
+
+  fill(32);
+  rect(12, 286, width - 24, 112, 6);
+  fill(225);
+  textSize(12);
+  textAlign(LEFT, TOP);
+  text(lines.join("\n"), 22, 294, width - 44, 100);
+
+  const s = SCENARIOS[scenario];
+  const done = step >= s.steps.length;
+  const nextW = Math.min(190, (width - 34) * 0.6);
+  button(done ? "Concluído" : `Próximo passo (${step + 1}/${s.steps.length})`, 12, 410, nextW, 30, !done, () => {
+    // Lê o cenário no momento do clique: a aba pode ter mudado desde o último quadro.
+    const current = SCENARIOS[scenario];
+    if (step < current.steps.length) submit(...current.steps[step++]);
+  });
+  button("Recomeçar", 22 + nextW, 410, Math.min(110, width - 34 - nextW), 30, false, () => start(scenario));
+  if (width > 520) {
+    fill(130);
+    textAlign(RIGHT, CENTER);
+    textSize(11.5);
+    text(s.title, width - 12, 425);
+  }
+}
+
+function mousePressed() {
+  for (const b of buttons) {
+    if (mouseX >= b.x && mouseX <= b.x + b.w && mouseY >= b.y && mouseY <= b.y + b.h) {
+      b.action();
+      return;
+    }
+  }
+}
+```
+
+## Dinheiro preso
+
+Antes de uma ordem entrar no livro, o simulador confere se o participante pode honrá-la, e **reserva** o que ela compromete. A compra prende `quantidade × limite` do caixa, e a venda prende as ações. Executar consome a reserva, e cancelar devolve. Sem isso, o mesmo dinheiro poderia sustentar duas ordens ao mesmo tempo, e um negócio poderia sair sem lastro. Vender sem ter as ações seria venda a descoberto, que no mercado real exige alugar o papel e que o simulador simplesmente proíbe.
+
+Isso vira uma invariante que o programa confere sempre que carrega um estado salvo. Para cada participante $p$:
+
+$$
+\text{caixa reservado}_p = \sum_{o \,\in\, \text{compras abertas de } p} o.\text{pendente} \cdot o.\text{preço}
+\qquad
+\text{ações reservadas}_p = \sum_{o \,\in\, \text{vendas abertas de } p} o.\text{pendente}
+$$
+
+Um arquivo em que essas contas não fecham é rejeitado, e a sessão aberta continua intacta. Melhor recusar um estado do que aceitar um que não faz sentido.
+
+## Comprar de si mesmo
+
+E se a ordem que chega encontra no topo uma ordem do mesmo participante? Comprar de si mesmo não muda a posição de ninguém, mas cria volume e preço artificiais, e isso pode enganar quem está olhando o livro. Bolsas reais tratam isso: o manual de negociação da B3 prevê uma funcionalidade de *Self Trade Prevention* e regras para operações de mesmo comitente.
+
+No simulador, a política é cancelar o saldo da ordem que chegou e liberar a reserva dele. Os negócios que ela já fez com terceiros antes de esbarrar na própria ordem continuam valendo. É o `if` no começo do laço acima, e é a regra que mais rendeu casos de teste.
+
+## Centavos, não double
+
+Todo preço e todo saldo do projeto é um inteiro em centavos (`std::int64_t`). Em ponto flutuante, `0.1 + 0.2` dá `0.30000000000000004`, e dinheiro precisa fechar no centavo. Com inteiros, o incremento mínimo de preço (o *tick*) vira uma checagem trivial, `preço % tick == 0`. Antes de multiplicar preço por quantidade, o código testa o estouro, porque estouro de inteiro com sinal é comportamento indefinido em C++. Taxas e margens dos agentes seguem a mesma lógica, em pontos-base, em que 10.000 bps equivalem a 100%.
+
+O relatório final usa a mesma disciplina. O preço médio ponderado por volume é calculado com inteiros e arredondado ao centavo com "meio para cima":
+
+$$
+\text{VWAP} = \operatorname{round}\left(\frac{\sum_i p_i \, q_i}{\sum_i q_i}\right)
+$$
+
+O `round()` do Python arredonda empates para o par (2,5 vira 2). Então a conta é `(2n + d) // (2d)`, que nunca passa por float.
+
+## O que a bolsa de verdade faz além disso
+
+O simulador guarda o núcleo e corta o resto, e saber o que ficou de fora ajuda a entender o que ficou dentro.
+
+- **Liquidação.** Aqui o negócio move caixa e ações na hora. Na B3, a liquidação de ações acontece dois dias úteis depois (D+2), e há um projeto para reduzir esse ciclo para D+1 em 2028.
+- **Garantia.** No simulador só existem os dois lados. Na B3, a própria bolsa atua como contraparte central e garante a liquidação se um lado falhar.
+- **Lote.** Aqui qualquer quantidade inteira vale. Na B3, ações negociam em lote padrão, normalmente de 100, e o que é menor vai para o mercado fracionário, com o código terminado em F.
+- **Abertura.** Aqui a negociação começa contínua. Na B3, há um call de abertura em forma de leilão nos 15 minutos antes da sessão, para formar um preço de abertura justo.
+
+## O que fica
+
+O livro em si é pequeno: duas filas, uma comparação e um laço. O que deu trabalho foi garantir que as regras em volta dele nunca se contradissessem. Reserva, liquidação, cancelamento e autonegociação mexem nos mesmos saldos, e um erro de uma linha numa delas faz dinheiro surgir do nada.
+
+O teste que mais pegou bug foi também o mais simples de escrever: rodar duzentas rodadas com seis agentes de estilos diferentes e conferir que a soma de caixa e a soma de ações de todo mundo não mudaram em nada. Negócio só transfere, nunca cria nem destrói. Quando essa conta fecha depois de milhares de ordens, dá para confiar no resto.
